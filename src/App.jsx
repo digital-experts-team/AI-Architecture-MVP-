@@ -4,7 +4,7 @@ import ModuleExterior from './components/ModuleExterior';
 import ModuleInterior from './components/ModuleInterior';
 import DatabasePanel from './components/DatabasePanel';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = import.meta.env.DEV ? 'http://localhost:5000' : '';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('blueprint'); // 'blueprint' | 'exterior' | 'interior'
