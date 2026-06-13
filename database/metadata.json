@@ -1,0 +1,26 @@
+{
+  "tiles": {
+    "marble_tile.png": {
+      "providerName": "Premium Stone & Co.",
+      "providerWebsite": "https://example.com/premium-marble"
+    },
+    "oak_wood_tile.png": {
+      "providerName": "Hardwood Depot",
+      "providerWebsite": "https://example.com/hardwood-oak"
+    }
+  },
+  "furniture": {
+    "emerald_sofa.png": {
+      "providerName": "Lux Living Furniture",
+      "providerWebsite": "https://example.com/velvet-sofa"
+    },
+    "wooden_bed.png": {
+      "providerName": "Nordic Comforts",
+      "providerWebsite": "https://example.com/nordic-bed"
+    },
+    "coffee_table.png": {
+      "providerName": "Minimalist Woodworks",
+      "providerWebsite": "https://example.com/wooden-table"
+    }
+  }
+}
