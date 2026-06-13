@@ -4,6 +4,7 @@ import ModuleExterior from './components/ModuleExterior';
 import ModuleInterior from './components/ModuleInterior';
 import DatabasePanel from './components/DatabasePanel';
 
+// API_BASE_URL is dynamically configured to use port 5000 in dev and relative path in production Vercel
 const API_BASE_URL = import.meta.env.DEV ? 'http://localhost:5000' : '';
 
 export default function App() {
