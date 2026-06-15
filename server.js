@@ -706,11 +706,6 @@ Return your response as a JSON object with the exact structure:
   }
 });
 
-  } catch (error) {
-    console.error("AI Generation failed:", error);
-    res.status(500).json({ error: error.message });
-  }
-});
 
 // 7. Generate Design Render from a Different Camera Angle
 app.post('/api/generate-angle', async (req, res) => {
