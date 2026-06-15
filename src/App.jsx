@@ -21,6 +21,7 @@ export default function App() {
     { id: 'Bathroom', icon: '🛁', size: '2.5m x 2.0m' }
   ]);
   const [constructionStyle, setConstructionStyle] = useState('Modern Minimalist');
+  const [floorsCount, setFloorsCount] = useState(1);
 
   const fetchStatus = async () => {
     try {
@@ -121,6 +122,8 @@ export default function App() {
                 setRoomsList={setRoomsList}
                 constructionStyle={constructionStyle}
                 setConstructionStyle={setConstructionStyle}
+                floorsCount={floorsCount}
+                setFloorsCount={setFloorsCount}
               />
             )}
 
@@ -131,6 +134,7 @@ export default function App() {
                 apiBaseUrl={API_BASE_URL}
                 isApiConfigured={isApiConfigured}
                 constructionStyle={constructionStyle}
+                floorsCount={floorsCount}
               />
             )}
 

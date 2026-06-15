@@ -5,7 +5,8 @@ export default function ModuleExterior({
   generatedSvg, 
   apiBaseUrl, 
   isApiConfigured,
-  constructionStyle
+  constructionStyle,
+  floorsCount
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -22,7 +23,8 @@ export default function ModuleExterior({
         body: JSON.stringify({
           blueprintUrl: floorPlanUrl,
           blueprintSvg: generatedSvg,
-          style: constructionStyle || 'Modern Minimalist'
+          style: constructionStyle || 'Modern Minimalist',
+          floorsCount
         })
       });
 

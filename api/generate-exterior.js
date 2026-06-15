@@ -35,10 +35,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { blueprintUrl, blueprintSvg, style } = req.body;
+  const { blueprintUrl, blueprintSvg, style, floorsCount } = req.body;
   if (!style) {
     return res.status(400).json({ error: "style is required (e.g., Modern, Scandinavian)." });
   }
+
+  const floors = parseInt(floorsCount) || 1;
+  const floorsText = floors === 1 ? 'single-story' : (floors === 2 ? 'two-story' : 'three-story');
 
   try {
     const apiKey = process.env.GEMINI_API_KEY;
@@ -74,10 +77,11 @@ Based on this blueprint, write a detailed architectural description and a single
 - Right Panel (Back-Left Perspective): Shows the rear facade and the left side facade of the exact same house. Must depict the backyard patio, the kitchen/bedroom windows, and backyard landscaping.
 
 The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND ENFORCE CONSISTENCY:
-1. Clearly specify a "split-screen side-by-side architectural visualization showing two views of the exact same single-story house".
-2. Describe identical materials (e.g., white concrete plaster, natural oak wood siding, black steel window frames) and matching rooflines (e.g., flat roof, sloped shed roof) in both panels.
-3. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is at the bottom-left on the blueprint, it must show on the left panel's front facade).
-4. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
+1. Clearly specify a "split-screen side-by-side architectural visualization showing two views of the exact same ${floorsText} house".
+2. The house MUST be exactly ${floors} floors tall. Describe the distinct levels, floor separations, and matching roofline consistently across both panels.
+3. Describe identical materials (e.g., white concrete plaster, natural oak wood siding, black steel window frames) and matching rooflines (e.g., flat roof, sloped shed roof) in both panels.
+4. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is on the ground floor bottom-left on the blueprint, it must show on the ground floor left panel's front facade).
+5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
 5. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
 
 Return your response as a JSON object with this structure:
