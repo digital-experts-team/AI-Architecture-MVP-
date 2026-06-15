@@ -148,9 +148,9 @@ export default function ModuleExterior({
             <div className="loading-overlay">
               <div className="spinner"></div>
               <div className="loading-text" style={{ textAlign: 'center', maxWidth: '80%' }}>
-                Analyzing blueprint layouts and drawing alternative facades with Imagen 4...
+                Analyzing blueprint layouts and drawing split-screen facades with Imagen 4...
               </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Generating front-right and back-left views in parallel (12-18s)...</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Generating front-right and back-left views of the same house (10-15s)...</div>
             </div>
           )}
 
@@ -162,53 +162,30 @@ export default function ModuleExterior({
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
               <div>Your photorealistic exterior views will appear here.</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>The AI will render two alternative views showing all 4 sides of the home.</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>The AI will render two alternative angles of the same house in a split-screen sheet.</div>
             </div>
           )}
 
           {/* Generated Result View */}
           {result && !isLoading && (
             <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', padding: '1rem', boxSizing: 'border-box', gap: '1rem' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', flex: 1 }}>
-                
-                {/* View 1: Front-Right perspective */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-                    📸 View 1: Front-Right Perspective (Front Entrance & Car Porch side)
-                  </div>
-                  <div 
-                    className="render-image-container" 
-                    style={{ flex: 1, margin: 0, position: 'relative', overflow: 'hidden', minHeight: '260px' }}
-                    onClick={() => setActiveLightboxImage(result.exteriorImage1)}
-                  >
-                    <img 
-                      src={result.exteriorImage1} 
-                      alt="Front-Right Exterior View" 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
-                    />
-                    <div className="zoom-overlay">🔍 View Fullscreen</div>
-                  </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', display: 'flex', justifyContent: 'space-between' }}>
+                  <span>📸 Left Panel: Front-Right Perspective View</span>
+                  <span>Right Panel: Back-Left Perspective View 📸</span>
                 </div>
-
-                {/* View 2: Back-Left perspective */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-                    📸 View 2: Back-Left Perspective (Backyard & Bedroom side)
-                  </div>
-                  <div 
-                    className="render-image-container" 
-                    style={{ flex: 1, margin: 0, position: 'relative', overflow: 'hidden', minHeight: '260px' }}
-                    onClick={() => setActiveLightboxImage(result.exteriorImage2)}
-                  >
-                    <img 
-                      src={result.exteriorImage2} 
-                      alt="Back-Left Exterior View" 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
-                    />
-                    <div className="zoom-overlay">🔍 View Fullscreen</div>
-                  </div>
+                <div 
+                  className="render-image-container" 
+                  style={{ flex: 1, margin: 0, position: 'relative', overflow: 'hidden', minHeight: '300px' }}
+                  onClick={() => setActiveLightboxImage(result.exteriorImage)}
+                >
+                  <img 
+                    src={result.exteriorImage} 
+                    alt="Consistent Exterior Views Split Screen" 
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', background: '#0a0e1a' }} 
+                  />
+                  <div className="zoom-overlay">🔍 Click to View Fullscreen</div>
                 </div>
-
               </div>
 
               {/* Regenerate Button */}
@@ -227,7 +204,7 @@ export default function ModuleExterior({
                   marginTop: '0.25rem'
                 }}
               >
-                Regenerate Both Facades ↺
+                Regenerate Facades ↺
               </button>
             </div>
           )}

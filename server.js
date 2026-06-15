@@ -382,18 +382,16 @@ Analyze the provided house blueprint (SVG code or image) with extreme care. Noti
 - The overall shape, wall boundaries, room division, and level structure of the floor plan.
 - The front entrance door, car porch/garage (if present), and window configurations along all outer walls.
 
-Based on this blueprint, write a detailed architectural description and TWO distinct image generation prompts for Imagen 4 representing two alternative perspective views of this house in a "${style}" style.
+Based on this blueprint, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a side-by-side split screen showing two alternative perspective views of the EXACT SAME house:
+- Left Panel (Front-Right Perspective): Shows the front facade and the right side facade of the house. Must clearly depict the front entrance door, the car porch (if present in the blueprint), the living room windows, and the front yard landscaping.
+- Right Panel (Back-Left Perspective): Shows the rear facade and the left side facade of the exact same house. Must depict the backyard patio, the kitchen/bedroom windows, and backyard landscaping.
 
-The two views must represent:
-- View 1 (Front-Right Perspective): Must show two sides of the house (the front facade and the right side facade) in a single image. It must clearly highlight the main entrance door, the car porch (if selected in the blueprint), the living room window, and front landscaping.
-- View 2 (Back-Left Perspective): Must show the alternative two sides of the house (the back facade and the left side facade) in a single image. It must highlight the rear entrance/yard patio, backyard landscaping, and bedroom/bathroom windows on the alternative side.
-
-Both Imagen 4 prompts MUST STAY 100% TRUE TO THE BLUEPRINT:
-1. If the blueprint represents a single-story multi-room house, the prompts must explicitly specify a "single-story residential house" in the "${style}" style.
-2. Align the doors, windows, and car porch/garage exactly as they are arranged in the blueprint layout.
-3. Describe the chosen architectural style ("${style}"), detailing consistent facade materials (e.g., natural cedar wood slats, white concrete plaster, dark steel trims), roof style, and landscaping.
+The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND ENFORCE CONSISTENCY:
+1. Clearly specify a "split-screen side-by-side architectural visualization showing two views of the exact same single-story house".
+2. Describe identical materials (e.g., white concrete plaster, natural oak wood siding, black steel window frames) and matching rooflines (e.g., flat roof, sloped shed roof) in both panels.
+3. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is at the bottom-left on the blueprint, it must show on the left panel's front facade).
 4. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
-5. Do NOT mention code variables, filenames, or technical terms in the Imagen prompts. Use visual descriptions.
+5. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
 
 Return your response as a JSON object with this structure:
 {
@@ -404,10 +402,9 @@ Return your response as a JSON object with this structure:
     "levels": "Description of the height profile (e.g., 'Single-story structure')",
     "entranceLocation": "Detected location of the front door entrance",
     "facadeWindows": "Detailed summary of window counts and locations as seen on the blueprint",
-    "blueprintMatchDetails": "Detailed list of exactly how the exterior architectural prompts respect the blueprint room coordinates"
+    "blueprintMatchDetails": "Detailed list of exactly how the exterior architectural prompt respects the blueprint room coordinates"
   },
-  "imagenPrompt1": "The highly detailed Imagen 4 prompt for View 1 (Front-Right perspective showing front entrance, car porch, living room facade)",
-  "imagenPrompt2": "The highly detailed Imagen 4 prompt for View 2 (Back-Left perspective showing alternative sides, backyard patio, bedroom/bathroom window facades)"
+  "imagenPrompt": "The highly detailed Imagen 4 prompt for the side-by-side split screen"
 }`;
 
     contents.push(promptText);
@@ -423,48 +420,31 @@ Return your response as a JSON object with this structure:
     });
 
     const designResult = JSON.parse(response.text);
-    console.log("Generated facade prompt 1:", designResult.imagenPrompt1);
-    console.log("Generated facade prompt 2:", designResult.imagenPrompt2);
+    console.log("Generated facade split prompt:", designResult.imagenPrompt);
 
     console.log("Generating photorealistic exterior views with Imagen 4...");
-    const [imgResponse1, imgResponse2] = await Promise.all([
-      ai.models.generateImages({
-        model: 'imagen-4.0-generate-001',
-        prompt: designResult.imagenPrompt1,
-        config: {
-          numberOfImages: 1,
-          aspectRatio: '16:9',
-          outputMimeType: 'image/jpeg'
-        }
-      }),
-      ai.models.generateImages({
-        model: 'imagen-4.0-generate-001',
-        prompt: designResult.imagenPrompt2,
-        config: {
-          numberOfImages: 1,
-          aspectRatio: '16:9',
-          outputMimeType: 'image/jpeg'
-        }
-      })
-    ]);
+    const imgResponse = await ai.models.generateImages({
+      model: 'imagen-4.0-generate-001',
+      prompt: designResult.imagenPrompt,
+      config: {
+        numberOfImages: 1,
+        aspectRatio: '16:9',
+        outputMimeType: 'image/jpeg'
+      }
+    });
 
-    const exteriorImage1 = imgResponse1?.generatedImages?.[0]?.image?.imageBytes 
-      ? `data:image/jpeg;base64,${imgResponse1.generatedImages[0].image.imageBytes}`
+    const exteriorImage = imgResponse?.generatedImages?.[0]?.image?.imageBytes 
+      ? `data:image/jpeg;base64,${imgResponse.generatedImages[0].image.imageBytes}`
       : null;
 
-    const exteriorImage2 = imgResponse2?.generatedImages?.[0]?.image?.imageBytes 
-      ? `data:image/jpeg;base64,${imgResponse2.generatedImages[0].image.imageBytes}`
-      : null;
-
-    if (!exteriorImage1 || !exteriorImage2) {
-      throw new Error("Failed to render alternative exterior facade views.");
+    if (!exteriorImage) {
+      throw new Error("Failed to render exterior facade image.");
     }
 
     res.json({
       success: true,
       design: designResult,
-      exteriorImage1,
-      exteriorImage2
+      exteriorImage
     });
 
   } catch (error) {
