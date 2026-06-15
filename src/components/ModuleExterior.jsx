@@ -6,11 +6,123 @@ export default function ModuleExterior({
   apiBaseUrl, 
   isApiConfigured,
   constructionStyle,
-  floorsCount
+  floorsCount,
+  assets
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [activeLightboxImage, setActiveLightboxImage] = useState(null);
+  const [activeProviderAsset, setActiveProviderAsset] = useState(null);
+
+  const getAssetDetails = (filename, folderName) => {
+    if (!assets || !assets[folderName]) {
+      let defaultPrice = "$199.00";
+      const folderLower = folderName.toLowerCase();
+      if (folderLower.includes('tile') || folderLower.includes('floor')) {
+        defaultPrice = "$5.99 / sq ft";
+      } else if (folderLower.includes('light') || folderLower.includes('lamp')) {
+        defaultPrice = "$129.00";
+      } else if (folderLower.includes('carpet') || folderLower.includes('rug')) {
+        defaultPrice = "$249.00";
+      } else if (folderLower.includes('door')) {
+        defaultPrice = "$599.00";
+      } else if (folderLower.includes('window')) {
+        defaultPrice = "$249.00";
+      }
+      return {
+        name: filename.replace(/_/g, ' ').replace(/\.[^/.]+$/, ""),
+        url: `/database/${folderName}/${filename}`,
+        providerName: "Local Artisan",
+        providerWebsite: "https://example.com",
+        price: defaultPrice
+      };
+    }
+
+    const found = assets[folderName].find(item => item.filename === filename);
+    return found || {
+      name: filename.replace(/_/g, ' ').replace(/\.[^/.]+$/, ""),
+      url: `/database/${folderName}/${filename}`,
+      providerName: "Local Artisan",
+      providerWebsite: "https://example.com",
+      price: "$199.00"
+    };
+  };
+
+  const getShoppableItems = (option) => {
+    if (!option) return [];
+    const items = [];
+    
+    // Paint
+    if (option.paint) {
+      items.push({
+        name: option.paint.name,
+        hex: option.paint.hex,
+        providerName: option.paint.providerName,
+        providerWebsite: option.paint.providerWebsite,
+        price: option.paint.price,
+        category: 'Wall Paint',
+        isPaint: true
+      });
+    }
+    
+    if (option.selectedAssets) {
+      Object.entries(option.selectedAssets).forEach(([folderName, files]) => {
+        if (!files) return;
+        const fileList = Array.isArray(files) ? files : [files];
+        fileList.forEach(file => {
+          const detail = getAssetDetails(file, folderName);
+          let cat = 'Exterior Part';
+          if (folderName.toLowerCase().includes('roof')) cat = 'Roof Tiles';
+          else if (folderName.toLowerCase().includes('door')) cat = 'Front Door';
+          else if (folderName.toLowerCase().includes('window')) cat = 'Window Frame';
+          
+          items.push({
+            ...detail,
+            category: cat,
+            isPaint: false
+          });
+        });
+      });
+    }
+    
+    return items;
+  };
+
+  const calculateTotalPrice = (option) => {
+    let total = 0;
+    
+    // Paint
+    if (option.paint && option.paint.price) {
+      const match = option.paint.price.match(/\$(\d+(\.\d+)?)/);
+      if (match) total += parseFloat(match[1]) * 4; // 4 gallons
+    }
+    
+    if (option.selectedAssets) {
+      Object.entries(option.selectedAssets).forEach(([folderName, files]) => {
+        if (!files) return;
+        const fileList = Array.isArray(files) ? files : [files];
+        fileList.forEach(file => {
+          const asset = getAssetDetails(file, folderName);
+          if (asset && asset.price) {
+            const match = asset.price.match(/\$(\d+(\.\d+)?)/);
+            if (match) {
+              const val = parseFloat(match[1]);
+              const folderLower = folderName.toLowerCase();
+              if (folderLower.includes('tile') || folderLower.includes('roof')) {
+                total += val * 350; // Roof tiles coverage multiplier
+              } else if (folderLower.includes('window')) {
+                total += val * 8; // 8 windows
+              } else {
+                total += val; // Single front door
+              }
+            }
+          }
+        });
+      });
+    }
+    
+    return total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
 
   const handleGenerateExterior = async () => {
     setIsLoading(true);
@@ -138,6 +250,75 @@ export default function ModuleExterior({
                   )}
                 </div>
               )}
+
+              {/* Exterior Material Specs & Estimator */}
+              <div style={{ background: '#ffffff', padding: '1rem', border: '1px solid var(--card-border)', borderRadius: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', borderBottom: '1px solid var(--card-border)', paddingBottom: '0.5rem' }}>
+                  <h3 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700, margin: 0 }}>
+                    Exterior Material Spec
+                  </h3>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--secondary)' }}>
+                    Total: ${calculateTotalPrice(result.design)}
+                  </span>
+                </div>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', maxHeight: '300px', overflowY: 'auto', paddingRight: '0.25rem' }}>
+                  {getShoppableItems(result.design).map((item, idx) => (
+                    <div 
+                      key={idx} 
+                      style={{ 
+                        display: 'flex', 
+                        gap: '0.65rem', 
+                        padding: '0.6rem', 
+                        background: 'rgba(0,0,0,0.015)', 
+                        border: '1px solid var(--card-border)', 
+                        borderRadius: '8px', 
+                        alignItems: 'center'
+                      }}
+                    >
+                      {/* Thumbnail or Color Swatch */}
+                      {item.isPaint ? (
+                        <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%', backgroundColor: item.hex, border: '1px solid rgba(0,0,0,0.08)', flexShrink: 0 }} />
+                      ) : (
+                        <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '6px', background: '#f8fafc', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                          <img src={`${apiBaseUrl}${item.url}`} alt={item.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                        </div>
+                      )}
+                      
+                      {/* Details */}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <h4 style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', margin: 0 }}>{item.name}</h4>
+                        <div style={{ display: 'flex', gap: '0.25rem', margin: '0.15rem 0', flexWrap: 'wrap' }}>
+                          <span style={{ fontSize: '0.65rem', padding: '0.05rem 0.3rem', borderRadius: '4px', background: 'rgba(0,0,0,0.03)', color: 'var(--text-secondary)' }}>
+                            {item.category}
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>
+                          {item.price}
+                        </div>
+                      </div>
+                      
+                      {/* Actions */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', alignItems: 'flex-end', flexShrink: 0 }}>
+                        <a 
+                          href={item.providerWebsite} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          style={{ fontSize: '0.75rem', color: 'var(--primary)', textDecoration: 'none', fontWeight: 600 }}
+                        >
+                          Buy ↗
+                        </a>
+                        <button 
+                          onClick={() => setActiveProviderAsset(item)}
+                          style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', fontSize: '0.75rem', cursor: 'pointer', padding: 0 }}
+                        >
+                          Info ⚙
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           )}
         </div>
@@ -212,6 +393,83 @@ export default function ModuleExterior({
           )}
         </div>
       </div>
+
+      {/* Provider Details Dialog Modal */}
+      {activeProviderAsset && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(10, 14, 26, 0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1100,
+            backdropFilter: 'blur(4px)'
+          }}
+        >
+          <div className="glass-card" style={{ width: '400px', padding: '1.75rem', position: 'relative', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 1rem 0' }}>
+              Material Specifications
+            </h3>
+            
+            {activeProviderAsset.isPaint ? (
+              <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', marginBottom: '1.25rem' }}>
+                <div style={{ width: '4.5rem', height: '4.5rem', borderRadius: '50%', backgroundColor: activeProviderAsset.hex, border: '2px solid #ffffff', boxShadow: '0 4px 15px rgba(0,0,0,0.15)' }} />
+                <div>
+                  <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600 }}>Paint Hex Code</div>
+                  <code style={{ fontSize: '0.9rem', color: 'var(--secondary)', fontWeight: 600 }}>{activeProviderAsset.hex}</code>
+                </div>
+              </div>
+            ) : (
+              <div style={{ width: '100%', height: '180px', background: '#f8fafc', border: '1px solid var(--card-border)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', marginBottom: '1.25rem' }}>
+                <img src={`${apiBaseUrl}${activeProviderAsset.url}`} alt={activeProviderAsset.name} style={{ maxWidth: '95%', maxHeight: '95%', objectFit: 'contain' }} />
+              </div>
+            )}
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
+              <div>
+                <span style={{ color: 'var(--text-muted)' }}>Item Name:</span>
+                <div style={{ fontWeight: 600, color: 'var(--text-primary)', marginTop: '0.15rem' }}>{activeProviderAsset.name}</div>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(0,0,0,0.05)', paddingTop: '0.5rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Category:</span>
+                <span style={{ fontWeight: 600, color: 'var(--text-secondary)' }}>{activeProviderAsset.category}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(0,0,0,0.05)', paddingTop: '0.5rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Brand / Provider:</span>
+                <span style={{ fontWeight: 600, color: 'var(--text-secondary)' }}>{activeProviderAsset.providerName}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(0,0,0,0.05)', paddingTop: '0.5rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Cost Estimate:</span>
+                <span style={{ fontWeight: 700, color: 'var(--secondary)' }}>{activeProviderAsset.price}</span>
+              </div>
+            </div>
+            
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <a 
+                href={activeProviderAsset.providerWebsite} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-secondary" 
+                style={{ flex: 1, textAlign: 'center', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                Visit Supplier Website ↗
+              </a>
+              <button 
+                className="btn" 
+                onClick={() => setActiveProviderAsset(null)}
+                style={{ background: 'rgba(0,0,0,0.05)', color: 'var(--text-primary)' }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Lightbox / Fullscreen Image Overlay */}
       {activeLightboxImage && (

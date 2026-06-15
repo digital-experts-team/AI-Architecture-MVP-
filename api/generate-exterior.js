@@ -43,6 +43,13 @@ export default async function handler(req, res) {
   const floors = parseInt(floorsCount) || 1;
   const floorsText = floors === 1 ? 'single-story' : (floors === 2 ? 'two-story' : 'three-story');
 
+  const defaultPaints = {
+    "hale_navy": { name: "Hale Navy HC-154", hex: "#1c2c3a", providerName: "Benjamin Moore", providerWebsite: "https://www.benjaminmoore.com", price: "$59.99 / gallon" },
+    "alabaster_white": { name: "Alabaster SW 7008", hex: "#f2f0ea", providerName: "Sherwin-Williams", providerWebsite: "https://www.sherwin-williams.com", price: "$64.99 / gallon" },
+    "forest_green": { name: "Forest Green 2047-10", hex: "#273d32", providerName: "Benjamin Moore", providerWebsite: "https://www.benjaminmoore.com", price: "$59.99 / gallon" },
+    "terracotta_sand": { name: "Terracotta Sand 2090-30", hex: "#c47a61", providerName: "Benjamin Moore", providerWebsite: "https://www.benjaminmoore.com", price: "$59.99 / gallon" }
+  };
+
   try {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
@@ -67,27 +74,72 @@ export default async function handler(req, res) {
       }
     }
 
+    // 3. Load exterior database assets dynamically
+    const databaseDir = path.join(process.cwd(), 'database');
+    const exteriorFolders = ['roof tiles', 'front door', 'windows'];
+    const folderAssetsInfo = {};
+
+    exteriorFolders.forEach(folder => {
+      const folderPath = path.join(databaseDir, folder);
+      if (fs.existsSync(folderPath)) {
+        const files = fs.readdirSync(folderPath).filter(f => f.match(/\.(png|jpg|jpeg|webp)$/i));
+        folderAssetsInfo[folder] = files;
+        files.forEach(file => {
+          const filePath = path.join(folderPath, file);
+          contents.push(fileToGenerativePart(filePath, getMimeType(filePath)));
+          contents.push(`Asset item from category "${folder}" (Filename: "${file}")`);
+        });
+      } else {
+        folderAssetsInfo[folder] = [];
+      }
+    });
+
+    const paintInfoText = JSON.stringify(defaultPaints, null, 2);
+    const assetsInfoText = JSON.stringify(folderAssetsInfo, null, 2);
+
     const promptText = `You are a professional architect and architectural photographer.
 Analyze the provided house blueprint (SVG code or image) with extreme care. Notice:
 - The overall shape, wall boundaries, room division, and level structure of the floor plan.
 - The front entrance door, car porch/garage (if present), and window configurations along all outer walls.
 
-Based on this blueprint, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a side-by-side split screen showing two alternative perspective views of the EXACT SAME house:
-- Left Panel (Front-Right Perspective): Shows the front facade and the right side facade of the house. Must clearly depict the front entrance door, the car porch (if present in the blueprint), the living room windows, and the front yard landscaping.
-- Right Panel (Back-Left Perspective): Shows the rear facade and the left side facade of the exact same house. Must depict the backyard patio, the kitchen/bedroom windows, and backyard landscaping.
+I have also provided our database of exterior building assets.
+The database assets are organized into folders. For each folder, the reference images have been attached above with labels in the format 'Asset item from category "[foldername]" (Filename: "[filename]")'.
 
-The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND ENFORCE CONSISTENCY:
+Here is the list of available categories and their items in our database:
+${assetsInfoText}
+
+Here is the list of available Wall Paint Colors you can use:
+${paintInfoText}
+
+Based on this blueprint and these assets, select:
+1. Exactly 1 filename from "roof tiles".
+2. Exactly 1 filename from "front door".
+3. Exactly 1 filename from "windows".
+4. Exactly 1 paint color key from Wall Paint Colors.
+
+Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a side-by-side split screen showing two alternative perspective views of the EXACT SAME house:
+- Left Panel (Front-Right Perspective): Shows the front facade and the right side facade of the house. Must clearly depict the selected front door, the car porch (if present in the blueprint), the selected windows, the selected roof tiles, and the front yard landscaping.
+- Right Panel (Back-Left Perspective): Shows the rear facade and the left side facade of the exact same house. Must depict the backyard patio, the selected windows, the selected roof tiles, the selected wall paint, and backyard landscaping.
+
+The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT, SELECTED ASSETS, AND ENFORCE CONSISTENCY:
 1. Clearly specify a "split-screen side-by-side architectural visualization showing two views of the exact same ${floorsText} house".
 2. The house MUST be exactly ${floors} floors tall. Describe the distinct levels, floor separations, and matching roofline consistently across both panels.
-3. Describe identical materials (e.g., white concrete plaster, natural oak wood siding, black steel window frames) and matching rooflines (e.g., flat roof, sloped shed roof) in both panels.
-4. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is on the ground floor bottom-left on the blueprint, it must show on the ground floor left panel's front facade).
-5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
-5. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
+3. Incorporate the selected front door, roof tiles, windows, and paint color by describing their visual appearance (materials, textures, and style) in detail.
+4. Describe identical materials (e.g., matching the selected roof tiles, wood or stone facade finishes, and black/steel frame details on the selected windows) and matching rooflines in both panels.
+5. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is on the ground floor bottom-left on the blueprint, it must show on the ground floor left panel's front facade).
+6. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
+7. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
 
 Return your response as a JSON object with this structure:
 {
   "title": "Architectural Design Title",
   "description": "Short explanation of the exterior facade design concept and how it matches the blueprint layout.",
+  "paintUsed": "key_of_selected_paint_color",
+  "selectedAssets": {
+    "roof tiles": "filename_of_selected_roof_tile.png",
+    "front door": "filename_of_selected_front_door.png",
+    "windows": "filename_of_selected_window.png"
+  },
   "detectedLayout": {
     "footprint": "Brief description of the floor plan footprint style (e.g., 'L-Shaped footprint with integrated car porch')",
     "levels": "Description of the height profile (e.g., 'Single-story structure')",
@@ -100,7 +152,7 @@ Return your response as a JSON object with this structure:
 
     contents.push(promptText);
 
-    console.log("Analyzing blueprint for exterior facade...");
+    console.log("Analyzing blueprint and selecting exterior parts...");
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents,
@@ -112,6 +164,12 @@ Return your response as a JSON object with this structure:
 
     const designResult = JSON.parse(response.text);
     console.log("Generated facade split prompt:", designResult.imagenPrompt);
+
+    // Resolve paint details for the design result response
+    const getPaintDetails = (paintKey) => {
+      return defaultPaints[paintKey] || { name: "Custom Paint Color", hex: "#cccccc", providerName: "Local Supplier", providerWebsite: "https://example.com", price: "$49.99 / gallon" };
+    };
+    designResult.paint = getPaintDetails(designResult.paintUsed);
 
     console.log("Generating photorealistic exterior views with Imagen 4...");
     const imgResponse = await ai.models.generateImages({

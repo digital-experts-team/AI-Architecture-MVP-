@@ -44,6 +44,10 @@ export default function handler(req, res) {
         defaultPrice = "$129.00";
       } else if (folderLower.includes('carpet') || folderLower.includes('rug')) {
         defaultPrice = "$249.00";
+      } else if (folderLower.includes('door')) {
+        defaultPrice = "$599.00";
+      } else if (folderLower.includes('window')) {
+        defaultPrice = "$249.00";
       } else if (folderLower.includes('wall') || folderLower.includes('shelf') || folderLower.includes('plant') || folderLower.includes('panel') || folderLower.includes('unit')) {
         defaultPrice = "$349.00";
       }

@@ -135,6 +135,7 @@ export default function App() {
                 isApiConfigured={isApiConfigured}
                 constructionStyle={constructionStyle}
                 floorsCount={floorsCount}
+                assets={assets}
               />
             )}
 
