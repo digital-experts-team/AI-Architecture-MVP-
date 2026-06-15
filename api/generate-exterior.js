@@ -97,6 +97,10 @@ export default async function handler(req, res) {
     const paintInfoText = JSON.stringify(defaultPaints, null, 2);
     const assetsInfoText = JSON.stringify(folderAssetsInfo, null, 2);
 
+    const heightInstruction = floors === 1
+      ? '2. The house MUST be exactly a single-story structure (1 floor tall, ground level only). Describe it as a low-profile, single-level bungalow or ranch-style structure. Do NOT mention multiple floors, upper levels, balconies on upper levels, or second-story windows. It must clearly look like a single-story home.'
+      : `2. The house MUST be exactly ${floors} floors tall (${floorsText} structure). Clearly describe the distinct levels (e.g. ground floor, upper floor(s)), the horizontal floor separation bands, and the overall height profile. Ensure windows and door alignments are described floor-by-floor matching the blueprint layout.`;
+
     const promptText = `You are a professional architect and architectural photographer.
 Analyze the provided house blueprint (SVG code or image) with extreme care. Notice:
 - The overall shape, wall boundaries, room division, and level structure of the floor plan.
@@ -123,7 +127,7 @@ Based on this blueprint and these assets, select:
 
 The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND SELECTED ASSETS:
 1. Clearly specify a "single perspective architectural visualization of a ${floorsText} house showing the front side facade".
-2. The house MUST be exactly ${floors} floors tall. Describe the distinct levels, floor separations, and roofline.
+${heightInstruction}
 3. Incorporate the selected front door, roof tiles, windows, and paint color by describing their visual appearance (materials, textures, and style) in detail.
 4. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is on the ground floor bottom-left on the blueprint, it must show on the ground floor left side of the front facade).
 5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
