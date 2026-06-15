@@ -107,8 +107,8 @@ export default function App() {
           </div>
 
           {/* Module View Renderer */}
-          <div style={{ animation: 'fadeIn 0.3s ease-out' }}>
-            {activeTab === 'blueprint' && (
+          <div>
+            <div style={{ display: activeTab === 'blueprint' ? 'block' : 'none', animation: 'fadeIn 0.3s ease-out' }}>
               <ModuleBlueprint 
                 floorPlanUrl={floorPlanUrl}
                 setFloorPlanUrl={setFloorPlanUrl}
@@ -125,9 +125,9 @@ export default function App() {
                 floorsCount={floorsCount}
                 setFloorsCount={setFloorsCount}
               />
-            )}
+            </div>
 
-            {activeTab === 'exterior' && (
+            <div style={{ display: activeTab === 'exterior' ? 'block' : 'none', animation: 'fadeIn 0.3s ease-out' }}>
               <ModuleExterior 
                 floorPlanUrl={floorPlanUrl}
                 generatedSvg={generatedSvg}
@@ -137,17 +137,19 @@ export default function App() {
                 floorsCount={floorsCount}
                 assets={assets}
               />
-            )}
+            </div>
 
-            {activeTab === 'interior' && (
+            <div style={{ display: activeTab === 'interior' ? 'block' : 'none', animation: 'fadeIn 0.3s ease-out' }}>
               <ModuleInterior 
                 activeRoom={activeRoom}
+                setActiveRoom={setActiveRoom}
+                roomsList={roomsList}
                 floorPlanUrl={floorPlanUrl}
                 assets={assets}
                 apiBaseUrl={API_BASE_URL}
                 isApiConfigured={isApiConfigured}
               />
-            )}
+            </div>
           </div>
         </main>
       </div>

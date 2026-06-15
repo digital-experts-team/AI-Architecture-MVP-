@@ -83,15 +83,15 @@ ${roomDetails.join('\n')}
 - STRICT CONSTRAINT: Every Bedroom MUST be directly adjacent to and connected with a Bathroom (en-suite attached layout). The Bathroom door must open directly inside the Bedroom, not into the general corridor.
 
 Ensure all doors and windows are rendered with highly distinctive SVG symbols and colors so that an AI can easily read and extract their alignments:
-1. **Main Entrance Door**: Render as a bold, double-swing green arc door symbol with a green entry arrow pointing inside, clearly labeled "Main Entrance". Use color #10b981.
-2. **Interior Doors**: Render as green single-line swinging arc door symbols (color #10b981) indicating the direction of opening.
-3. **Windows**: Render as bright glowing teal double-lined rectangles (color #06b6d4) embedded directly in the outer walls, clearly labeled "Window".
-4. **Walls**: Outer walls must be thick charcoal lines (#1e293b), inner walls must be thinner slate lines (#334155).
-5. **Labels**: Add clear, visible white/teal text labels indicating room names (e.g. "Living Room", "Bedroom 1", "Attached Bath 1") and dimensions on both floors.
+1. **Main Entrance Door**: Render as a bold, double-swing green arc door symbol with a green entry arrow pointing inside, clearly labeled "Main Entrance". Use color #059669.
+2. **Interior Doors**: Render as green single-line swinging arc door symbols (color #059669) indicating the direction of opening.
+3. **Windows**: Render as bright glowing teal double-lined rectangles (color #0891b2) embedded directly in the outer walls, clearly labeled "Window".
+4. **Walls**: Outer walls must be thick charcoal lines (#1e293b), inner walls must be thinner slate lines (#475569).
+5. **Labels**: Add clear, visible dark charcoal/slate text labels (color #0f172a) indicating room names (e.g. "Living Room", "Bedroom 1", "Attached Bath 1") and dimensions on both floors.
 
 Set the SVG viewBox="0 0 700 500" and make it responsive.
-Use a dark blueprint theme: dark blue background #0a0e1a.
-Add a title text inside the SVG: "AI House Design - ${styleName} (${floors} Floor(s))".
+Use a clean, professional white architectural drawing theme: white background #ffffff.
+Add a title text inside the SVG (color #0f172a): "AI House Design - ${styleName} (${floors} Floor(s))".
 
 Return your response as a JSON object with a single key "svg" containing the raw SVG string as its value. Do not wrap the SVG string in Markdown backticks.`;
 

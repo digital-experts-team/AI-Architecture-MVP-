@@ -351,15 +351,15 @@ ${roomDetails.join('\n')}
 - STRICT CONSTRAINT: Every Bedroom MUST be directly adjacent to and connected with a Bathroom (en-suite attached layout). The Bathroom door must open directly inside the Bedroom, not into the general corridor.
 
 Ensure all doors and windows are rendered with highly distinctive SVG symbols and colors so that an AI can easily read and extract their alignments:
-1. **Main Entrance Door**: Render as a bold, double-swing green arc door symbol with a green entry arrow pointing inside, clearly labeled "Main Entrance". Use color #10b981.
-2. **Interior Doors**: Render as green single-line swinging arc door symbols (color #10b981) indicating the direction of opening.
-3. **Windows**: Render as bright glowing teal double-lined rectangles (color #06b6d4) embedded directly in the outer walls, clearly labeled "Window".
-4. **Walls**: Outer walls must be thick charcoal lines (#1e293b), inner walls must be thinner slate lines (#334155).
-5. **Labels**: Add clear, visible white/teal text labels indicating room names (e.g. "Living Room", "Bedroom 1", "Attached Bath 1") and dimensions on both floors.
+1. **Main Entrance Door**: Render as a bold, double-swing green arc door symbol with a green entry arrow pointing inside, clearly labeled "Main Entrance". Use color #059669.
+2. **Interior Doors**: Render as green single-line swinging arc door symbols (color #059669) indicating the direction of opening.
+3. **Windows**: Render as bright glowing teal double-lined rectangles (color #0891b2) embedded directly in the outer walls, clearly labeled "Window".
+4. **Walls**: Outer walls must be thick charcoal lines (#1e293b), inner walls must be thinner slate lines (#475569).
+5. **Labels**: Add clear, visible dark charcoal/slate text labels (color #0f172a) indicating room names (e.g. "Living Room", "Bedroom 1", "Attached Bath 1") and dimensions on both floors.
 
 Set the SVG viewBox="0 0 700 500" and make it responsive.
-Use a dark blueprint theme: dark blue background #0a0e1a.
-Add a title text inside the SVG: "AI House Design - ${styleName} (${floors} Floor(s))".
+Use a clean, professional white architectural drawing theme: white background #ffffff.
+Add a title text inside the SVG (color #0f172a): "AI House Design - ${styleName} (${floors} Floor(s))".
 
 Return your answer as a JSON object with a single key "svg" containing the raw SVG string as its value. Do not wrap the SVG string in Markdown backticks.`;
 
@@ -452,18 +452,17 @@ Based on this blueprint and these assets, select:
 3. Exactly 1 filename from "windows".
 4. Exactly 1 paint color key from Wall Paint Colors.
 
-Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a side-by-side split screen showing two alternative perspective views of the EXACT SAME house:
-- Left Panel (Front-Right Perspective): Shows the front facade and the right side facade of the house. Must clearly depict the selected front door, the car porch (if present in the blueprint), the selected windows, the selected roof tiles, and the front yard landscaping.
-- Right Panel (Back-Left Perspective): Shows the rear facade and the left side facade of the exact same house. Must depict the backyard patio, the selected windows, the selected roof tiles, the selected wall paint, and backyard landscaping.
+Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a single perspective exterior view showing the front side of the house:
+- The image must clearly depict the front facade and the right side facade of the house (Front-Right Perspective).
+- It must clearly show the selected front door, the car porch (if present in the blueprint), the selected windows, the selected roof tiles, the selected wall paint, and the front yard landscaping.
 
-The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT, SELECTED ASSETS, AND ENFORCE CONSISTENCY:
-1. Clearly specify a "split-screen side-by-side architectural visualization showing two views of the exact same ${floorsText} house".
-2. The house MUST be exactly ${floors} floors tall. Describe the distinct levels, floor separations, and matching roofline consistently across both panels.
+The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND SELECTED ASSETS:
+1. Clearly specify a "single perspective architectural visualization of a ${floorsText} house showing the front side facade".
+2. The house MUST be exactly ${floors} floors tall. Describe the distinct levels, floor separations, and roofline.
 3. Incorporate the selected front door, roof tiles, windows, and paint color by describing their visual appearance (materials, textures, and style) in detail.
-4. Describe identical materials (e.g., matching the selected roof tiles, wood or stone facade finishes, and black/steel frame details on the selected windows) and matching rooflines in both panels.
-5. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is on the ground floor bottom-left on the blueprint, it must show on the ground floor left panel's front facade).
-6. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
-7. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
+4. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is on the ground floor bottom-left on the blueprint, it must show on the ground floor left side of the front facade).
+5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
+6. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
 
 Return your response as a JSON object with this structure:
 {
@@ -482,7 +481,7 @@ Return your response as a JSON object with this structure:
     "facadeWindows": "Detailed summary of window counts and locations as seen on the blueprint",
     "blueprintMatchDetails": "Detailed list of exactly how the exterior architectural prompt respects the blueprint room coordinates"
   },
-  "imagenPrompt": "The highly detailed Imagen 4 prompt for the side-by-side split screen"
+  "imagenPrompt": "The highly detailed Imagen 4 prompt for the exterior facade"
 }`;
 
     contents.push(promptText);
@@ -498,7 +497,7 @@ Return your response as a JSON object with this structure:
     });
 
     const designResult = JSON.parse(response.text);
-    console.log("Generated facade split prompt:", designResult.imagenPrompt);
+    console.log("Generated facade exterior prompt:", designResult.imagenPrompt);
 
     // Resolve paint details for the design result response
     const getPaintDetails = (paintKey) => {

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 export default function ModuleInterior({ 
   activeRoom, 
-  floorPlanUrl, 
-  assets, 
-  apiBaseUrl, 
+  setActiveRoom,
+  roomsList,
+  floorPlanUrl,
+  assets,
+  apiBaseUrl,
   isApiConfigured 
 }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,23 +20,43 @@ export default function ModuleInterior({
   const [isAngleRendering, setIsAngleRendering] = useState(false);
   const [renderingAngleName, setRenderingAngleName] = useState(''); // e.g. 'Opposite Corner'
 
-  // Clear previous results if we switch active room
-  useEffect(() => {
-    setResult(null);
-    setOptionImages({});
-    setOptionActiveAngle('initial');
-  }, [activeRoom]);
+  // Persist room designs locally so switching rooms doesn't wipe them
+  const [roomDesigns, setRoomDesigns] = useState({});
 
-  // Sync images state whenever new design results are loaded
+  // Set default active room if not set
   useEffect(() => {
-    if (result) {
-      setOptionImages({ initial: result.image });
-      setOptionActiveAngle('initial');
+    if (!activeRoom && roomsList && roomsList.length > 0) {
+      setActiveRoom(roomsList[0].id);
+    }
+  }, [roomsList, activeRoom, setActiveRoom]);
+
+  // Load/Restore previous results when switching active room
+  useEffect(() => {
+    const saved = roomDesigns[activeRoom];
+    if (saved) {
+      setResult(saved.result);
+      setOptionImages(saved.optionImages || {});
+      setOptionActiveAngle(saved.optionActiveAngle || 'initial');
     } else {
+      setResult(null);
       setOptionImages({});
       setOptionActiveAngle('initial');
     }
-  }, [result]);
+  }, [activeRoom]);
+
+  const handleSetOptionActiveAngle = (angleId) => {
+    setOptionActiveAngle(angleId);
+    setRoomDesigns(prev => {
+      if (!prev[activeRoom]) return prev;
+      return {
+        ...prev,
+        [activeRoom]: {
+          ...prev[activeRoom],
+          optionActiveAngle: angleId
+        }
+      };
+    });
+  };
 
   const cameraAngles = [
     { id: 'initial', label: 'Default', icon: '🏠' },
@@ -75,9 +97,19 @@ export default function ModuleInterior({
 
       const data = await res.json();
       if (data.success && data.angleImage) {
-        setOptionImages(prev => ({
-          ...prev,
+        const updatedImages = {
+          ...optionImages,
           [angleId]: data.angleImage
+        };
+        setOptionImages(updatedImages);
+        setOptionActiveAngle(angleId);
+        setRoomDesigns(prev => ({
+          ...prev,
+          [activeRoom]: {
+            ...prev[activeRoom],
+            optionImages: updatedImages,
+            optionActiveAngle: angleId
+          }
         }));
       }
     } catch (err) {
@@ -162,6 +194,16 @@ export default function ModuleInterior({
       
       if (data.success) {
         setResult(data);
+        setOptionImages({ initial: data.interiorImage });
+        setOptionActiveAngle('initial');
+        setRoomDesigns(prev => ({
+          ...prev,
+          [activeRoom]: {
+            result: data,
+            optionImages: { initial: data.interiorImage },
+            optionActiveAngle: 'initial'
+          }
+        }));
       }
     } catch (err) {
       alert("Design generation error: " + err.message);
@@ -361,29 +403,43 @@ export default function ModuleInterior({
         </p>
       </div>
 
-      {/* Warning Box if no room selected */}
-      {!activeRoom && (
+      {/* Warning Box if no blueprint has been created yet */}
+      {(!roomsList || roomsList.length === 0) && (
         <div className="info-box" style={{ background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.25)', color: '#fca5a5', marginTop: '1.5rem', padding: '1.5rem', textAlign: 'center', fontSize: '0.95rem' }}>
-          <strong>No Active Room Selected:</strong> Please go to the <strong>Module 1: Blueprint Design</strong> tab and select a room (e.g. Living Room, Bedroom) to unlock the interior designer.
+          <strong>Blueprint Required:</strong> Please go to the <strong>Module 1: Blueprint Design</strong> tab and generate or upload a blueprint to populate the list of designable rooms.
         </div>
       )}
 
-      {activeRoom && (
+      {roomsList && roomsList.length > 0 && activeRoom && (
         <div style={{ marginTop: '1.5rem' }}>
-          {/* Active room notification bar */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '1rem', alignItems: 'center', marginBottom: '1.5rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', border: '1px solid var(--card-border)', borderRadius: '12px' }}>
+          {/* Active room and room selection dropdown bar */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr auto', gap: '1.5rem', alignItems: 'center', marginBottom: '1.5rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', border: '1px solid var(--card-border)', borderRadius: '12px' }}>
             <div>
               <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>Active Customization:</span>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--primary)', margin: 0 }}>{activeRoom} Interior</h3>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--primary)', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{activeRoom} Interior</h3>
+            </div>
+
+            <div className="form-group" style={{ marginBottom: 0 }}>
+              <label className="form-label" style={{ fontSize: '0.75rem', marginBottom: '0.25rem', display: 'block' }}>Select Room to Design</label>
+              <select
+                className="form-select"
+                value={activeRoom}
+                onChange={(e) => setActiveRoom(e.target.value)}
+                style={{ height: '2.5rem', padding: '0.35rem 0.5rem', fontSize: '0.85rem' }}
+              >
+                {roomsList.map(room => (
+                  <option key={room.id} value={room.id}>{room.id} ({room.size})</option>
+                ))}
+              </select>
             </div>
             
             <button 
               className="btn btn-action" 
               onClick={handleGenerate}
               disabled={isLoading || !isApiConfigured}
-              style={{ height: '2.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 1.75rem', fontSize: '1rem' }}
+              style={{ height: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 1.5rem', fontSize: '0.9rem', alignSelf: 'end' }}
             >
-              {isLoading ? "Designing..." : `Design & Render ${activeRoom}`}
+              {isLoading ? "Designing..." : `Design & Render`}
             </button>
           </div>
 
@@ -444,7 +500,7 @@ export default function ModuleInterior({
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                     
                     {/* Camera Angle Bar */}
-                    {renderAngleBar(optionActiveAngle, setOptionActiveAngle, optionImages)}
+                    {renderAngleBar(optionActiveAngle, handleSetOptionActiveAngle, optionImages)}
 
                     <div 
                       className="render-image-container" 
