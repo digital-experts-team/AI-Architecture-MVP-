@@ -4,20 +4,12 @@ export default function ModuleExterior({
   floorPlanUrl, 
   generatedSvg, 
   apiBaseUrl, 
-  isApiConfigured 
+  isApiConfigured,
+  constructionStyle
 }) {
-  const [style, setStyle] = useState('Modern Minimalist');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [activeLightboxImage, setActiveLightboxImage] = useState(null);
-
-  const stylesList = [
-    'Modern Minimalist',
-    'Scandinavian Timber',
-    'Mid-Century Modern',
-    'Industrial Concrete',
-    'Cozy Stone Cottage'
-  ];
 
   const handleGenerateExterior = async () => {
     setIsLoading(true);
@@ -30,13 +22,13 @@ export default function ModuleExterior({
         body: JSON.stringify({
           blueprintUrl: floorPlanUrl,
           blueprintSvg: generatedSvg,
-          style
+          style: constructionStyle || 'Modern Minimalist'
         })
       });
 
       if (!res.ok) {
         const errorData = await res.json();
-        throw new Error(errorData.error || "Failed to generate exterior view.");
+        throw new Error(errorData.error || "Failed to generate exterior views.");
       }
 
       const data = await res.json();
@@ -59,7 +51,7 @@ export default function ModuleExterior({
           <span>Module 2: Connected House Exterior</span>
         </h2>
         <p className="card-subtitle" style={{ margin: '0.5rem 0 0 0' }}>
-          Generate a photorealistic house facade matching the levels, windows, and main layout structure defined in your blueprint.
+          Generate two alternative photorealistic exterior views that strictly follow the levels, windows, and main layout structure of your blueprint.
         </p>
       </div>
 
@@ -67,17 +59,14 @@ export default function ModuleExterior({
         {/* Left: Controls & Design Settings */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div className="form-group" style={{ marginBottom: 0 }}>
-            <label className="form-label">Architectural Style</label>
-            <select
+            <label className="form-label">Architectural Style (Blueprint Synced)</label>
+            <input
+              type="text"
               className="form-select"
-              value={style}
-              onChange={(e) => setStyle(e.target.value)}
-              disabled={isLoading || !hasBlueprint}
-            >
-              {stylesList.map((s) => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
+              value={constructionStyle || "Modern Minimalist"}
+              disabled={true}
+              style={{ background: 'rgba(255,255,255,0.02)', cursor: 'not-allowed', color: 'var(--text-secondary)' }}
+            />
           </div>
 
           <button
@@ -86,7 +75,7 @@ export default function ModuleExterior({
             disabled={isLoading || !isApiConfigured || !hasBlueprint}
             style={{ width: '100%', height: '3rem' }}
           >
-            {isLoading ? "Analyzing Blueprint..." : "Generate Exterior Facade"}
+            {isLoading ? "Analyzing Blueprint..." : "Generate Exterior Facades"}
           </button>
 
           {!isApiConfigured && (
@@ -152,16 +141,16 @@ export default function ModuleExterior({
         </div>
 
         {/* Right: Render Showcase Panel */}
-        <div style={{ position: 'relative', minHeight: '380px', border: '1px solid var(--card-border)', borderRadius: '12px', background: '#f8fafc', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ position: 'relative', minHeight: '420px', border: '1px solid var(--card-border)', borderRadius: '12px', background: '#f8fafc', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           
           {/* Loading Overlay */}
           {isLoading && (
             <div className="loading-overlay">
               <div className="spinner"></div>
               <div className="loading-text" style={{ textAlign: 'center', maxWidth: '80%' }}>
-                Analyzing blueprint layouts and drawing exterior with Imagen 4...
+                Analyzing blueprint layouts and drawing alternative facades with Imagen 4...
               </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Generating facade view (takes 10-15 seconds)...</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Generating front-right and back-left views in parallel (12-18s)...</div>
             </div>
           )}
 
@@ -172,46 +161,73 @@ export default function ModuleExterior({
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
-              <div>Your photorealistic exterior house facade render will appear here.</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>The AI will extract window/door alignments from Module 1.</div>
+              <div>Your photorealistic exterior views will appear here.</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>The AI will render two alternative views showing all 4 sides of the home.</div>
             </div>
           )}
 
           {/* Generated Result View */}
           {result && !isLoading && (
-            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-              <div 
-                className="render-image-container" 
-                style={{ width: '100%', height: '100%', margin: 0, borderRadius: 0, border: 'none' }}
-                onClick={() => setActiveLightboxImage(result.exteriorImage)}
-              >
-                <img 
-                  src={result.exteriorImage} 
-                  alt="House Exterior View" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                />
-                <div className="zoom-overlay">🔍 Click to View Fullscreen</div>
+            <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', padding: '1rem', boxSizing: 'border-box', gap: '1rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', flex: 1 }}>
+                
+                {/* View 1: Front-Right perspective */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
+                    📸 View 1: Front-Right Perspective (Front Entrance & Car Porch side)
+                  </div>
+                  <div 
+                    className="render-image-container" 
+                    style={{ flex: 1, margin: 0, position: 'relative', overflow: 'hidden', minHeight: '260px' }}
+                    onClick={() => setActiveLightboxImage(result.exteriorImage1)}
+                  >
+                    <img 
+                      src={result.exteriorImage1} 
+                      alt="Front-Right Exterior View" 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+                    />
+                    <div className="zoom-overlay">🔍 View Fullscreen</div>
+                  </div>
+                </div>
+
+                {/* View 2: Back-Left perspective */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
+                    📸 View 2: Back-Left Perspective (Backyard & Bedroom side)
+                  </div>
+                  <div 
+                    className="render-image-container" 
+                    style={{ flex: 1, margin: 0, position: 'relative', overflow: 'hidden', minHeight: '260px' }}
+                    onClick={() => setActiveLightboxImage(result.exteriorImage2)}
+                  >
+                    <img 
+                      src={result.exteriorImage2} 
+                      alt="Back-Left Exterior View" 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+                    />
+                    <div className="zoom-overlay">🔍 View Fullscreen</div>
+                  </div>
+                </div>
+
               </div>
 
-              {/* Reroll Button inside frame */}
+              {/* Regenerate Button */}
               <button
                 className="btn btn-secondary"
                 onClick={handleGenerateExterior}
                 style={{
-                  position: 'absolute',
-                  top: '1rem',
-                  right: '1rem',
+                  alignSelf: 'flex-end',
                   fontSize: '0.8rem',
-                  padding: '0.35rem 0.75rem',
+                  padding: '0.4rem 0.8rem',
                   background: 'rgba(15, 23, 42, 0.85)',
                   backdropFilter: 'blur(4px)',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.25rem',
-                  zIndex: 2
+                  marginTop: '0.25rem'
                 }}
               >
-                Regenerate Facade ↺
+                Regenerate Both Facades ↺
               </button>
             </div>
           )}

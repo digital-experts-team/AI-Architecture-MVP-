@@ -14,6 +14,13 @@ export default function App() {
   const [generatedSvg, setGeneratedSvg] = useState(null);
   const [activeRoom, setActiveRoom] = useState('Living Room');
   const [isApiConfigured, setIsApiConfigured] = useState(false);
+  const [roomsList, setRoomsList] = useState([
+    { id: 'Living Room', icon: '🛋️', size: '5.0m x 4.0m' },
+    { id: 'Bedroom', icon: '🛏️', size: '4.0m x 3.5m' },
+    { id: 'Kitchen', icon: '🍳', size: '3.5m x 3.0m' },
+    { id: 'Bathroom', icon: '🛁', size: '2.5m x 2.0m' }
+  ]);
+  const [constructionStyle, setConstructionStyle] = useState('Modern Minimalist');
 
   const fetchStatus = async () => {
     try {
@@ -110,6 +117,10 @@ export default function App() {
                 setActiveRoom={setActiveRoom}
                 setActiveTab={setActiveTab}
                 apiBaseUrl={API_BASE_URL}
+                roomsList={roomsList}
+                setRoomsList={setRoomsList}
+                constructionStyle={constructionStyle}
+                setConstructionStyle={setConstructionStyle}
               />
             )}
 
@@ -119,6 +130,7 @@ export default function App() {
                 generatedSvg={generatedSvg}
                 apiBaseUrl={API_BASE_URL}
                 isApiConfigured={isApiConfigured}
+                constructionStyle={constructionStyle}
               />
             )}
 
