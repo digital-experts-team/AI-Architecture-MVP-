@@ -65,8 +65,8 @@ export default async function handler(req, res) {
 
     const databaseDir = path.join(process.cwd(), 'database');
 
-    // Read list of assets from all folders dynamically
-    const folders = getDatabaseFolders(databaseDir);
+    // Read list of assets from all folders dynamically (exclude exterior-only assets)
+    const folders = getDatabaseFolders(databaseDir).filter(f => !['roof tiles', 'front door', 'windows'].includes(f));
     const contents = [];
 
     // 1. Add Floor Plan if available

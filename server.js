@@ -548,8 +548,8 @@ app.post('/api/generate-design', async (req, res) => {
   try {
     const ai = getGeminiClient();
 
-    // Read list of assets from all folders dynamically
-    const folders = getDatabaseFolders();
+    // Read list of assets from all folders dynamically (exclude exterior-only assets)
+    const folders = getDatabaseFolders().filter(f => !['roof tiles', 'front door', 'windows'].includes(f));
     const contents = [];
 
     // 1. Add Floor Plan if available
