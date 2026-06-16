@@ -125,12 +125,12 @@ Ensure the materials, layouts, styles, and colors coordinate visually.
 
 CRITICAL STYLE ALIGNMENT CONSTRAINT:
 The selected flooring, wall paint color, and furniture items MUST suit and reflect the home's overall architectural style of "${styleName}":
-- If style is "Modern Minimalist", design a clean, sleek, uncluttered modern interior with neutral tones and low-profile furniture.
-- If style is "Scandinavian Timber", use light warm woods, cozy simple fabrics, and natural simple styling.
-- If style is "Kerala Traditional", design a traditional Indian interior featuring warm teak wood, brass accents, traditional sitout-style wood details, and rich colors suited to a home with a Nadumuttam/courtyard.
-- If style is "Mid-Century Modern", use retro-modern styles, bold wood accents, and organic geometric furniture shapes.
-- If style is "Industrial Concrete", design a loft-like interior with raw concrete/brick elements, dark steel, and leather/wood details.
-- If style is "Cozy Stone Cottage", design a rustic, warm cottage style with stone details, exposed wood beams, and soft warm fabrics.
+- If style is "Modern Minimalist", design a clean, sleek, uncluttered modern interior with large polished white marble or grey concrete tile flooring, pristine white or light grey wall paint, low-profile minimalist furniture in neutral tones with thin steel legs, and simple recess lighting.
+- If style is "Scandinavian Timber", design a warm organic wood-clad interior with light ash or pine wood floorboards, soft white/pale grey walls, cozy simple fabrics (wool/sheepskin), light timber furniture pieces, and soft diffuse lighting.
+- If style is "Kerala Traditional", design a traditional Indian interior featuring polished terracotta clay tiles or rich yellow oxide flooring, warm white/cream plaster walls with teak wood framing, classic solid wood columns (pillars) in the room corners, low-slung dark wood seating, traditional brass oil lamps (nilavilakku) or hanging brass light fixtures, and a warm heritage layout suited to a traditional Indian courtyard home.
+- If style is "Mid-Century Modern", use warm walnut or teak parquet flooring, clean white walls with warm vertical wood slat accents, retro atomic era sconce lights, and bold wood furniture with organic tapered legs and retro colored upholstery.
+- If style is "Industrial Concrete", design a raw urban loft interior with board-formed concrete or dark grey cement tile flooring, exposed concrete slab walls or rustic red brickwork, black steel structural columns, raw pipes, factory grid glass panels, and steel-and-leather furniture.
+- If style is "Cozy Stone Cottage", design a rustic fairytale cottage interior with flagstone or slate floors, rough white plaster walls, exposed heavy oak ceiling beams, small divided-lite windows with wood shutters, and plush fabrics with antique iron finishes.
 
 [Randomization Seed: ${randomSalt}]
 Each time you are called, you must create a completely fresh and unique design concept. Randomize layout alignments, colors, textures, and asset selections. Do not produce the same design or prompt twice. Be creative and introduce variety.

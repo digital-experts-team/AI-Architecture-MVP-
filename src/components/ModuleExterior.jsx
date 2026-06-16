@@ -351,20 +351,32 @@ export default function ModuleExterior({
 
           {/* Generated Result View */}
           {result && !isLoading && (
-            <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', padding: '1.25rem', boxSizing: 'border-box', gap: '1.25rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', padding: '1.25rem', boxSizing: 'border-box', gap: '1rem', justifySelf: 'center', alignSelf: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
                 <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                   📸 Front-Side Exterior Facade (16:9 Aspect Ratio)
                 </div>
                 <div 
                   className="render-image-container" 
-                  style={{ flex: 1, margin: 0, position: 'relative', overflow: 'hidden', minHeight: '300px', borderRadius: '10px', border: '1px solid var(--card-border)' }}
+                  style={{ 
+                    width: '100%', 
+                    aspectRatio: '16/9', 
+                    margin: '0 auto', 
+                    position: 'relative', 
+                    overflow: 'hidden', 
+                    borderRadius: '10px', 
+                    border: '1px solid var(--card-border)',
+                    background: '#0a0e1a',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
                   onClick={() => setActiveLightboxImage(result.exteriorImage)}
                 >
                   <img 
                     src={result.exteriorImage} 
                     alt="House Front-Side Facade View" 
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', background: '#0a0e1a' }} 
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} 
                   />
                   <div className="zoom-overlay">🔍 Click to View Fullscreen</div>
                 </div>

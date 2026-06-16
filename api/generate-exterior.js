@@ -50,6 +50,57 @@ export default async function handler(req, res) {
     "terracotta_sand": { name: "Terracotta Sand 2090-30", hex: "#c47a61", providerName: "Benjamin Moore", providerWebsite: "https://www.benjaminmoore.com", price: "$59.99 / gallon" }
   };
 
+  const styleDescriptions = {
+    "Kerala Traditional": {
+      roof: "sloping multi-tiered gabled roofs covered with rustic weathered terracotta clay tiles (Mangalore style tiles), deep overhanging eaves with exposed wood brackets, traditional bargeboards and decorated wooden gables",
+      walls: "smooth lime-plastered white or light cream exterior walls, combined with solid laterite brick accents and dark wood trimmings",
+      columns: "elegant carved teak wood columns (pillars) on the veranda, sitting on dark polished granite or stone pedestals, supporting the sloping porch roof",
+      veranda: "an open front veranda (sitout or poomukham) with traditional low wooden built-in seating benches (charupady) wrapping around the entrance",
+      features: "windows with vertical wooden bars/louvers and heavy dark teak wooden frames, traditional padippura style arched entrance gateway, lush tropical garden with banana plants and palms",
+      vibe: "authentic heritage Kerala architecture, classic traditional look matching rural estate homes, warm earthy tones, no modern flat roofs or glass panels"
+    },
+    "Modern Minimalist": {
+      roof: "flat concrete slab roofs, clean sharp horizontal and vertical planes, cantilevered roof slabs with integrated slim LED strip recess lines",
+      walls: "smooth pristine white concrete walls, contrasting with dark grey plaster finishes and panels of natural grey slate or split-face stone cladding",
+      columns: "slender black structural steel posts or heavy raw concrete pillars integrated seamlessly into the rectilinear layout",
+      veranda: "minimalist raised deck with concrete steps, seamless indoor-outdoor transition through full-height pocket doors",
+      features: "monolithic floor-to-ceiling glass wall panels with thin black aluminum frames, minimalist floating steel staircase, neat manicured lawns with simple concrete pavers",
+      vibe: "ultra-modern, minimalist luxury, sharp geometric lines, cubic forms, neutral grey and white color palette"
+    },
+    "Scandinavian Timber": {
+      roof: "steep A-frame or simple gabled roofs finished in dark charcoal metal standing seam panels or slate shingles, minimalist roofline",
+      walls: "vertical timber wood siding, painted in black, dark charcoal grey, or left natural light pine/cedar tone with weather-resistant oils",
+      columns: "simple, unadorned square light pine wood columns supporting the deck roof overhang",
+      veranda: "large wrap-around elevated wooden sun-deck with simple wood railings, minimalist outdoor furniture",
+      features: "large panoramic triple-glazed windows with simple black or natural wood frames, glass double doors opening to the deck, simple forest or pine tree backdrop",
+      vibe: "warm cozy nordic design, organic wood textures, highly functional, high-contrast exterior, integrated with natural wooded landscape"
+    },
+    "Industrial Concrete": {
+      roof: "flat concrete roofs with exposed gravel/stone ballast, thick metal fascia bands along the roof edge",
+      walls: "raw board-formed concrete walls showing the wood grain texture and tie-rod holes, combined with black corrugated steel sheeting and red brick accents",
+      columns: "heavy exposed black H-beam steel columns and girders forming a rigid structural frame",
+      veranda: "raw concrete loading dock style porch with black steel wire railings and industrial mesh doors",
+      features: "large multi-pane steel grid factory windows, exposed copper pipes, metal ducts, black steel metal stairs, industrial pendant light fixtures",
+      vibe: "urban loft aesthetic, rugged raw materials, exposed structural systems, monochromatic grey and black color scheme"
+    },
+    "Cozy Stone Cottage": {
+      roof: "multi-gabled steep roofs with irregular weathered grey slate shingles, wavy rooflines, thick stone chimney with terracotta clay pots",
+      walls: "thick, rustic load-bearing walls built from irregular natural fieldstones, rough mortar joints, and small patches of peeling white stucco",
+      columns: "gnarled rough-hewn oak timber columns and lintels supporting the arched porch roof",
+      veranda: "small stone flagstone porch with a wooden bench, climbing flowering wisteria or ivy on the walls",
+      features: "small divided-lite casement windows with wood shutters painted in sage green or soft blue, heavy arched oak main door with black iron strap hinges",
+      vibe: "fairytale cottage, rustic charm, organic hand-crafted feel, blending perfectly with a wild cottage flower garden"
+    },
+    "Mid-Century Modern": {
+      roof: "low-pitched gabled roofs or flat butterfly roofs, extremely wide overhanging wood-paneled eaves showing tongue-and-groove boards",
+      walls: "horizontal redwood or cedar planks, combined with vertical tongue-and-groove siding and stacked orange-brown brick accent walls",
+      columns: "thin painted steel columns or laminated wood posts holding up the low-angle roof trusses",
+      veranda: "concrete sitout deck sheltered by the wide eaves, integrating indoor planters and terrazzo tiling",
+      features: "large floor-to-ceiling glass panels, clerestory windows under the roofline, bright orange or mustard yellow main door, retro atomic era sconce light fixtures",
+      vibe: "retro mid-century elegance, organic integration, warm wood tones, pops of vintage color (orange, teal, yellow)"
+    }
+  };
+
   try {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
@@ -108,9 +159,21 @@ export default async function handler(req, res) {
       });
     }
 
-    let styleRefsPrompt = "";
+    const styleDetails = styleDescriptions[styleName] || styleDescriptions["Modern Minimalist"];
+    const stylePromptDetails = `
+- **Strict Style Characteristics**:
+  - Roofing: ${styleDetails.roof}.
+  - Wall materials & finish: ${styleDetails.walls}.
+  - Columns / pillars: ${styleDetails.columns}.
+  - Veranda / porch setup: ${styleDetails.veranda}.
+  - Architectural windows/doors & unique features: ${styleDetails.features}.
+  - Vibe & mood: ${styleDetails.vibe}.
+`;
+
+    let styleRefsPrompt = `\nCRITICAL STYLE REQUIREMENTS FOR "${styleName}":
+${stylePromptDetails}`;
     if (styleRefs.length > 0) {
-      styleRefsPrompt = `\nI have also provided the following reference images for the architectural style "${styleName}":
+      styleRefsPrompt += `\nI have also provided the following reference images for the architectural style "${styleName}" that you MUST analyze to ensure the output aligns with the visual design:
 ${styleRefs.join('\n')}
 CRITICAL CONSTRAINT: You MUST analyze these reference images and ensure the generated exterior house visual style, roofing style, columns, verandas, color palettes, textures, and facade layout look highly similar and authentic to these reference images. The house should look like it belongs in the same style family as the references.`;
     }

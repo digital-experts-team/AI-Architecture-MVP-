@@ -100,13 +100,26 @@ STRICT DESIGN RULES:
    - **Central Courtyard**: Vibrant green lawn (use green #86efac or #4ade80) decorated with small dark green circles for shrubs/plants.
    - **Verandas / Sitouts / Covered Passages**: Light stone paving (use concrete gray #cbd5e1 or sand beige #ebd6c3).
    - **Car Porch**: Dark gray concrete pavement or pavers.
-4. **Detailed drawn furniture elements (rendered on top of floor fills)**:
-   - **Bedrooms**: Draw a double bed outline (a large white/cream rectangle representing sheets, complete with pillows and a colored blanket band).
-   - **Living Room**: Draw a cozy sofa layout (L-shaped or facing rectangles representing sofas in charcoal/navy blue, complete with small accent cushions) and a wooden coffee table.
-   - **Dining Area**: Draw a large wooden dining table rectangle with smaller squares/circles around it representing dining chairs.
-   - **Car Porch**: If present, draw 1 or 2 vehicle outlines (car silhouettes with windshields, hoods, and wheels) parked inside.
-   - **Kitchen**: Draw the L-shaped/straight countertop lines, complete with a stove symbol and sink symbol.
-   - **Bathrooms**: Draw a toilet seat symbol and a bathtub/shower tray rectangle.
+4. **Detailed Drawn Furniture & Representative Room Icons (rendered on top of floor fills)**:
+   - To make the layout highly professional, recognizable, and easy to read, you MUST render both standard architectural furniture outlines AND a specific representative vector icon in each room next to its label:
+   - **Representative Room Icons**: Place a small, distinct vector-based icon group (using nested path, circle, rect, or polygon elements with a clean fill and contrasting stroke, roughly 16x16px or 20x20px size) next to or above each room's label. Draw:
+     - Bedroom: A clean double-bed icon (headboard + pillows).
+     - Living Room: A couch/sofa icon.
+     - Dining Area: A dining plate and fork icon or table/chairs icon.
+     - Kitchen: A chef hat, stove burner, or pot icon.
+     - Bathroom: A toilet or shower icon.
+     - Prayer Room: A traditional brass lamp (diya) or sacred lotus icon.
+     - Central Courtyard: A green leaf or leafy branch icon.
+     - Car Porch: A car front-view icon.
+   - **Detailed Furniture Drawings**:
+     - **Bedrooms**: Draw a detailed double bed (a rect for the frame, two smaller rects for pillows with a subtle stroke, and a colored rect for the folded-down duvet at the foot of the bed).
+     - **Living Room**: Draw a cozy sofa layout (modular or L-shaped sofas with cushions, colored in modern charcoal #334155, and a wooden coffee table rect in the center).
+     - **Dining Area**: Draw a large wooden dining table rect, surrounded by 4 to 8 small square or circle dining chairs tucked under the table.
+     - **Car Porch**: Draw a detailed sedan/SUV silhouette showing the windshield, side mirrors, wheels, and headlamps.
+     - **Kitchen**: Draw thick countertop paths (#475569) along the walls, with a double-circle stove burner detail and a split-rectangle sink bowl with faucet line.
+     - **Bathrooms**: Draw a highly recognizable toilet toilet seat layout (toilet tank rect, oval toilet bowl, and inner flush water circle) and a glass shower stall/bathtub with a drain circle.
+     - **Prayer Room**: Draw a small rectangular or circular wooden shrine pedestal with a golden lamp/oil lamp drawing in the center.
+     - **Central Courtyard (Nadumuttam)**: Draw a lush green courtyard layout matching traditional Kerala style: a central traditional brick tulsi-thara pedestal (a dark terracotta square #c2410c or circle with a green plant leaf structure rising from the middle), surrounded by irregular slate-grey stepping stones (circles/paths), small green leafy trees (overlapping green circles of varying shades and sizes), and decorative plants.
 5. **Architectural Structure, Doors & Windows**:
    - **Walls**: Outer walls must be thick charcoal lines (#1e293b, width 6px), inner walls thinner slate lines (#475569, width 4px). Apply the wall-shadow filter to all wall elements.
    - **Doors**: Green swinging doors (Main Entrance: double green swing arc door with arrow, color #059669; Interior: single green swing arc door, color #059669).

@@ -108,6 +108,57 @@ const defaultPaints = {
   "terracotta_sand": { name: "Terracotta Sand 2090-30", hex: "#c47a61", providerName: "Benjamin Moore", providerWebsite: "https://www.benjaminmoore.com", price: "$59.99 / gallon" }
 };
 
+const styleDescriptions = {
+  "Kerala Traditional": {
+    roof: "sloping multi-tiered gabled roofs covered with rustic weathered terracotta clay tiles (Mangalore style tiles), deep overhanging eaves with exposed wood brackets, traditional bargeboards and decorated wooden gables",
+    walls: "smooth lime-plastered white or light cream exterior walls, combined with solid laterite brick accents and dark wood trimmings",
+    columns: "elegant carved teak wood columns (pillars) on the veranda, sitting on dark polished granite or stone pedestals, supporting the sloping porch roof",
+    veranda: "an open front veranda (sitout or poomukham) with traditional low wooden built-in seating benches (charupady) wrapping around the entrance",
+    features: "windows with vertical wooden bars/louvers and heavy dark teak wooden frames, traditional padippura style arched entrance gateway, lush tropical garden with banana plants and palms",
+    vibe: "authentic heritage Kerala architecture, classic traditional look matching rural estate homes, warm earthy tones, no modern flat roofs or glass panels"
+  },
+  "Modern Minimalist": {
+    roof: "flat concrete slab roofs, clean sharp horizontal and vertical planes, cantilevered roof slabs with integrated slim LED strip recess lines",
+    walls: "smooth pristine white concrete walls, contrasting with dark grey plaster finishes and panels of natural grey slate or split-face stone cladding",
+    columns: "slender black structural steel posts or heavy raw concrete pillars integrated seamlessly into the rectilinear layout",
+    veranda: "minimalist raised deck with concrete steps, seamless indoor-outdoor transition through full-height pocket doors",
+    features: "monolithic floor-to-ceiling glass wall panels with thin black aluminum frames, minimalist floating steel staircase, neat manicured lawns with simple concrete pavers",
+    vibe: "ultra-modern, minimalist luxury, sharp geometric lines, cubic forms, neutral grey and white color palette"
+  },
+  "Scandinavian Timber": {
+    roof: "steep A-frame or simple gabled roofs finished in dark charcoal metal standing seam panels or slate shingles, minimalist roofline",
+    walls: "vertical timber wood siding, painted in black, dark charcoal grey, or left natural light pine/cedar tone with weather-resistant oils",
+    columns: "simple, unadorned square light pine wood columns supporting the deck roof overhang",
+    veranda: "large wrap-around elevated wooden sun-deck with simple wood railings, minimalist outdoor furniture",
+    features: "large panoramic triple-glazed windows with simple black or natural wood frames, glass double doors opening to the deck, simple forest or pine tree backdrop",
+    vibe: "warm cozy nordic design, organic wood textures, highly functional, high-contrast exterior, integrated with natural wooded landscape"
+  },
+  "Industrial Concrete": {
+    roof: "flat concrete roofs with exposed gravel/stone ballast, thick metal fascia bands along the roof edge",
+    walls: "raw board-formed concrete walls showing the wood grain texture and tie-rod holes, combined with black corrugated steel sheeting and red brick accents",
+    columns: "heavy exposed black H-beam steel columns and girders forming a rigid structural frame",
+    veranda: "raw concrete loading dock style porch with black steel wire railings and industrial mesh doors",
+    features: "large multi-pane steel grid factory windows, exposed copper pipes, metal ducts, black steel metal stairs, industrial pendant light fixtures",
+    vibe: "urban loft aesthetic, rugged raw materials, exposed structural systems, monochromatic grey and black color scheme"
+  },
+  "Cozy Stone Cottage": {
+    roof: "multi-gabled steep roofs with irregular weathered grey slate shingles, wavy rooflines, thick stone chimney with terracotta clay pots",
+    walls: "thick, rustic load-bearing walls built from irregular natural fieldstones, rough mortar joints, and small patches of peeling white stucco",
+    columns: "gnarled rough-hewn oak timber columns and lintels supporting the arched porch roof",
+    veranda: "small stone flagstone porch with a wooden bench, climbing flowering wisteria or ivy on the walls",
+    features: "small divided-lite casement windows with wood shutters painted in sage green or soft blue, heavy arched oak main door with black iron strap hinges",
+    vibe: "fairytale cottage, rustic charm, organic hand-crafted feel, blending perfectly with a wild cottage flower garden"
+  },
+  "Mid-Century Modern": {
+    roof: "low-pitched gabled roofs or flat butterfly roofs, extremely wide overhanging wood-paneled eaves showing tongue-and-groove boards",
+    walls: "horizontal redwood or cedar planks, combined with vertical tongue-and-groove siding and stacked orange-brown brick accent walls",
+    columns: "thin painted steel columns or laminated wood posts holding up the low-angle roof trusses",
+    veranda: "concrete sitout deck sheltered by the wide eaves, integrating indoor planters and terrazzo tiling",
+    features: "large floor-to-ceiling glass panels, clerestory windows under the roofline, bright orange or mustard yellow main door, retro atomic era sconce light fixtures",
+    vibe: "retro mid-century elegance, organic integration, warm wood tones, pops of vintage color (orange, teal, yellow)"
+  }
+};
+
 // Configure static file serving
 app.use('/database', express.static(databaseDir));
 app.use('/uploads', express.static(uploadsDir));
@@ -388,13 +439,26 @@ STRICT DESIGN RULES:
    - **Central Courtyard**: Vibrant green lawn (use green #86efac or #4ade80) decorated with small dark green circles for shrubs/plants.
    - **Verandas / Sitouts / Covered Passages**: Light stone paving (use concrete gray #cbd5e1 or sand beige #ebd6c3).
    - **Car Porch**: Dark gray concrete pavement or pavers.
-4. **Detailed drawn furniture elements (rendered on top of floor fills)**:
-   - **Bedrooms**: Draw a double bed outline (a large white/cream rectangle representing sheets, complete with pillows and a colored blanket band).
-   - **Living Room**: Draw a cozy sofa layout (L-shaped or facing rectangles representing sofas in charcoal/navy blue, complete with small accent cushions) and a wooden coffee table.
-   - **Dining Area**: Draw a large wooden dining table rectangle with smaller squares/circles around it representing dining chairs.
-   - **Car Porch**: If present, draw 1 or 2 vehicle outlines (car silhouettes with windshields, hoods, and wheels) parked inside.
-   - **Kitchen**: Draw the L-shaped/straight countertop lines, complete with a stove symbol and sink symbol.
-   - **Bathrooms**: Draw a toilet seat symbol and a bathtub/shower tray rectangle.
+4. **Detailed Drawn Furniture & Representative Room Icons (rendered on top of floor fills)**:
+   - To make the layout highly professional, recognizable, and easy to read, you MUST render both standard architectural furniture outlines AND a specific representative vector icon in each room next to its label:
+   - **Representative Room Icons**: Place a small, distinct vector-based icon group (using nested path, circle, rect, or polygon elements with a clean fill and contrasting stroke, roughly 16x16px or 20x20px size) next to or above each room's label. Draw:
+     - Bedroom: A clean double-bed icon (headboard + pillows).
+     - Living Room: A couch/sofa icon.
+     - Dining Area: A dining plate and fork icon or table/chairs icon.
+     - Kitchen: A chef hat, stove burner, or pot icon.
+     - Bathroom: A toilet or shower icon.
+     - Prayer Room: A traditional brass lamp (diya) or sacred lotus icon.
+     - Central Courtyard: A green leaf or leafy branch icon.
+     - Car Porch: A car front-view icon.
+   - **Detailed Furniture Drawings**:
+     - **Bedrooms**: Draw a detailed double bed (a rect for the frame, two smaller rects for pillows with a subtle stroke, and a colored rect for the folded-down duvet at the foot of the bed).
+     - **Living Room**: Draw a cozy sofa layout (modular or L-shaped sofas with cushions, colored in modern charcoal #334155, and a wooden coffee table rect in the center).
+     - **Dining Area**: Draw a large wooden dining table rect, surrounded by 4 to 8 small square or circle dining chairs tucked under the table.
+     - **Car Porch**: Draw a detailed sedan/SUV silhouette showing the windshield, side mirrors, wheels, and headlamps.
+     - **Kitchen**: Draw thick countertop paths (#475569) along the walls, with a double-circle stove burner detail and a split-rectangle sink bowl with faucet line.
+     - **Bathrooms**: Draw a highly recognizable toilet toilet seat layout (toilet tank rect, oval toilet bowl, and inner flush water circle) and a glass shower stall/bathtub with a drain circle.
+     - **Prayer Room**: Draw a small rectangular or circular wooden shrine pedestal with a golden lamp/oil lamp drawing in the center.
+     - **Central Courtyard (Nadumuttam)**: Draw a lush green courtyard layout matching traditional Kerala style: a central traditional brick tulsi-thara pedestal (a dark terracotta square #c2410c or circle with a green plant leaf structure rising from the middle), surrounded by irregular slate-grey stepping stones (circles/paths), small green leafy trees (overlapping green circles of varying shades and sizes), and decorative plants.
 5. **Architectural Structure, Doors & Windows**:
    - **Walls**: Outer walls must be thick charcoal lines (#1e293b, width 6px), inner walls thinner slate lines (#475569, width 4px). Apply the wall-shadow filter to all wall elements.
    - **Doors**: Green swinging doors (Main Entrance: double green swing arc door with arrow, color #059669; Interior: single green swing arc door, color #059669).
@@ -487,9 +551,21 @@ ${blueprintSvg}`);
       });
     }
 
-    let styleRefsPrompt = "";
+    const styleDetails = styleDescriptions[styleName] || styleDescriptions["Modern Minimalist"];
+    const stylePromptDetails = `
+- **Strict Style Characteristics**:
+  - Roofing: ${styleDetails.roof}.
+  - Wall materials & finish: ${styleDetails.walls}.
+  - Columns / pillars: ${styleDetails.columns}.
+  - Veranda / porch setup: ${styleDetails.veranda}.
+  - Architectural windows/doors & unique features: ${styleDetails.features}.
+  - Vibe & mood: ${styleDetails.vibe}.
+`;
+
+    let styleRefsPrompt = `\nCRITICAL STYLE REQUIREMENTS FOR "${styleName}":
+${stylePromptDetails}`;
     if (styleRefs.length > 0) {
-      styleRefsPrompt = `\nI have also provided the following reference images for the architectural style "${styleName}":
+      styleRefsPrompt += `\nI have also provided the following reference images for the architectural style "${styleName}" that you MUST analyze to ensure the output aligns with the visual design:
 ${styleRefs.join('\n')}
 CRITICAL CONSTRAINT: You MUST analyze these reference images and ensure the generated exterior house visual style, roofing style, columns, verandas, color palettes, textures, and facade layout look highly similar and authentic to these reference images. The house should look like it belongs in the same style family as the references.`;
     }
@@ -677,12 +753,12 @@ Ensure the materials, layouts, styles, and colors coordinate visually.
 
 CRITICAL STYLE ALIGNMENT CONSTRAINT:
 The selected flooring, wall paint color, and furniture items MUST suit and reflect the home's overall architectural style of "${styleName}":
-- If style is "Modern Minimalist", design a clean, sleek, uncluttered modern interior with neutral tones and low-profile furniture.
-- If style is "Scandinavian Timber", use light warm woods, cozy simple fabrics, and natural simple styling.
-- If style is "Kerala Traditional", design a traditional Indian interior featuring warm teak wood, brass accents, traditional sitout-style wood details, and rich colors suited to a home with a Nadumuttam/courtyard.
-- If style is "Mid-Century Modern", use retro-modern styles, bold wood accents, and organic geometric furniture shapes.
-- If style is "Industrial Concrete", design a loft-like interior with raw concrete/brick elements, dark steel, and leather/wood details.
-- If style is "Cozy Stone Cottage", design a rustic, warm cottage style with stone details, exposed wood beams, and soft warm fabrics.
+- If style is "Modern Minimalist", design a clean, sleek, uncluttered modern interior with large polished white marble or grey concrete tile flooring, pristine white or light grey wall paint, low-profile minimalist furniture in neutral tones with thin steel legs, and simple recess lighting.
+- If style is "Scandinavian Timber", design a warm organic wood-clad interior with light ash or pine wood floorboards, soft white/pale grey walls, cozy simple fabrics (wool/sheepskin), light timber furniture pieces, and soft diffuse lighting.
+- If style is "Kerala Traditional", design a traditional Indian interior featuring polished terracotta clay tiles or rich yellow oxide flooring, warm white/cream plaster walls with teak wood framing, classic solid wood columns (pillars) in the room corners, low-slung dark wood seating, traditional brass oil lamps (nilavilakku) or hanging brass light fixtures, and a warm heritage layout suited to a traditional Indian courtyard home.
+- If style is "Mid-Century Modern", use warm walnut or teak parquet flooring, clean white walls with warm vertical wood slat accents, retro atomic era sconce lights, and bold wood furniture with organic tapered legs and retro colored upholstery.
+- If style is "Industrial Concrete", design a raw urban loft interior with board-formed concrete or dark grey cement tile flooring, exposed concrete slab walls or rustic red brickwork, black steel structural columns, raw pipes, factory grid glass panels, and steel-and-leather furniture.
+- If style is "Cozy Stone Cottage", design a rustic fairytale cottage interior with flagstone or slate floors, rough white plaster walls, exposed heavy oak ceiling beams, small divided-lite windows with wood shutters, and plush fabrics with antique iron finishes.
 
 [Randomization Seed: ${randomSalt}]
 Each time you are called, you must create a completely fresh and unique design concept. Randomize layout alignments, colors, textures, and asset selections. Do not produce the same design or prompt twice. Be creative and introduce variety.
