@@ -16,16 +16,10 @@ export default function ModuleBlueprint({
   floorsCount,
   setFloorsCount
 }) {
-  const [isGenerating, setIsGenerating] = useState(false);
-  const hasBlueprint = !!generatedSvg;
-
-  // Layout customization states
-  const [includeLiving, setIncludeLiving] = useState(true);
-  const [includePrayer, setIncludePrayer] = useState(false);
-  const [includeDining, setIncludeDining] = useState(true);
-  const [includeCarPorch, setIncludeCarPorch] = useState(false);
-  const [bedroomsCount, setBedroomsCount] = useState(2);
-  const [bathroomsCount, setBathroomsCount] = useState(1);
+  const [bedroomsCount, setBedroomsCount] = useState(3);
+  const [availablePlans, setAvailablePlans] = useState([]);
+  const [selectedPlanUrl, setSelectedPlanUrl] = useState('');
+  const [isLoadingPlans, setIsLoadingPlans] = useState(false);
 
   const stylesList = [
     'Modern Minimalist',
@@ -83,55 +77,51 @@ export default function ModuleBlueprint({
     }
   };
 
+  // Sync available plans from database when parameters change
+  useEffect(() => {
+    const fetchBlueprints = async () => {
+      setIsLoadingPlans(true);
+      try {
+        const res = await fetch(`${apiBaseUrl}/api/blueprints?floors=${floorsCount}&bedrooms=${bedroomsCount}`);
+        if (res.ok) {
+          const data = await res.json();
+          setAvailablePlans(data);
+          if (data.length > 0) {
+            // Re-match or select first plan
+            const matched = data.find(p => p.url === floorPlanUrl);
+            if (matched) {
+              setSelectedPlanUrl(matched.url);
+            } else {
+              setSelectedPlanUrl(data[0].url);
+              setFloorPlanUrl(data[0].url);
+              setGeneratedSvg(null); // Clear generated SVG
+            }
+          } else {
+            setSelectedPlanUrl('');
+            setFloorPlanUrl(null);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch matching blueprints:", err);
+      } finally {
+        setIsLoadingPlans(false);
+      }
+    };
+
+    fetchBlueprints();
+  }, [floorsCount, bedroomsCount, apiBaseUrl]);
+
   // Sync rooms list automatically as form options or floors change
   useEffect(() => {
     syncRoomsList({
-      livingRoom: includeLiving,
-      prayerRoom: includePrayer,
-      diningRoom: includeDining,
-      carPorch: includeCarPorch,
+      livingRoom: true,
+      prayerRoom: bedroomsCount >= 3,
+      diningRoom: true,
+      carPorch: floorsCount >= 2,
       bedroomsCount,
-      bathroomsCount
+      bathroomsCount: bedroomsCount
     });
-  }, [includeLiving, includePrayer, includeDining, includeCarPorch, bedroomsCount, bathroomsCount, floorsCount]);
-
-  const handleGenerateLayout = async () => {
-    setIsGenerating(true);
-    setFloorPlanUrl(null); // Clear image if generating SVG
-    
-    try {
-      const res = await fetch(`${apiBaseUrl}/api/generate-floorplan`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          style: constructionStyle,
-          floorsCount: floorsCount,
-          rooms: {
-            livingRoom: includeLiving,
-            prayerRoom: includePrayer,
-            diningRoom: includeDining,
-            carPorch: includeCarPorch,
-            bedroomsCount: bedroomsCount,
-            bathroomsCount: bathroomsCount
-          }
-        })
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || "Failed to generate floor plan.");
-      }
-
-      const data = await res.json();
-      if (data.svg) {
-        setGeneratedSvg(data.svg);
-      }
-    } catch (err) {
-      alert("Error generating floor plan: " + err.message);
-    } finally {
-      setIsGenerating(false);
-    }
-  };
+  }, [bedroomsCount, floorsCount]);
 
   return (
     <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -140,47 +130,51 @@ export default function ModuleBlueprint({
           <span>Module 1: Blueprint Design & Setup</span>
         </h2>
         <p className="card-subtitle" style={{ margin: '0.5rem 0 0 0' }}>
-          Configure layout rooms, style, and floors, then auto-generate a blueprint.
+          Select floor and bedroom configurations to load pre-designed plans from the database.
         </p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1.25fr 0.75fr', gap: '1.5rem' }}>
         {/* Left: View Panel */}
         <div style={{ position: 'relative', minHeight: '460px', border: '1px solid var(--card-border)', borderRadius: '12px', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-          {isGenerating && (
+          {isLoadingPlans && (
             <div className="loading-overlay">
               <div className="spinner"></div>
               <div className="loading-text" style={{ textAlign: 'center' }}>
-                Designing custom {floorsCount}-floor layout...<br />
-                <span style={{ fontSize: '0.75rem', opacity: 0.8 }}>Generating custom rooms and en-suite baths (10-15s)</span>
+                Loading available blueprints from database...
               </div>
             </div>
           )}
 
-          {!generatedSvg && !isGenerating && (
+          {!floorPlanUrl && !isLoadingPlans && (
             <div className="floorplan-dropzone" style={{ width: '80%', border: 'none', background: 'transparent', cursor: 'default' }}>
               <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="9" y1="3" x2="9" y2="21"></line>
                 <line x1="3" y1="9" x2="21" y2="9"></line>
               </svg>
-              <div style={{ fontWeight: 600, fontSize: '1rem', marginTop: '0.5rem' }}>AI Architectural Blueprint</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Configure layout parameters and click "Generate AI Blueprint ⚡"</div>
+              <div style={{ fontWeight: 600, fontSize: '1rem', marginTop: '0.5rem' }}>No Blueprint Selected</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Select floor and bedroom parameters, then choose a database blueprint plan.</div>
             </div>
           )}
 
-          {generatedSvg && (
+          {floorPlanUrl && !isLoadingPlans && (
             <div 
               className="svg-container" 
               style={{ width: '95%', height: '95%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              dangerouslySetInnerHTML={{ __html: generatedSvg }} 
-            />
+            >
+              <img 
+                src={`${apiBaseUrl}${floorPlanUrl}`} 
+                alt="Selected Blueprint Plan" 
+                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} 
+              />
+            </div>
           )}
 
-          {generatedSvg && (
+          {floorPlanUrl && !isLoadingPlans && (
             <button 
               className="btn btn-secondary" 
-              onClick={() => { setGeneratedSvg(null); }}
+              onClick={() => { setFloorPlanUrl(null); setSelectedPlanUrl(''); }}
               style={{ 
                 position: 'absolute', 
                 bottom: '0.75rem', 
@@ -191,7 +185,7 @@ export default function ModuleBlueprint({
                 backdropFilter: 'blur(4px)'
               }}
             >
-              Clear Layout
+              Clear Selection
             </button>
           )}
         </div>
@@ -200,92 +194,129 @@ export default function ModuleBlueprint({
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           
           {/* Blueprint Parameter Inputs */}
-          <div style={{ background: '#ffffff', border: '1px solid var(--card-border)', padding: '0.85rem 1rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-            <h3 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700, margin: 0, borderBottom: '1px solid var(--card-border)', paddingBottom: '0.35rem' }}>
-              Blueprint Design Customizer
+          <div style={{ background: '#ffffff', border: '1px solid var(--card-border)', padding: '1.25rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700, margin: 0, borderBottom: '1px solid var(--card-border)', paddingBottom: '0.5rem' }}>
+              Blueprint Selector
             </h3>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '0.5rem' }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" style={{ fontSize: '0.75rem' }}>Construction Style</label>
-                <select
-                  className="form-select"
-                  value={constructionStyle}
-                  onChange={(e) => setConstructionStyle(e.target.value)}
-                  style={{ padding: '0.35rem 0.5rem', fontSize: '0.75rem' }}
-                >
-                  {stylesList.map(s => <option key={s} value={s}>{s}</option>)}
-                </select>
-              </div>
 
+            <div className="form-group" style={{ marginBottom: 0 }}>
+              <label className="form-label" style={{ fontSize: '0.75rem' }}>Construction Style</label>
+              <select
+                className="form-select"
+                value={constructionStyle}
+                onChange={(e) => setConstructionStyle(e.target.value)}
+                style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
+              >
+                {stylesList.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
               <div className="form-group" style={{ marginBottom: 0 }}>
                 <label className="form-label" style={{ fontSize: '0.75rem' }}>Floors</label>
                 <select
                   className="form-select"
                   value={floorsCount}
                   onChange={(e) => setFloorsCount(parseInt(e.target.value) || 1)}
-                  style={{ padding: '0.35rem 0.5rem', fontSize: '0.75rem' }}
+                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
                 >
                   <option value={1}>1 Floor</option>
                   <option value={2}>2 Floors</option>
-                  <option value={3}>3 Floors</option>
+                </select>
+              </div>
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label className="form-label" style={{ fontSize: '0.75rem' }}>Bedrooms</label>
+                <select
+                  className="form-select"
+                  value={bedroomsCount}
+                  onChange={(e) => setBedroomsCount(parseInt(e.target.value) || 1)}
+                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
+                >
+                  <option value={1}>1 Bed</option>
+                  <option value={2}>2 Beds</option>
+                  <option value={3}>3 Beds</option>
+                  <option value={4}>4 Beds</option>
                 </select>
               </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-              <label className="form-label" style={{ fontSize: '0.75rem', marginBottom: '0.1rem' }}>Rooms to Include</label>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35rem' }}>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.75rem', cursor: 'pointer', color: 'var(--text-primary)' }}>
-                  <input type="checkbox" checked={includeLiving} onChange={(e) => setIncludeLiving(e.target.checked)} />
-                  Living Room
-                </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.75rem', cursor: 'pointer', color: 'var(--text-primary)' }}>
-                  <input type="checkbox" checked={includePrayer} onChange={(e) => setIncludePrayer(e.target.checked)} />
-                  Prayer Room 🙏
-                </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.75rem', cursor: 'pointer', color: 'var(--text-primary)' }}>
-                  <input type="checkbox" checked={includeDining} onChange={(e) => setIncludeDining(e.target.checked)} />
-                  Dining Room
-                </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.75rem', cursor: 'pointer', color: 'var(--text-primary)' }}>
-                  <input type="checkbox" checked={includeCarPorch} onChange={(e) => setIncludeCarPorch(e.target.checked)} />
-                  Car Porch 🚗
-                </label>
-              </div>
+            <div className="form-group" style={{ marginBottom: 0 }}>
+              <label className="form-label" style={{ fontSize: '0.75rem', fontWeight: 600 }}>Select Plan from Database</label>
+              {isLoadingPlans ? (
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', padding: '0.5rem 0' }}>Querying database blueprints...</div>
+              ) : availablePlans.length > 0 ? (
+                <select
+                  className="form-select"
+                  value={selectedPlanUrl}
+                  onChange={(e) => {
+                    const url = e.target.value;
+                    setSelectedPlanUrl(url);
+                    setFloorPlanUrl(url);
+                    setGeneratedSvg(null);
+                  }}
+                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem', width: '100%' }}
+                >
+                  {availablePlans.map(plan => (
+                    <option key={plan.url} value={plan.url}>
+                      {plan.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <div style={{ 
+                  fontSize: '0.75rem', 
+                  color: '#b91c1c', 
+                  background: '#fef2f2', 
+                  border: '1px solid #fca5a5', 
+                  padding: '0.6rem 0.75rem', 
+                  borderRadius: '6px',
+                  lineHeight: '1.25'
+                }}>
+                  No blueprints found in: <br />
+                  <code style={{ fontSize: '0.7rem', display: 'block', marginTop: '0.2rem', wordBreak: 'break-all' }}>
+                    database/blueprints/{floorsCount}_floor/{bedroomsCount}_bedroom/
+                  </code>
+                  Please add blueprint images to this folder.
+                </div>
+              )}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" style={{ fontSize: '0.75rem' }}>Bedrooms</label>
-                <input 
-                  type="number" min="0" max="4"
-                  value={bedroomsCount}
-                  onChange={(e) => setBedroomsCount(parseInt(e.target.value) || 0)}
-                  className="form-select"
-                  style={{ padding: '0.3rem 0.5rem', fontSize: '0.75rem' }}
-                />
+            {availablePlans.length > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '0.25rem' }}>
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600 }}>Available Plans Preview:</span>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.4rem' }}>
+                  {availablePlans.map(plan => (
+                    <button
+                      key={plan.url}
+                      onClick={() => {
+                        setSelectedPlanUrl(plan.url);
+                        setFloorPlanUrl(plan.url);
+                        setGeneratedSvg(null);
+                      }}
+                      style={{
+                        padding: '0.25rem',
+                        border: selectedPlanUrl === plan.url ? '2px solid var(--primary)' : '1px solid var(--card-border)',
+                        borderRadius: '6px',
+                        background: '#ffffff',
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '0.2rem'
+                      }}
+                    >
+                      <div style={{ width: '100%', height: '36px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src={`${apiBaseUrl}${plan.url}`} alt={plan.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                      </div>
+                      <span style={{ fontSize: '0.65rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%', textAlign: 'center', color: 'var(--text-primary)' }}>{plan.name}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" style={{ fontSize: '0.75rem' }}>Bathrooms</label>
-                <input 
-                  type="number" min="0" max="4"
-                  value={bathroomsCount}
-                  onChange={(e) => setBathroomsCount(parseInt(e.target.value) || 0)}
-                  className="form-select"
-                  style={{ padding: '0.3rem 0.5rem', fontSize: '0.75rem' }}
-                />
-              </div>
-            </div>
-
-            <button 
-              className="btn btn-secondary" 
-              onClick={handleGenerateLayout}
-              disabled={isGenerating}
-              style={{ width: '100%', fontSize: '0.75rem', padding: '0.45rem', marginTop: '0.15rem' }}
-            >
-              {isGenerating ? "Designing..." : "Generate AI Blueprint ⚡"}
-            </button>
+            )}
           </div>
 
           {/* Design Room Selector Section removed (now selected from Room Interior Design tab) */}

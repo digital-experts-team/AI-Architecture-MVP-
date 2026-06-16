@@ -271,6 +271,36 @@ app.get('/api/assets', (req, res) => {
   }
 });
 
+// 2.5 Get list of blueprints from local database based on floors and bedrooms
+app.get('/api/blueprints', (req, res) => {
+  try {
+    const { floors, bedrooms } = req.query;
+    const floorsCount = parseInt(floors) || 1;
+    const bedroomsCount = parseInt(bedrooms) || 2;
+
+    const folderName = `${floorsCount}_floor`;
+    const subFolderName = `${bedroomsCount}_bedroom`;
+    const targetDir = path.join(databaseDir, 'blueprints', folderName, subFolderName);
+
+    if (!fs.existsSync(targetDir)) {
+      return res.json([]);
+    }
+
+    const files = fs.readdirSync(targetDir).filter(f => f.match(/\.(png|jpg|jpeg|webp)$/i));
+    const blueprints = files.map(file => {
+      return {
+        name: file.replace(/_/g, ' ').replace(/\.[^/.]+$/, ""),
+        filename: file,
+        url: `/database/blueprints/${folderName}/${subFolderName}/${file}`
+      };
+    });
+
+    res.json(blueprints);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to read blueprint database: " + error.message });
+  }
+});
+
 // 3. Upload dynamic asset to local database
 app.post('/api/upload-asset', uploadAsset.single('image'), (req, res) => {
   try {
