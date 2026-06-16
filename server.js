@@ -439,50 +439,48 @@ STRICT DESIGN RULES:
      - **TOILET (attached to Master Bedroom)**: Bottom-Right-most. Coordinates: X=490 to X=580, Y=450 to Y=495. Label: "TOILET".
      - **PASSAGE / CORRIDOR**: The open corridor wrapping around the central NADUMUTTAM courtyard connecting all the surrounding rooms.
    - For multi-story layouts, you must scale this exact ground floor layout to fit inside the Ground Floor panel (X=0 to X=330 for a 2-story layout, and X=0 to X=220 for a 3-story layout).
-2. **2.5D Depth & Wall Drop Shadows**:
-   - Define a drop shadow filter in <defs>:
-     <filter id="wall-shadow" x="-10%" y="-10%" width="130%" height="130%">
-       <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.35"/>
-     </filter>
-   - Apply filter="url(#wall-shadow)" to all walls to give them a realistic, raised 2.5D visual appearance.
-3. **Colored Floor Fills**:
-   - **Bedrooms**: Rich warm wood flooring (use soft wood tan #e3c09b or wood brown #cb997e, or simple linear gradients showing floorboards).
-   - **Living & Dining Area**: Polished white/gray marble tiles (use light off-white #f8fafc to soft gray #e2e8f0).
-   - **Kitchen & Utility**: Clean light grey tiled look (use light grey #e2e8f0 or concrete texture color).
-   - **Bathrooms**: Aqua or blue-grey tiled texture (use #bfdbfe or #cbd5e1).
-   - **Central Courtyard**: Vibrant green lawn (use green #86efac or #4ade80) decorated with small dark green circles for shrubs/plants.
-   - **Verandas / Sitouts / Covered Passages**: Light stone paving (use concrete gray #cbd5e1 or sand beige #ebd6c3).
-   - **Car Porch**: Dark gray concrete pavement or pavers.
-4. **Detailed Drawn Furniture & Representative Room Icons (rendered on top of floor fills)**:
-   - To make the layout highly professional, recognizable, and easy to read, you MUST render both standard architectural furniture outlines AND a specific representative vector icon in each room next to its label:
-   - **Representative Room Icons**: Place a small, distinct vector-based icon group (using nested path, circle, rect, or polygon elements with a clean fill and contrasting stroke, roughly 16x16px or 20x20px size) next to or above each room's label. Draw:
-     - Bedroom: A clean double-bed icon (headboard + pillows).
-     - Living Room: A couch/sofa icon.
-     - Dining Area: A dining plate and fork icon or table/chairs icon.
-     - Kitchen: A chef hat, stove burner, or pot icon.
-     - Bathroom: A toilet or shower icon.
-     - Prayer Room: A traditional brass lamp (diya) or sacred lotus icon.
-     - Central Courtyard: A green leaf or leafy branch icon.
-     - Car Porch: A car front-view icon.
-   - **Detailed Furniture Drawings**:
-     - **Bedrooms**: Draw a detailed double bed (a rect for the frame, two smaller rects for pillows with a subtle stroke, and a colored rect for the folded-down duvet at the foot of the bed).
-     - **Living Room**: Draw a cozy sofa layout (modular or L-shaped sofas with cushions, colored in modern charcoal #334155, and a wooden coffee table rect in the center).
-     - **Dining Area**: Draw a large wooden dining table rect, surrounded by 4 to 8 small square or circle dining chairs tucked under the table.
-     - **Car Porch**: Draw a detailed sedan/SUV silhouette showing the windshield, side mirrors, wheels, and headlamps.
-     - **Kitchen**: Draw thick countertop paths (#475569) along the walls, with a double-circle stove burner detail and a split-rectangle sink bowl with faucet line.
-     - **Bathrooms**: Draw a highly recognizable toilet toilet seat layout (toilet tank rect, oval toilet bowl, and inner flush water circle) and a glass shower stall/bathtub with a drain circle.
-     - **Prayer Room**: Draw a small rectangular or circular wooden shrine pedestal with a golden lamp/oil lamp drawing in the center.
-     - **Central Courtyard (Nadumuttam)**: Draw a lush green courtyard layout matching traditional Kerala style: a central traditional brick tulsi-thara pedestal (a dark terracotta square #c2410c or circle with a green plant leaf structure rising from the middle), surrounded by irregular slate-grey stepping stones (circles/paths), small green leafy trees (overlapping green circles of varying shades and sizes), and decorative plants.
-5. **Architectural Structure, Doors & Windows**:
-   - **Walls**: Outer walls must be thick charcoal lines (#1e293b, width 6px), inner walls thinner slate lines (#475569, width 4px). Apply the wall-shadow filter to all wall elements.
-   - **Doors**: Green swinging doors (Main Entrance: double green swing arc door with arrow, color #059669; Interior: single green swing arc door, color #059669).
-   - **Windows**: Bright glowing teal double-lined rectangles (#0891b2) embedded in the outer walls.
-   - **Labels**: Add clear, visible dark charcoal text labels (fill="#0f172a", font-weight="bold", font-family="sans-serif") indicating room names (e.g. "Living Room", "Nadumuttam / Courtyard", "Bedroom 1", "Dining Area") and dimensions.
-
-Set the SVG viewBox="0 0 700 500" and make it responsive.
-Add a title text inside the SVG (color #0f172a): "AI House Design - ${styleName} (${floors} Floor(s))".
-
-Return your answer as a JSON object with a single key "svg" containing the raw SVG string as its value. Do not wrap the SVG string in Markdown backticks.`;
+ 2. **2.5D Depth & Wall Drop Shadows**:
+    - Define a drop shadow filter in <defs>:
+      <filter id="wall-shadow" x="-10%" y="-10%" width="130%" height="130%">
+        <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5"/>
+      </filter>
+    - Apply filter="url(#wall-shadow)" to all walls to give them a realistic, raised 2.5D visual appearance.
+ 3. **Dark Blue Blueprint Theme & Color Scheme**:
+    - The entire SVG canvas background MUST be a dark blueprint blue (#0a0e1a). You must render a root <rect width="700" height="500" fill="#0a0e1a" />.
+    - Do NOT use colored room floor fills (no wood textures, no grey tile textures, no blue bathroom fills, no marble fills). All rooms must have transparent or dark blue fills matching the background (#0a0e1a).
+    - Only the **Central Courtyard (Nadumuttam)** can have a soft, deep green garden lawn background fill (#14532d or #15803d) with leafy plant outlines.
+    - All rooms, passage lines, walls, doors, windows, labels, and drawings must be styled to stand out beautifully on the dark blue background.
+ 4. **Detailed Drawn Furniture & Representative Room Icons (rendered as technical wireframes)**:
+    - To make the layout highly professional, recognizable, and easy to read, you MUST render both standard architectural furniture outlines AND a specific representative vector icon in each room next to its label:
+    - All furniture drawings (beds, sofas, tables, counters, toilets, altars) and room icons must be drawn as clean, white or light sky-blue wireframe outlines (stroke="#e2e8f0" or stroke="#38bdf8", fill="none", stroke-width="1.5px") to look like a technical blueprint.
+    - **Representative Room Icons**: Place a small, distinct vector-based icon group next to or above each room's label. Draw:
+      - Bedroom: A clean double-bed icon (headboard + pillows).
+      - Living Room: A couch/sofa icon.
+      - Dining Area: A dining plate and fork icon or table/chairs icon.
+      - Kitchen: A chef hat, stove burner, or pot icon.
+      - Bathroom: A toilet or shower icon.
+      - Prayer Room: A traditional brass lamp (diya) or sacred lotus icon.
+      - Central Courtyard: A green leaf or leafy branch icon.
+      - Car Porch: A car front-view icon.
+    - **Detailed Furniture Drawings**:
+      - **Bedrooms**: Draw a detailed double bed outline (frame rect, two pillow rects, and duvet line).
+      - **Living Room**: Draw a cozy sofa layout outline (modular or L-shaped sofas and a coffee table rect).
+      - **Dining Area**: Draw a large dining table rect, surrounded by dining chairs.
+      - **Car Porch**: Draw a detailed sedan/SUV silhouette outline showing windshield, mirrors, and wheels.
+      - **Kitchen**: Draw countertop paths, stove burner circle details, and a sink bowl.
+      - **Bathrooms**: Draw toilet seat outlines (tank rect, oval bowl, flush circle) and glass shower stall/bathtub.
+      - **Prayer Room**: Draw a small wooden shrine pedestal outline with a lamp/altar symbol in the center.
+      - **Central Courtyard (Nadumuttam)**: Draw a central traditional brick tulsi-thara pedestal (dark terracotta square or circle with a leaf structure), stepping stone outlines, and small leafy trees (overlapping circles).
+ 5. **Architectural Structure, Doors & Windows**:
+    - **Walls**: Outer walls must be thick solid white or light sky-blue lines (#f8fafc or #38bdf8, width 6px), inner walls thinner solid white or sky-blue lines (#e2e8f0 or #7dd3fc, width 4px). Apply the wall-shadow filter to all wall elements.
+    - **Doors**: Glowing green swinging doors (Main Entrance: double green swing arc door with arrow, color #10b981; Interior: single green swing arc door, color #10b981).
+    - **Windows**: Glowing teal double-lined rectangles (#06b6d4) embedded in the outer walls.
+    - **Labels**: Add clear, visible white or light sky-blue text labels (fill="#ffffff" or fill="#38bdf8", font-weight="bold", font-family="sans-serif") indicating room names and dimensions.
+ 
+ Set the SVG viewBox="0 0 700 500" and make it responsive.
+ Add a title text inside the SVG (color #38bdf8): "AI House Design - ${styleName} (${floors} Floor(s))".
+ 
+ Return your answer as a JSON object with a single key "svg" containing the raw SVG string as its value. Do not wrap the SVG string in Markdown backticks.`;
 
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
