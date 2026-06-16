@@ -73,51 +73,25 @@ export default async function handler(req, res) {
 - Include vertical dashed separator lines at X=230 and X=470.`;
     }
 
-    const prompt = `You are a professional architect and master SVG designer.
-Generate a premium, clean, modern 2D floor plan blueprint SVG for a ${floors}-story family home designed in the style of "${styleName}". 
+    const prompt = `You are a professional architect. 
+Generate a simplified, clean, modern 2D floor plan blueprint SVG for a ${floors}-story family home designed in the style of "${styleName}". 
 
 ${layoutInstruction}
 
-The house plan must contain the following room details:
+The house plan must contain:
 ${roomDetails.join('\n')}
 - STRICT CONSTRAINT: Every Bedroom MUST be directly adjacent to and connected with a Bathroom (en-suite attached layout). The Bathroom door must open directly inside the Bedroom, not into the general corridor.
-- Every ground floor layout (and single-story layout) MUST contain a central open-to-sky courtyard garden (labeled "Central Courtyard" or "Nadumuttam") positioned in the middle of the home, surrounded by a passage corridor.
 
-STRICT DESIGN RULES:
-1. **Dark Blue Blueprint Theme & Color Scheme**:
-   - The entire SVG canvas background MUST be a dark blueprint blue (#0a0e1a). You must render a root \`<rect width="700" height="500" fill="#0a0e1a" />\`.
-   - Do NOT use colored room floor fills (no wood textures, no grey tile textures, no blue bathroom fills, no marble fills). All rooms must have transparent or dark blue fills matching the background (#0a0e1a).
-   - Only the **Central Courtyard (Nadumuttam)** can have a soft, deep green garden lawn background fill (#14532d or #15803d) with leafy plant outlines.
-   - All rooms, passage lines, walls, doors, windows, labels, and drawings must be styled to stand out beautifully on the dark blue background.
-2. **Detailed Drawn Furniture & Representative Room Icons (rendered as technical wireframes)**:
-   - To make the layout highly professional, recognizable, and easy to read, you MUST render both standard architectural furniture outlines AND a specific representative vector icon in each room next to its label:
-   - All furniture drawings (beds, sofas, tables, counters, toilets, altars) and room icons must be drawn as clean, white or light sky-blue wireframe outlines (stroke="#e2e8f0" or stroke="#38bdf8", fill="none", stroke-width="1.5px") to look like a technical blueprint.
-   - **Representative Room Icons**: Place a small, distinct vector-based icon group next to or above each room's label. Draw:
-     - Bedroom: A clean double-bed icon (headboard + pillows).
-     - Living Room: A couch/sofa icon.
-     - Dining Area: A dining plate and fork icon or table/chairs icon.
-     - Kitchen: A chef hat, stove burner, or pot icon.
-     - Bathroom: A toilet or shower icon.
-     - Prayer Room: A traditional brass lamp (diya) or sacred lotus icon.
-     - Central Courtyard: A green leaf or leafy branch icon.
-     - Car Porch: A car front-view icon.
-   - **Detailed Furniture Drawings**:
-     - **Bedrooms**: Draw a detailed double bed outline (frame rect, two pillow rects, and duvet line).
-     - **Living Room**: Draw a cozy sofa layout outline (modular or L-shaped sofas and a coffee table rect).
-     - **Dining Area**: Draw a large dining table rect, surrounded by dining chairs.
-     - **Car Porch**: Draw a detailed sedan/SUV silhouette outline showing windshield, mirrors, and wheels.
-     - **Kitchen**: Draw countertop paths, stove burner circle details, and a sink bowl.
-     - **Bathrooms**: Draw toilet seat outlines (tank rect, oval bowl, flush circle) and glass shower stall/bathtub.
-     - **Prayer Room**: Draw a small wooden shrine pedestal outline with a lamp/altar symbol in the center.
-     - **Central Courtyard (Nadumuttam)**: Draw a central traditional brick tulsi-thara pedestal (dark terracotta square or circle with a leaf structure), stepping stone outlines, and small leafy trees (overlapping circles).
-3. **Architectural Structure, Doors & Windows**:
-   - **Walls**: Outer walls must be thick solid white or light sky-blue lines (#f8fafc or #38bdf8, width 6px), inner walls thinner solid white or sky-blue lines (#e2e8f0 or #7dd3fc, width 4px).
-   - **Doors**: Glowing green swinging doors (Main Entrance: double green swing arc door with arrow, color #10b981; Interior: single green swing arc door, color #10b981).
-   - **Windows**: Glowing teal double-lined rectangles (#06b6d4) embedded in the outer walls.
-   - **Labels**: Add clear, visible white or light sky-blue text labels (fill="#ffffff" or fill="#38bdf8", font-weight="bold", font-family="sans-serif") indicating room names and dimensions.
+Ensure all doors and windows are rendered with highly distinctive SVG symbols and colors so that an AI can easily read and extract their alignments:
+1. **Main Entrance Door**: Render as a bold, double-swing green arc door symbol with a green entry arrow pointing inside, clearly labeled "Main Entrance". Use color #10b981.
+2. **Interior Doors**: Render as green single-line swinging arc door symbols (color #10b981) indicating the direction of opening.
+3. **Windows**: Render as bright glowing teal double-lined rectangles (color #06b6d4) embedded directly in the outer walls, clearly labeled "Window".
+4. **Walls**: Outer walls must be thick charcoal lines (#1e293b), inner walls must be thinner slate lines (#334155).
+5. **Labels**: Add clear, visible white/teal text labels indicating room names (e.g. "Living Room", "Bedroom 1", "Attached Bath 1") and dimensions on both floors.
 
 Set the SVG viewBox="0 0 700 500" and make it responsive.
-Add a title text inside the SVG (color #38bdf8): "AI House Design - ${styleName} (${floors} Floor(s))".
+Use a dark blueprint theme: dark blue background #0a0e1a.
+Add a title text inside the SVG: "AI House Design - ${styleName} (${floors} Floor(s))".
 
 Return your response as a JSON object with a single key "svg" containing the raw SVG string as its value. Do not wrap the SVG string in Markdown backticks.`;
 
