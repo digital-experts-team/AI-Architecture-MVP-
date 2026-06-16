@@ -341,24 +341,47 @@ app.post('/api/generate-floorplan', async (req, res) => {
 - Include vertical dashed separator lines at X=230 and X=470.`;
     }
 
-    const prompt = `You are a professional architect. 
-Generate a simplified, clean, modern 2D floor plan blueprint SVG for a ${floors}-story family home designed in the style of "${styleName}". 
+    const prompt = `You are a professional architect and master SVG designer.
+Generate a premium, highly detailed, colored, and textured 2.5D presentation floor plan blueprint SVG for a ${floors}-story family home designed in the style of "${styleName}". 
 
 ${layoutInstruction}
 
-The house plan must contain:
-${roomDetails.join('\n')}
-- STRICT CONSTRAINT: Every Bedroom MUST be directly adjacent to and connected with a Bathroom (en-suite attached layout). The Bathroom door must open directly inside the Bedroom, not into the general corridor.
+The design must look like a high-end rendered architectural presentation plan (similar to Kruti Buildspace's color-rendered floorplans):
+- It must have depth, realistic colors, textured floor fills, drawn furniture, and a central courtyard.
 
-Ensure all doors and windows are rendered with highly distinctive SVG symbols and colors so that an AI can easily read and extract their alignments:
-1. **Main Entrance Door**: Render as a bold, double-swing green arc door symbol with a green entry arrow pointing inside, clearly labeled "Main Entrance". Use color #059669.
-2. **Interior Doors**: Render as green single-line swinging arc door symbols (color #059669) indicating the direction of opening.
-3. **Windows**: Render as bright glowing teal double-lined rectangles (color #0891b2) embedded directly in the outer walls, clearly labeled "Window".
-4. **Walls**: Outer walls must be thick charcoal lines (#1e293b), inner walls must be thinner slate lines (#475569).
-5. **Labels**: Add clear, visible dark charcoal/slate text labels (color #0f172a) indicating room names (e.g. "Living Room", "Bedroom 1", "Attached Bath 1") and dimensions on both floors.
+STRICT DESIGN RULES:
+1. **Universal Central Courtyard (Nadumuttam)**:
+   - Every Ground Floor layout (and single-story layout) MUST contain a prominent, open-to-sky central courtyard garden (labeled "Central Courtyard" or "Nadumuttam") positioned in the exact middle of the home.
+   - The primary rooms (Living Room, Kitchen, Dining Area, Bedrooms, Prayer Room) must wrap around this central courtyard.
+   - A walkway/passage (labeled "Passage") must surround the courtyard to connect all the rooms.
+2. **2.5D Depth & Wall Drop Shadows**:
+   - Define a drop shadow filter in <defs>:
+     <filter id="wall-shadow" x="-10%" y="-10%" width="130%" height="130%">
+       <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.35"/>
+     </filter>
+   - Apply filter="url(#wall-shadow)" to all walls to give them a realistic, raised 2.5D visual appearance.
+3. **Colored Floor Fills**:
+   - **Bedrooms**: Rich warm wood flooring (use soft wood tan #e3c09b or wood brown #cb997e, or simple linear gradients showing floorboards).
+   - **Living & Dining Area**: Polished white/gray marble tiles (use light off-white #f8fafc to soft gray #e2e8f0).
+   - **Kitchen & Utility**: Clean light grey tiled look (use light grey #e2e8f0 or concrete texture color).
+   - **Bathrooms**: Aqua or blue-grey tiled texture (use #bfdbfe or #cbd5e1).
+   - **Central Courtyard**: Vibrant green lawn (use green #86efac or #4ade80) decorated with small dark green circles for shrubs/plants.
+   - **Verandas / Sitouts / Covered Passages**: Light stone paving (use concrete gray #cbd5e1 or sand beige #ebd6c3).
+   - **Car Porch**: Dark gray concrete pavement or pavers.
+4. **Detailed drawn furniture elements (rendered on top of floor fills)**:
+   - **Bedrooms**: Draw a double bed outline (a large white/cream rectangle representing sheets, complete with pillows and a colored blanket band).
+   - **Living Room**: Draw a cozy sofa layout (L-shaped or facing rectangles representing sofas in charcoal/navy blue, complete with small accent cushions) and a wooden coffee table.
+   - **Dining Area**: Draw a large wooden dining table rectangle with smaller squares/circles around it representing dining chairs.
+   - **Car Porch**: If present, draw 1 or 2 vehicle outlines (car silhouettes with windshields, hoods, and wheels) parked inside.
+   - **Kitchen**: Draw the L-shaped/straight countertop lines, complete with a stove symbol and sink symbol.
+   - **Bathrooms**: Draw a toilet seat symbol and a bathtub/shower tray rectangle.
+5. **Architectural Structure, Doors & Windows**:
+   - **Walls**: Outer walls must be thick charcoal lines (#1e293b, width 6px), inner walls thinner slate lines (#475569, width 4px). Apply the wall-shadow filter to all wall elements.
+   - **Doors**: Green swinging doors (Main Entrance: double green swing arc door with arrow, color #059669; Interior: single green swing arc door, color #059669).
+   - **Windows**: Bright glowing teal double-lined rectangles (#0891b2) embedded in the outer walls.
+   - **Labels**: Add clear, visible dark charcoal text labels (fill="#0f172a", font-weight="bold", font-family="sans-serif") indicating room names (e.g. "Living Room", "Nadumuttam / Courtyard", "Bedroom 1", "Dining Area") and dimensions.
 
 Set the SVG viewBox="0 0 700 500" and make it responsive.
-Use a clean, professional white architectural drawing theme: white background #ffffff.
 Add a title text inside the SVG (color #0f172a): "AI House Design - ${styleName} (${floors} Floor(s))".
 
 Return your answer as a JSON object with a single key "svg" containing the raw SVG string as its value. Do not wrap the SVG string in Markdown backticks.`;
