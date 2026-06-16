@@ -205,15 +205,22 @@ Based on this blueprint and these assets, select:
 3. Exactly 1 filename from "windows".
 4. Exactly 1 paint color key from Wall Paint Colors.
 
-    Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a single perspective exterior view showing the front side of the house:
-- The image must clearly depict the front facade and the right side facade of the house (Front-Right Perspective).
-- It must clearly show the selected front door, the car porch (if present in the blueprint), the selected windows, the selected roof tiles, the selected wall paint, and the front yard landscaping.
+    Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a straight-on front elevation view showing the front facade of the house:
+- The image must clearly depict a straight-on, flat 2D architectural front elevation facade view of the house (looking directly at the front facade, perpendicular to the front wall, with no angled side perspective views shown).
+- It must clearly show the selected front door, the selected windows, the selected roof tiles, the selected wall paint, and the front yard landscaping.
 
 The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND SELECTED ASSETS:
-1. Clearly specify a "single perspective architectural visualization of a ${floorsText} house showing the front side facade".
+1. Clearly specify a "straight-on, direct architectural front elevation view of a ${floorsText} house showing the front facade".
+2. The exterior facade layout MUST follow the generated blueprint's room layout exactly:
+   - The front entrance door must be positioned in the center, recessed inside the open Sitout veranda.
+   - The Sitout veranda must be supported by wooden columns sitting on stone pedestals.
+   - To the left of the center Sitout, the facade must show the front wall of the Living Room containing a window.
+   - To the right of the center Sitout, the facade must show the front wall of the Master Bedroom containing a window.
+   - The roof must be a continuous sloping tiled roof spanning over the Living Room, Sitout, and Master Bedroom.
+   - Do NOT add any extra rooms, garages, car porches, or structures that are not in the blueprint.
 ${heightInstruction}
 3. Incorporate the selected front door, roof tiles, windows, and paint color by describing their visual appearance (materials, textures, and style) in detail.
-4. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is on the ground floor bottom-left on the blueprint, it must show on the ground floor left side of the front facade).
+4. Align doors, windows, and structural elements exactly as they are arranged in the blueprint layout.
 5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
 6. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
 ${styleRefsPrompt}

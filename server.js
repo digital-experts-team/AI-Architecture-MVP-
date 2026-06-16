@@ -421,10 +421,24 @@ The design must look like a high-end rendered architectural presentation plan (s
 - It must have depth, realistic colors, textured floor fills, drawn furniture, and a central courtyard.
 
 STRICT DESIGN RULES:
-1. **Universal Central Courtyard (Nadumuttam)**:
-   - Every Ground Floor layout (and single-story layout) MUST contain a prominent, open-to-sky central courtyard garden (labeled "Central Courtyard" or "Nadumuttam") positioned in the exact middle of the home.
-   - The primary rooms (Living Room, Kitchen, Dining Area, Bedrooms, Prayer Room) must wrap around this central courtyard.
-   - A walkway/passage (labeled "Passage") must surround the courtyard to connect all the rooms.
+1. **Strict Blueprint Layout (The "Uploaded Model" Template)**:
+   - For a single-story layout (and as the structural model for the Ground Floor layout), you MUST position the rooms and walls precisely according to these exact coordinates inside the 700x500 SVG canvas:
+     - **SITOUT (Front Entry Veranda)**: Bottom-Center. Coordinates: X=250 to X=380, Y=430 to Y=495. Label: "SITOUT".
+     - **NADUMUTTAM (Central Courtyard)**: Center-Bottom, directly above the Sitout. Coordinates: X=250 to X=380, Y=300 to Y=420. Label: "NADUMUTTAM".
+     - **LIVING ROOM (LIVING)**: Bottom-Left. Coordinates: X=50 to X=240, Y=330 to Y=495. Label: "LIVING".
+     - **BEDROOM 1**: Middle-Left, above Living. Coordinates: X=50 to X=240, Y=200 to Y=320. Label: "BEDROOM 1".
+     - **TOILET (attached to Bedroom 1)**: Coordinates: X=50 to X=140, Y=140 to Y=190. Label: "TOILET".
+     - **BEDROOM 2**: Top-Left. Coordinates: X=50 to X=240, Y=20 to Y=130. Label: "BEDROOM 2".
+     - **DINING ROOM (DINING)**: Center-Top, above Nadumuttam. Coordinates: X=250 to X=380, Y=140 to Y=280. Label: "DINING".
+     - **TOILETS (two side-by-side above Dining)**: Toilet 1: X=250 to X=310, Y=20 to Y=130; Toilet 2: X=320 to X=380, Y=20 to Y=130. Labels: "TOILET".
+     - **BEDROOM 3**: Top-Right. Coordinates: X=390 to X=550, Y=20 to Y=130. Label: "BEDROOM 3".
+     - **WORK AREA (W/A)**: Top-Right-most, next to Bedroom 3. Coordinates: X=560 to X=680, Y=50 to Y=130. Label: "W/A".
+     - **KITCHEN**: Middle-Right. Coordinates: X=450 to X=680, Y=140 to Y=230. Label: "KITCHEN".
+     - **PUJA ROOM (PUJA)**: Center-Right, below Kitchen. Coordinates: X=490 to X=580, Y=240 to Y=290. Label: "PUJA".
+     - **MASTER BEDROOM (M. BEDROOM)**: Bottom-Right. Coordinates: X=390 to X=610, Y=310 to Y=440. Label: "M. BEDROOM".
+     - **TOILET (attached to Master Bedroom)**: Bottom-Right-most. Coordinates: X=490 to X=580, Y=450 to Y=495. Label: "TOILET".
+     - **PASSAGE / CORRIDOR**: The open corridor wrapping around the central NADUMUTTAM courtyard connecting all the surrounding rooms.
+   - For multi-story layouts, you must scale this exact ground floor layout to fit inside the Ground Floor panel (X=0 to X=330 for a 2-story layout, and X=0 to X=220 for a 3-story layout).
 2. **2.5D Depth & Wall Drop Shadows**:
    - Define a drop shadow filter in <defs>:
      <filter id="wall-shadow" x="-10%" y="-10%" width="130%" height="130%">
@@ -597,15 +611,22 @@ Based on this blueprint and these assets, select:
 3. Exactly 1 filename from "windows".
 4. Exactly 1 paint color key from Wall Paint Colors.
 
-Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a single perspective exterior view showing the front side of the house:
-- The image must clearly depict the front facade and the right side facade of the house (Front-Right Perspective).
-- It must clearly show the selected front door, the car porch (if present in the blueprint), the selected windows, the selected roof tiles, the selected wall paint, and the front yard landscaping.
+Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a straight-on front elevation view showing the front facade of the house:
+- The image must clearly depict a straight-on, flat 2D architectural front elevation facade view of the house (looking directly at the front facade, perpendicular to the front wall, with no angled side perspective views shown).
+- It must clearly show the selected front door, the selected windows, the selected roof tiles, the selected wall paint, and the front yard landscaping.
 
 The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND SELECTED ASSETS:
-1. Clearly specify a "single perspective architectural visualization of a ${floorsText} house showing the front side facade".
+1. Clearly specify a "straight-on, direct architectural front elevation view of a ${floorsText} house showing the front facade".
+2. The exterior facade layout MUST follow the generated blueprint's room layout exactly:
+   - The front entrance door must be positioned in the center, recessed inside the open Sitout veranda.
+   - The Sitout veranda must be supported by wooden columns sitting on stone pedestals.
+   - To the left of the center Sitout, the facade must show the front wall of the Living Room containing a window.
+   - To the right of the center Sitout, the facade must show the front wall of the Master Bedroom containing a window.
+   - The roof must be a continuous sloping tiled roof spanning over the Living Room, Sitout, and Master Bedroom.
+   - Do NOT add any extra rooms, garages, car porches, or structures that are not in the blueprint.
 ${heightInstruction}
 3. Incorporate the selected front door, roof tiles, windows, and paint color by describing their visual appearance (materials, textures, and style) in detail.
-4. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is on the ground floor bottom-left on the blueprint, it must show on the ground floor left side of the front facade).
+4. Align doors, windows, and structural elements exactly as they are arranged in the blueprint layout.
 5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
 6. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
 ${styleRefsPrompt}
