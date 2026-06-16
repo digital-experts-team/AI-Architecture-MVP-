@@ -212,12 +212,11 @@ Based on this blueprint and these assets, select:
 The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND SELECTED ASSETS:
 1. Clearly specify a "straight-on, direct architectural front elevation view of a ${floorsText} house showing the front facade".
 2. The exterior facade layout MUST follow the generated blueprint's room layout exactly:
-   - The front entrance door must be positioned in the center, recessed inside the open Sitout veranda.
-   - The Sitout veranda must be supported by wooden columns sitting on stone pedestals.
-   - To the left of the center Sitout, the facade must show the front wall of the Living Room containing a window.
-   - To the right of the center Sitout, the facade must show the front wall of the Master Bedroom containing a window.
-   - The roof must be a continuous sloping tiled roof spanning over the Living Room, Sitout, and Master Bedroom.
-   - Do NOT add any extra rooms, garages, car porches, or structures that are not in the blueprint.
+   - Identify the front entrance door's placement (e.g. center, left, right) from the blueprint and place it in the same relative position on the facade.
+   - Describe a main entrance porch or entryway suited to the selected architectural style "${styleName}" (for example: a modern recessed entryway for Modern Minimalist, a traditional open veranda (Sitout) with columns for Kerala Traditional, a rustic stone archway for Cozy Stone Cottage, etc.).
+   - Place windows and front-facing rooms (like Living Room, Bedrooms, Car Porch if present) on the facade exactly where they are positioned in the blueprint.
+   - Ensure the roof design matches the style (sloping tiled roof for Kerala Traditional/Cozy Stone Cottage, flat roof for Modern Minimalist/Industrial Concrete, A-frame/gabled roof for Scandinavian Timber, etc.).
+   - Do NOT add any extra rooms, garages, balconies, or structures that do not exist in the blueprint.
 ${heightInstruction}
 3. Incorporate the selected front door, roof tiles, windows, and paint color by describing their visual appearance (materials, textures, and style) in detail.
 4. Align doors, windows, and structural elements exactly as they are arranged in the blueprint layout.
