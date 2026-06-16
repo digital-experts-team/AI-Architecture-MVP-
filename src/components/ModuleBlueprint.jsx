@@ -21,6 +21,14 @@ export default function ModuleBlueprint({
   const [selectedPlanUrl, setSelectedPlanUrl] = useState('');
   const [isLoadingPlans, setIsLoadingPlans] = useState(false);
 
+  // Survey Recommendation States
+  const [surveyUrl, setSurveyUrl] = useState('');
+  const [isUploadingSurvey, setIsUploadingSurvey] = useState(false);
+  const [isMatchingSurvey, setIsMatchingSurvey] = useState(false);
+  const [recommendationReason, setRecommendationReason] = useState('');
+  const [matchError, setMatchError] = useState('');
+  const fileInputRef = useRef(null);
+
   const stylesList = [
     'Modern Minimalist',
     'Scandinavian Timber',
@@ -123,6 +131,84 @@ export default function ModuleBlueprint({
     });
   }, [bedroomsCount, floorsCount]);
 
+  const handleSurveyUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setIsUploadingSurvey(true);
+    setMatchError('');
+    setRecommendationReason('');
+    const formData = new FormData();
+    formData.append('survey', file);
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/upload-survey`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Failed to upload land survey.");
+      }
+
+      const data = await res.json();
+      if (data.success) {
+        setSurveyUrl(data.url);
+      }
+    } catch (err) {
+      console.error("Failed to upload land survey:", err);
+      setMatchError(err.message || "Failed to upload survey image.");
+    } finally {
+      setIsUploadingSurvey(false);
+    }
+  };
+
+  const handleRecommendPlan = async () => {
+    if (!surveyUrl) {
+      setMatchError("Please upload a land survey image first.");
+      return;
+    }
+
+    setIsMatchingSurvey(true);
+    setMatchError('');
+    setRecommendationReason('');
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/match-survey`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          surveyUrl,
+          floorsCount,
+          bedroomsCount
+        }),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Failed to recommend matching blueprint.");
+      }
+
+      const data = await res.json();
+      if (data.recommendedPlanUrl) {
+        setFloorPlanUrl(data.recommendedPlanUrl);
+        setSelectedPlanUrl(data.recommendedPlanUrl);
+        setRecommendationReason(data.reason);
+        setGeneratedSvg(null); // Clear generated SVG
+      } else {
+        throw new Error(data.error || "No recommended plan returned from API.");
+      }
+    } catch (err) {
+      console.error("Failed to match land survey:", err);
+      setMatchError(err.message || "Failed to analyze land survey for recommendation.");
+    } finally {
+      setIsMatchingSurvey(false);
+    }
+  };
+
   return (
     <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div>
@@ -130,73 +216,98 @@ export default function ModuleBlueprint({
           <span>Module 1: Blueprint Design & Setup</span>
         </h2>
         <p className="card-subtitle" style={{ margin: '0.5rem 0 0 0' }}>
-          Select floor and bedroom configurations to load pre-designed plans from the database.
+          Select floor and bedroom configurations to load blueprints manually or upload a land survey map for smart auto-recommendation.
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.25fr 0.75fr', gap: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '1.5rem' }}>
         {/* Left: View Panel */}
-        <div style={{ position: 'relative', minHeight: '460px', border: '1px solid var(--card-border)', borderRadius: '12px', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-          {isLoadingPlans && (
-            <div className="loading-overlay">
-              <div className="spinner"></div>
-              <div className="loading-text" style={{ textAlign: 'center' }}>
-                Loading available blueprints from database...
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ position: 'relative', minHeight: '460px', border: '1px solid var(--card-border)', borderRadius: '12px', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+            {isLoadingPlans && (
+              <div className="loading-overlay">
+                <div className="spinner"></div>
+                <div className="loading-text" style={{ textAlign: 'center' }}>
+                  Loading available blueprints from database...
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {!floorPlanUrl && !isLoadingPlans && (
-            <div className="floorplan-dropzone" style={{ width: '80%', border: 'none', background: 'transparent', cursor: 'default' }}>
-              <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="9" y1="3" x2="9" y2="21"></line>
-                <line x1="3" y1="9" x2="21" y2="9"></line>
-              </svg>
-              <div style={{ fontWeight: 600, fontSize: '1rem', marginTop: '0.5rem' }}>No Blueprint Selected</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Select floor and bedroom parameters, then choose a database blueprint plan.</div>
-            </div>
-          )}
+            {!floorPlanUrl && !isLoadingPlans && (
+              <div className="floorplan-dropzone" style={{ width: '80%', border: 'none', background: 'transparent', cursor: 'default' }}>
+                <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="9" y1="3" x2="9" y2="21"></line>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                </svg>
+                <div style={{ fontWeight: 600, fontSize: '1rem', marginTop: '0.5rem' }}>No Blueprint Selected</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Select parameters or upload a survey map to recommend/select a blueprint plan.</div>
+              </div>
+            )}
 
-          {floorPlanUrl && !isLoadingPlans && (
-            <div 
-              className="svg-container" 
-              style={{ width: '95%', height: '95%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            >
-              <img 
-                src={`${apiBaseUrl}${floorPlanUrl}`} 
-                alt="Selected Blueprint Plan" 
-                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} 
-              />
-            </div>
-          )}
+            {floorPlanUrl && !isLoadingPlans && (
+              <div 
+                className="svg-container" 
+                style={{ width: '95%', height: '95%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                <img 
+                  src={`${apiBaseUrl}${floorPlanUrl}`} 
+                  alt="Selected Blueprint Plan" 
+                  style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} 
+                />
+              </div>
+            )}
 
-          {floorPlanUrl && !isLoadingPlans && (
-            <button 
-              className="btn btn-secondary" 
-              onClick={() => { setFloorPlanUrl(null); setSelectedPlanUrl(''); }}
-              style={{ 
-                position: 'absolute', 
-                bottom: '0.75rem', 
-                right: '0.75rem', 
-                fontSize: '0.75rem', 
-                padding: '0.25rem 0.5rem',
-                background: 'rgba(15, 23, 42, 0.85)',
-                backdropFilter: 'blur(4px)'
-              }}
-            >
-              Clear Selection
-            </button>
+            {floorPlanUrl && !isLoadingPlans && (
+              <button 
+                className="btn btn-secondary" 
+                onClick={() => { setFloorPlanUrl(null); setSelectedPlanUrl(''); }}
+                style={{ 
+                  position: 'absolute', 
+                  bottom: '0.75rem', 
+                  right: '0.75rem', 
+                  fontSize: '0.75rem', 
+                  padding: '0.25rem 0.5rem',
+                  background: 'rgba(15, 23, 42, 0.85)',
+                  backdropFilter: 'blur(4px)',
+                  color: '#ffffff',
+                  border: 'none'
+                }}
+              >
+                Clear Selection
+              </button>
+            )}
+          </div>
+
+          {/* Architectural justification output */}
+          {recommendationReason && (
+            <div style={{ 
+              background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.03) 100%)', 
+              borderLeft: '4px solid var(--secondary)',
+              borderRadius: '8px', 
+              padding: '1rem 1.25rem',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.02)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
+                <span style={{ fontSize: '1.1rem' }}>📋</span>
+                <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--secondary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  Architectural Recommendation Details
+                </span>
+              </div>
+              <p style={{ margin: 0, fontSize: '0.85rem', lineHeight: '1.5', color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+                "{recommendationReason}"
+              </p>
+            </div>
           )}
         </div>
 
-        {/* Right: Controls & Detected Rooms */}
+        {/* Right: Controls Panel */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           
           {/* Blueprint Parameter Inputs */}
           <div style={{ background: '#ffffff', border: '1px solid var(--card-border)', padding: '1.25rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700, margin: 0, borderBottom: '1px solid var(--card-border)', paddingBottom: '0.5rem' }}>
-              Blueprint Selector
+            <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-primary)', fontWeight: 700, margin: 0, borderBottom: '1px solid var(--card-border)', paddingBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span>📐</span> Manual Blueprint Selector
             </h3>
 
             <div className="form-group" style={{ marginBottom: 0 }}>
@@ -319,7 +430,144 @@ export default function ModuleBlueprint({
             )}
           </div>
 
-          {/* Design Room Selector Section removed (now selected from Room Interior Design tab) */}
+          {/* Section: Land Survey Auto-Recommendation */}
+          <div style={{ background: '#ffffff', border: '1px solid var(--card-border)', padding: '1.25rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-primary)', fontWeight: 700, margin: 0, borderBottom: '1px solid var(--card-border)', paddingBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span>🗺️</span> Land Survey AI Matcher
+            </h3>
+            
+            <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.35' }}>
+              Upload your land survey or plot map, and Gemini will analyze its geometry to recommend the best blueprint.
+            </p>
+
+            {/* Hidden File Input */}
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              onChange={handleSurveyUpload} 
+              accept="image/*" 
+              style={{ display: 'none' }} 
+            />
+
+            {/* Upload Box / Dropzone */}
+            {!surveyUrl ? (
+              <div 
+                className="floorplan-dropzone" 
+                onClick={() => fileInputRef.current?.click()}
+                style={{ padding: '1.5rem 1rem', background: '#fcfcfc', borderStyle: 'dashed' }}
+              >
+                {isUploadingSurvey ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                    <div className="spinner" style={{ width: '1.5rem', height: '1.5rem', border: '2px solid var(--secondary)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Uploading plot map...</span>
+                  </div>
+                ) : (
+                  <>
+                    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg" style={{ color: 'var(--secondary)' }}>
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <div style={{ fontWeight: 600, fontSize: '0.75rem' }}>Upload Survey Map</div>
+                    <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>PNG, JPG or WebP images</div>
+                  </>
+                )}
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div style={{ 
+                  position: 'relative', 
+                  height: '110px', 
+                  border: '1px solid var(--card-border)', 
+                  borderRadius: '8px', 
+                  background: '#f8fafc', 
+                  overflow: 'hidden',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <img 
+                    src={`${apiBaseUrl}${surveyUrl}`} 
+                    alt="Uploaded Land Survey" 
+                    style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                  />
+                  <button 
+                    onClick={() => setSurveyUrl('')}
+                    style={{
+                      position: 'absolute',
+                      top: '0.25rem',
+                      right: '0.25rem',
+                      background: 'rgba(239, 68, 68, 0.9)',
+                      border: 'none',
+                      color: 'white',
+                      borderRadius: '50%',
+                      width: '20px',
+                      height: '20px',
+                      fontSize: '0.7rem',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                    title="Remove Survey Image"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <button 
+                  className="btn btn-secondary" 
+                  onClick={() => fileInputRef.current?.click()}
+                  style={{ fontSize: '0.7rem', padding: '0.3rem 0.6rem', alignSelf: 'flex-start' }}
+                  disabled={isUploadingSurvey}
+                >
+                  {isUploadingSurvey ? 'Uploading...' : 'Replace Image'}
+                </button>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {matchError && (
+              <div style={{ 
+                fontSize: '0.75rem', 
+                color: '#b91c1c', 
+                background: '#fef2f2', 
+                border: '1px solid #fca5a5', 
+                padding: '0.5rem 0.75rem', 
+                borderRadius: '6px' 
+              }}>
+                {matchError}
+              </div>
+            )}
+
+            {/* recommendation trigger button */}
+            <button 
+              className="btn btn-primary"
+              onClick={handleRecommendPlan}
+              disabled={!surveyUrl || isMatchingSurvey || isUploadingSurvey}
+              style={{
+                width: '100%',
+                padding: '0.6rem 1rem',
+                fontSize: '0.8rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                background: 'var(--secondary)'
+              }}
+            >
+              {isMatchingSurvey ? (
+                <>
+                  <div className="spinner" style={{ width: '1rem', height: '1rem', border: '2px solid #ffffff', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                  Analyzing site proportions...
+                </>
+              ) : (
+                <>
+                  <span>🪄</span> Auto-Recommend Blueprint
+                </>
+              )}
+            </button>
+          </div>
+
         </div>
       </div>
     </div>

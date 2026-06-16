@@ -387,6 +387,115 @@ app.post('/api/upload-floorplan', upload.single('floorplan'), (req, res) => {
   }
 });
 
+// 4.5 Upload user land survey
+app.post('/api/upload-survey', upload.single('survey'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No survey image provided." });
+    }
+    res.json({
+      success: true,
+      url: `/uploads/${req.file.filename}`
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 4.7 Match land survey proportions to blueprints
+app.post('/api/match-survey', async (req, res) => {
+  try {
+    const ai = getGeminiClient();
+    const { surveyUrl, floorsCount, bedroomsCount } = req.body || {};
+    if (!surveyUrl) {
+      return res.status(400).json({ error: "surveyUrl is required." });
+    }
+
+    const floors = parseInt(floorsCount) || 1;
+    const bedrooms = parseInt(bedroomsCount) || 3;
+
+    // Resolve survey path
+    const cleanPath = surveyUrl.replace(/^\//, '');
+    const surveyPath = path.join(__dirname, cleanPath);
+
+    if (!fs.existsSync(surveyPath)) {
+      return res.status(400).json({ error: "Survey image not found on server." });
+    }
+
+    // Scan blueprints folder
+    const folderName = `${floors}_floor`;
+    const subFolderName = `${bedrooms}_bedroom`;
+    const targetDir = path.join(databaseDir, 'blueprints', folderName, subFolderName);
+
+    if (!fs.existsSync(targetDir)) {
+      return res.status(400).json({ error: `No blueprints folder exists for ${floors} Floor(s) and ${bedrooms} Bedroom(s).` });
+    }
+
+    const files = fs.readdirSync(targetDir).filter(f => f.match(/\.(png|jpg|jpeg|webp)$/i));
+    if (files.length === 0) {
+      return res.status(400).json({ error: `No blueprints images found in database/blueprints/${folderName}/${subFolderName}/` });
+    }
+
+    const contents = [];
+
+    // Add Survey Image
+    const surveyMime = getMimeType(surveyPath);
+    contents.push(fileToGenerativePart(surveyPath, surveyMime));
+    contents.push("LAND SURVEY / SITE PLAN MAP (The plot where the house will be built).");
+
+    // Add Blueprints Images
+    const candidatePlans = [];
+    files.forEach((file, index) => {
+      const filePath = path.join(targetDir, file);
+      const mime = getMimeType(filePath);
+      const urlPath = `/database/blueprints/${folderName}/${subFolderName}/${file}`;
+      
+      contents.push(fileToGenerativePart(filePath, mime));
+      contents.push(`Blueprint Plan #${index + 1} (Filename: "${file}", URL: "${urlPath}")`);
+      
+      candidatePlans.push({
+        index: index + 1,
+        filename: file,
+        url: urlPath
+      });
+    });
+
+    const promptText = `You are a professional architect and site planning coordinator.
+Analyze the attached land survey/site boundary map. Notice its boundary proportions, shape (e.g. narrow rectangle, wide rectangle, square, irregular), road direction, and estimated length/width.
+
+Review the candidate blueprint images attached above, labeled in the format 'Blueprint Plan #[index]'.
+Based on the land survey's geometry and proportions, select the candidate blueprint plan that fits most logically on the site (e.g. narrow site -> narrow plan; road position -> entrance position alignment).
+
+Here is the list of candidate blueprints you can choose from:
+${JSON.stringify(candidatePlans, null, 2)}
+
+Return your response as a JSON object with this exact structure:
+{
+  "recommendedPlanUrl": "the url of the selected blueprint plan (MUST match one of the candidate blueprint urls exactly, e.g. /database/blueprints/1_floor/3_bedroom/plan.png)",
+  "reason": "A detailed, professional architectural explanation of why this layout is the most suitable match for this plot's geometry (e.g. 'This layout has a narrow 25ft width footprint which sits perfectly on your narrow 30ft vertical plot, leaving adequate side setbacks and matching the North-facing road access')."
+}`;
+
+    contents.push(promptText);
+
+    console.log("Analyzing land survey and blueprint candidates...");
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents,
+      config: {
+        responseMimeType: 'application/json',
+        temperature: 0.2
+      }
+    });
+
+    const matchResult = JSON.parse(response.text);
+    res.json(matchResult);
+
+  } catch (error) {
+    console.error("Plot matching failed:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // 5. Generate AI 2D floor plan layout (if not provided)
 app.post('/api/generate-floorplan', async (req, res) => {
   try {
