@@ -410,7 +410,8 @@ Return your answer as a JSON object with a single key "svg" containing the raw S
       model: 'gemini-2.5-flash',
       contents: prompt,
       config: {
-        responseMimeType: 'application/json'
+        responseMimeType: 'application/json',
+        temperature: 1.0
       }
     });
 
@@ -561,7 +562,7 @@ Return your response as a JSON object with this structure:
       contents,
       config: {
         responseMimeType: 'application/json',
-        temperature: 0.7
+        temperature: 1.0
       }
     });
 
@@ -607,7 +608,8 @@ Return your response as a JSON object with this structure:
 
 // 6. Generate Room Design and Photorealistic renders
 app.post('/api/generate-design', async (req, res) => {
-  const { roomType, floorPlanUrl } = req.body;
+  const { roomType, floorPlanUrl, constructionStyle } = req.body;
+  const styleName = constructionStyle || 'Modern Minimalist';
 
   if (!roomType) {
     return res.status(400).json({ error: "roomType is required." });
@@ -659,6 +661,8 @@ app.post('/api/generate-design', async (req, res) => {
     // Add detailed planning instructions
     const randomSalt = Math.floor(Math.random() * 1000000);
     const promptText = `You are a world-class AI Interior Designer. You are designing a single ${roomType}.
+The overall home architectural style is "${styleName}". The interior design concept, colors, flooring, and furniture layout MUST suit and coordinate with this "${styleName}" style!
+
 I have provided the floor plan/room layout (if available) and our database of room design assets.
 The database assets are organized into folders. For each folder, the reference images have been attached above with labels in the format 'Asset item from category "[foldername]" (Filename: "[filename]")'.
 
@@ -671,7 +675,17 @@ ${JSON.stringify(defaultPaints, null, 2)}
 Create a single distinct, beautiful interior design style for the ${roomType}. 
 Ensure the materials, layouts, styles, and colors coordinate visually.
 
+CRITICAL STYLE ALIGNMENT CONSTRAINT:
+The selected flooring, wall paint color, and furniture items MUST suit and reflect the home's overall architectural style of "${styleName}":
+- If style is "Modern Minimalist", design a clean, sleek, uncluttered modern interior with neutral tones and low-profile furniture.
+- If style is "Scandinavian Timber", use light warm woods, cozy simple fabrics, and natural simple styling.
+- If style is "Kerala Traditional", design a traditional Indian interior featuring warm teak wood, brass accents, traditional sitout-style wood details, and rich colors suited to a home with a Nadumuttam/courtyard.
+- If style is "Mid-Century Modern", use retro-modern styles, bold wood accents, and organic geometric furniture shapes.
+- If style is "Industrial Concrete", design a loft-like interior with raw concrete/brick elements, dark steel, and leather/wood details.
+- If style is "Cozy Stone Cottage", design a rustic, warm cottage style with stone details, exposed wood beams, and soft warm fabrics.
+
 [Randomization Seed: ${randomSalt}]
+Each time you are called, you must create a completely fresh and unique design concept. Randomize layout alignments, colors, textures, and asset selections. Do not produce the same design or prompt twice. Be creative and introduce variety.
 
 For your design, you MUST select items from the database folders:
 1. Identify a folder containing tiles or flooring options (usually 'tiles'). Select exactly 1 filename from it for the floor.
@@ -958,7 +972,7 @@ Return your response as a JSON object with this structure:
       contents: contents,
       config: {
         responseMimeType: 'application/json',
-        temperature: 0.7
+        temperature: 1.0
       }
     });
 

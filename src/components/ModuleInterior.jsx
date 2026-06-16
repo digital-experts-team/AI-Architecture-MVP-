@@ -7,7 +7,8 @@ export default function ModuleInterior({
   floorPlanUrl,
   assets,
   apiBaseUrl,
-  isApiConfigured 
+  isApiConfigured,
+  constructionStyle
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState("");
@@ -180,7 +181,8 @@ export default function ModuleInterior({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           roomType: activeRoom, 
-          floorPlanUrl 
+          floorPlanUrl,
+          constructionStyle
         }),
       });
 

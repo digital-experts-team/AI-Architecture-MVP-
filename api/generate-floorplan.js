@@ -122,7 +122,8 @@ Return your response as a JSON object with a single key "svg" containing the raw
       model: 'gemini-2.5-flash',
       contents: prompt,
       config: {
-        responseMimeType: 'application/json'
+        responseMimeType: 'application/json',
+        temperature: 1.0
       }
     });
 

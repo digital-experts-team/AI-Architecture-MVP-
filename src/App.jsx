@@ -148,6 +148,7 @@ export default function App() {
                 assets={assets}
                 apiBaseUrl={API_BASE_URL}
                 isApiConfigured={isApiConfigured}
+                constructionStyle={constructionStyle}
               />
             </div>
           </div>

@@ -183,7 +183,7 @@ Return your response as a JSON object with this structure:
       contents,
       config: {
         responseMimeType: 'application/json',
-        temperature: 0.7
+        temperature: 1.0
       }
     });
 
