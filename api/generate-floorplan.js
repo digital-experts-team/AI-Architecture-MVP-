@@ -85,7 +85,7 @@ ${roomDetails.join('\n')}
 
 STRICT DESIGN RULES:
 1. **Dark Blue Blueprint Theme & Color Scheme**:
-   - The entire SVG canvas background MUST be a dark blueprint blue (#0a0e1a). You must render a root `<rect width="700" height="500" fill="#0a0e1a" />`.
+   - The entire SVG canvas background MUST be a dark blueprint blue (#0a0e1a). You must render a root \`<rect width="700" height="500" fill="#0a0e1a" />\`.
    - Do NOT use colored room floor fills (no wood textures, no grey tile textures, no blue bathroom fills, no marble fills). All rooms must have transparent or dark blue fills matching the background (#0a0e1a).
    - Only the **Central Courtyard (Nadumuttam)** can have a soft, deep green garden lawn background fill (#14532d or #15803d) with leafy plant outlines.
    - All rooms, passage lines, walls, doors, windows, labels, and drawings must be styled to stand out beautifully on the dark blue background.
