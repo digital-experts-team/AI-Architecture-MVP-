@@ -53,13 +53,33 @@ defaultFolders.forEach(folder => {
   }
 });
 
-// Helper to get database folders dynamically
+// Ensure house_styles and its subfolders exist
+const houseStylesDir = path.join(databaseDir, 'house_styles');
+const constructionStyles = [
+  'Modern Minimalist',
+  'Scandinavian Timber',
+  'Mid-Century Modern',
+  'Industrial Concrete',
+  'Cozy Stone Cottage',
+  'Kerala Traditional'
+];
+if (!fs.existsSync(houseStylesDir)) {
+  fs.mkdirSync(houseStylesDir, { recursive: true });
+}
+constructionStyles.forEach(style => {
+  const styleDir = path.join(houseStylesDir, style);
+  if (!fs.existsSync(styleDir)) {
+    fs.mkdirSync(styleDir, { recursive: true });
+  }
+});
+
+// Helper to get database folders dynamically (excluding house_styles)
 const getDatabaseFolders = () => {
   if (!fs.existsSync(databaseDir)) {
     fs.mkdirSync(databaseDir, { recursive: true });
   }
   return fs.readdirSync(databaseDir, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
+    .filter(dirent => dirent.isDirectory() && dirent.name !== 'house_styles')
     .map(dirent => dirent.name);
 };
 
@@ -452,12 +472,33 @@ ${blueprintSvg}`);
       }
     });
 
+    // 4. Load house style reference images if uploaded
+    const styleName = style; // e.g. "Kerala Traditional"
+    const styleDir = path.join(databaseDir, 'house_styles', styleName);
+    const styleRefs = [];
+    if (fs.existsSync(styleDir)) {
+      const files = fs.readdirSync(styleDir).filter(f => f.match(/\.(png|jpg|jpeg|webp)$/i));
+      files.forEach((file, index) => {
+        const filePath = path.join(styleDir, file);
+        contents.push(fileToGenerativePart(filePath, getMimeType(filePath)));
+        contents.push(`Reference image for selected architectural style "${styleName}" (Image #${index + 1})`);
+        styleRefs.push(`- Reference image for style "${styleName}" (Image #${index + 1}) attached above.`);
+      });
+    }
+
+    let styleRefsPrompt = "";
+    if (styleRefs.length > 0) {
+      styleRefsPrompt = `\nI have also provided the following reference images for the architectural style "${styleName}":
+${styleRefs.join('\n')}
+CRITICAL CONSTRAINT: You MUST analyze these reference images and ensure the generated exterior house visual style, roofing style, columns, verandas, color palettes, textures, and facade layout look highly similar and authentic to these reference images. The house should look like it belongs in the same style family as the references.`;
+    }
+
     const paintInfoText = JSON.stringify(defaultPaints, null, 2);
     const assetsInfoText = JSON.stringify(folderAssetsInfo, null, 2);
 
     const heightInstruction = floors === 1
       ? '2. The house MUST be exactly a single-story structure (1 floor tall, ground level only). Describe it as a low-profile, single-level bungalow or ranch-style structure. Do NOT mention multiple floors, upper levels, balconies on upper levels, or second-story windows. It must clearly look like a single-story home.'
-      : `2. The house MUST be exactly ${floors} floors tall (${floorsText} structure). Clearly describe the distinct levels (e.g. ground floor, upper floor(s)), the horizontal floor separation bands, and the overall height profile. Ensure windows and door alignments are described floor-by-floor matching the blueprint layout.`;
+      : `2. The house MUST be exactly ${floors} floors tall (${floorsText} structure). Clearly describe the distinct levels (e.g. ground floor, upper floor(s)), the horizontal floor separation bands, and the overall height profile. Ensure windows and door alignments are described floor-by-side matching the blueprint layout.`;
 
     const promptText = `You are a professional architect and architectural photographer.
 Analyze the provided house blueprint (SVG code or image) with extreme care. Notice:
@@ -490,6 +531,7 @@ ${heightInstruction}
 4. Align doors, windows, and the car porch exactly as they are arranged in the blueprint layout (e.g., if the car porch is on the ground floor bottom-left on the blueprint, it must show on the ground floor left side of the front facade).
 5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
 6. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
+${styleRefsPrompt}
 
 Return your response as a JSON object with this structure:
 {

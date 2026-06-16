@@ -20,7 +20,7 @@ export default function handler(req, res) {
 
     // Get all subdirectories in database/
     const folders = fs.readdirSync(databaseDir, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
+      .filter(dirent => dirent.isDirectory() && dirent.name !== 'house_styles')
       .map(dirent => dirent.name);
 
     const result = {};
