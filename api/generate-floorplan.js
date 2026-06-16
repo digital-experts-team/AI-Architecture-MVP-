@@ -73,8 +73,8 @@ export default async function handler(req, res) {
 - Include vertical dashed separator lines at X=230 and X=470.`;
     }
 
-    const prompt = `You are a professional architect. 
-Generate a simplified, clean, modern 2D floor plan blueprint SVG for a ${floors}-story family home designed in the style of "${styleName}". 
+    const prompt = `You are a professional architect and master draftsman.
+Generate a mathematically precise, highly logical, and clean 2D floor plan blueprint SVG for a ${floors}-story family home designed in the style of "${styleName}".
 
 ${layoutInstruction}
 
@@ -82,16 +82,30 @@ The house plan must contain:
 ${roomDetails.join('\n')}
 - STRICT CONSTRAINT: Every Bedroom MUST be directly adjacent to and connected with a Bathroom (en-suite attached layout). The Bathroom door must open directly inside the Bedroom, not into the general corridor.
 
-Ensure all doors and windows are rendered with highly distinctive SVG symbols and colors so that an AI can easily read and extract their alignments:
-1. **Main Entrance Door**: Render as a bold, double-swing green arc door symbol with a green entry arrow pointing inside, clearly labeled "Main Entrance". Use color #10b981.
-2. **Interior Doors**: Render as green single-line swinging arc door symbols (color #10b981) indicating the direction of opening.
-3. **Windows**: Render as bright glowing teal double-lined rectangles (color #06b6d4) embedded directly in the outer walls, clearly labeled "Window".
-4. **Walls**: Outer walls must be thick charcoal lines (#1e293b), inner walls must be thinner slate lines (#334155).
-5. **Labels**: Add clear, visible white/teal text labels indicating room names (e.g. "Living Room", "Bedroom 1", "Attached Bath 1") and dimensions on both floors.
+STRICT LAYOUT & DRAFTING RULES:
+1. **Grid-Aligned Rectilinear Walls**:
+   - Bounding coordinates for floors must be clean multiples of 10 or 50. All walls must be strictly vertical or horizontal (no arbitrary angles).
+   - Outer walls must be thick charcoal lines (#1e293b, stroke-width="6px"), and inner walls must be thinner slate lines (#334155, stroke-width="4px").
+   - Walls must meet perfectly at corners without gaps, overhangs, or layout errors.
+2. **Logical Door Placement & Swing Direction**:
+   - Every door must be placed on a wall line (not floating in space) and serve as a logical passage between rooms or to the exterior.
+   - For each door, draw:
+     a) A green door leaf line (color #10b981, stroke-width="2.5px") representing the open door itself, angled at 90 degrees relative to the wall.
+     b) A thin, dotted green swing arc (color #10b981, stroke-dasharray="2,2", stroke-width="1.5px", fill="none") representing the 90-degree door swing path.
+   - **Critical Door Logic**: The door swing arc must open inward into the room and rest against an adjacent wall. A door swing path must NEVER pass through, cut, or overlap any wall, window, furniture, or another door. It must have clear physical space.
+   - **Main Entrance Door**: Positioned at the front exterior wall (usually bottom-center of the ground floor layout). Render as a double-swing green arc door symbol with a green entry arrow pointing inside.
+3. **No Overlapping Labels (Centered Text)**:
+   - Every room MUST contain a clear, legible text label showing the room name (e.g. "Bedroom 1") and dimensions (e.g. "4.0m x 3.5m").
+   - **Centering Constraint**: Compute the exact center coordinate (x, y) of each room's bounding box and place the text label precisely at that center. Use \`text-anchor="middle"\` and \`dominant-baseline="middle"\`.
+   - **Overlap Prevention**: Room text labels must NEVER overlap with any wall lines, door swing paths, windows, or other text.
+   - Use a clear, small font (\`font-size="12px"\` for room names, \`font-size="10px"\` for dimensions, fill="#ffffff" or fill="#38bdf8"). For smaller rooms like Bathrooms, reduce font sizes to \`10px\` and \`8px\` respectively so the text fits completely inside the room boundaries.
+4. **Window Alignment**:
+   - Windows must be bright glowing teal double-lined rectangles (color #06b6d4) embedded directly within the outer walls.
+   - Add a small, high-contrast, non-overlapping teal label "Window" or dimension next to it if appropriate, but keep it clear of the wall.
 
 Set the SVG viewBox="0 0 700 500" and make it responsive.
 Use a dark blueprint theme: dark blue background #0a0e1a.
-Add a title text inside the SVG: "AI House Design - ${styleName} (${floors} Floor(s))".
+Add a title text inside the SVG (color #38bdf8, font-size="18px", font-weight="bold", X=350, Y=30, text-anchor="middle"): "AI House Design - ${styleName} (${floors} Floor(s))".
 
 Return your response as a JSON object with a single key "svg" containing the raw SVG string as its value. Do not wrap the SVG string in Markdown backticks.`;
 
