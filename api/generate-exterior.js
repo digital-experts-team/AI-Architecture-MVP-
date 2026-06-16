@@ -205,21 +205,15 @@ Based on this blueprint and these assets, select:
 3. Exactly 1 filename from "windows".
 4. Exactly 1 paint color key from Wall Paint Colors.
 
-    Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a straight-on front elevation view showing the front facade of the house:
-- The image must clearly depict a straight-on, flat 2D architectural front elevation facade view of the house (looking directly at the front facade, perpendicular to the front wall, with no angled side perspective views shown).
-- It must clearly show the selected front door, the selected windows, the selected roof tiles, the selected wall paint, and the front yard landscaping.
+    Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a straight-on architectural front elevation view (straight view) showing the front side facade of the house:
+- The image must be a straight-on elevation view (front elevation / straight front view) looking directly and squarely at the front facade, with no perspective angle, no side walls visible, and no perspective distortion.
+- It must clearly show the front entrance/sitout, the selected front door, the car porch (if present in the blueprint), the selected windows, the selected roof tiles, the selected wall paint, and the front yard landscaping.
 
 The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND SELECTED ASSETS:
-1. Clearly specify a "straight-on, direct architectural front elevation view of a ${floorsText} house showing the front facade".
-2. The exterior facade layout MUST follow the generated blueprint's room layout exactly:
-   - Identify the front entrance door's placement (e.g. center, left, right) from the blueprint and place it in the same relative position on the facade.
-   - Describe a main entrance porch or entryway suited to the selected architectural style "${styleName}" (for example: a modern recessed entryway for Modern Minimalist, a traditional open veranda (Sitout) with columns for Kerala Traditional, a rustic stone archway for Cozy Stone Cottage, etc.).
-   - Place windows and front-facing rooms (like Living Room, Bedrooms, Car Porch if present) on the facade exactly where they are positioned in the blueprint.
-   - Ensure the roof design matches the style (sloping tiled roof for Kerala Traditional/Cozy Stone Cottage, flat roof for Modern Minimalist/Industrial Concrete, A-frame/gabled roof for Scandinavian Timber, etc.).
-   - Do NOT add any extra rooms, garages, balconies, or structures that do not exist in the blueprint.
+1. Clearly specify a "straight-on architectural front elevation view (straight view / front elevation) of a ${floorsText} house showing the front facade directly and squarely".
 ${heightInstruction}
 3. Incorporate the selected front door, roof tiles, windows, and paint color by describing their visual appearance (materials, textures, and style) in detail.
-4. Align doors, windows, and structural elements exactly as they are arranged in the blueprint layout.
+4. Enforce 100% strict alignment to the generated blueprint layout: The generated house exterior facade MUST match the room arrangement, doors, windows, and sitout layout of the blueprint completely without any changes or additions. Specifically, if a Sitout is in the center, the front facade must feature a centered open sitout with teak columns; if a Living Room is on the left, the left side of the facade must show the Living Room windows; if a Master Bedroom is on the right, the right side must correspond to the Master Bedroom windows. There must be NO car porch unless one is explicitly shown in the blueprint. Match the door and window placements and counts exactly as they are arranged in the blueprint.
 5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
 6. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
 ${styleRefsPrompt}
@@ -241,7 +235,7 @@ Return your response as a JSON object with this structure:
     "facadeWindows": "Detailed summary of window counts and locations as seen on the blueprint",
     "blueprintMatchDetails": "Detailed list of exactly how the exterior architectural prompt respects the blueprint room coordinates"
   },
-  "imagenPrompt": "The highly detailed Imagen 4 prompt for the single perspective exterior view"
+  "imagenPrompt": "The highly detailed Imagen 4 prompt for the straight-on architectural front elevation view"
 }`;
 
     contents.push(promptText);

@@ -412,40 +412,42 @@ app.post('/api/generate-floorplan', async (req, res) => {
 - Include vertical dashed separator lines at X=230 and X=470.`;
     }
 
-    const prompt = `You are a professional architect and master draftsman.
-Generate a mathematically precise, highly logical, and clean 2D floor plan blueprint SVG for a ${floors}-story family home designed in the style of "${styleName}".
+    const prompt = `You are a professional architect and master SVG designer.
+Generate a premium, clean, flat 2D presentation floor plan blueprint SVG for a ${floors}-story family home designed in the style of "${styleName}". 
 
-${layoutInstruction}
+The layout must match the visual design and room configuration of the uploaded model image:
+- It must be a flat 2D vector blueprint layout (no 2.5D shadow filters, no drop shadows, no wood/marble/grass textures).
+- The background color of the SVG should be a soft, very light grey (#f8fafc) or white.
+- All rooms must have a clean solid white background (#ffffff), except Toilets/Bathrooms which must have a solid light blue fill (#e2f0fd or #e0f2fe).
+- Walls must be drawn as solid dark slate/charcoal lines (#475569) with outer walls at width 4px and inner walls at width 2.5px.
+- Doors must be rendered as green single-swinging arc symbols (#10b981) indicating opening direction, except the main entrance which must be a bold swing door.
+- Windows must be bright glowing teal double-lined rectangles (#06b6d4) embedded in the outer walls.
+- Room Labels: Every room must have a centered, clear, uppercase bold room name label (e.g. "LIVING") and a smaller room dimensions label (e.g. "14'0\" x 16'0\"") centered directly below it using font-family="sans-serif" and fill="#1e293b".
 
-The house plan must contain:
-${roomDetails.join('\n')}
-- STRICT CONSTRAINT: Every Bedroom MUST be directly adjacent to and connected with a Bathroom (en-suite attached layout). The Bathroom door must open directly inside the Bedroom, not into the general corridor.
+STRICT SINGLE-STORY ROOM CONFIGURATION RULES:
+For a 1-story house layout, you MUST arrange the rooms in the exact 3-column configuration matching the uploaded model screenshot:
+- Left Column (X coordinates from 50 to 230):
+  - Bedroom 2: Top-left room (Y: 60 to 180, dimensions "13'0\" x 12'0\"").
+  - Bedroom 1: Middle-left room (Y: 180 to 300, dimensions "14'0\" x 12'0\"").
+  - Toilet: A small projecting room on the far left of Bedroom 1 (X: 0 to 50, Y: 250 to 300, dimensions "8'0\" x 5'0\""), with a light blue fill.
+  - Living Room: Bottom-left room (Y: 300 to 460, dimensions "14'0\" x 16'0\"").
+- Center Column (X coordinates from 230 to 410):
+  - Two Toilets: Side-by-side toilets at the top-center (Y: 60 to 160, dimensions each "5'0\" x 8'0\""). Left half is Toilet 1, right half is Toilet 2, with a light blue fill.
+  - Dining Room: Upper-middle center room (Y: 160 to 280, dimensions "14'0\" x 12'0\""). Draw a small dining icon in the center: a square dining table rectangle (#cbd5e1) with 4 small circular dots representing chairs.
+  - Nadumuttam / Courtyard: Lower-middle center room (Y: 280 to 400, dimensions "12'0\" x 12'0\""). Draw a brown border outline (#854d0e, width 3px) around this room. Draw a solid green circle (#4ade80, radius 12px) in the exact center of this room. Labeled "NADUMUTTAM".
+  - Sitout: Bottom-center room (Y: 400 to 460, dimensions "20'0\" x 6'0\""). Labeled "SITOUT".
+- Right Column (X coordinates from 410 to 630):
+  - Bedroom 3: Top-right room (Y: 60 to 180, dimensions "13'0\" x 12'0\"").
+  - Work Area / WA: A projecting room on the far right of Bedroom 3 (X: 630 to 680, Y: 110 to 180, dimensions "6'0\" x 7'0\""). Labeled "W/A".
+  - Kitchen: Upper-middle right room (Y: 180 to 290, dimensions "11'0\" x 12'0\""). Labeled "KITCHEN".
+  - Puja Room: Middle-right room (Y: 290 to 340, dimensions "7'0\" x 5'0\""). Labeled "PUJA".
+  - M. Bedroom (Master Bedroom): Lower-middle right room (Y: 340 to 410, dimensions "14'0\" x 12'0\""). Labeled "M. BEDROOM".
+  - Toilet: Bottom-right room (Y: 410 to 460, dimensions "8'0\" x 5'0\"") with a light blue fill. Labeled "TOILET".
 
-STRICT LAYOUT & DRAFTING RULES:
-1. **Grid-Aligned Rectilinear Walls**:
-   - Bounding coordinates for floors must be clean multiples of 10 or 50. All walls must be strictly vertical or horizontal (no arbitrary angles).
-   - Outer walls must be thick charcoal lines (#1e293b, stroke-width="6px"), and inner walls must be thinner slate lines (#334155, stroke-width="4px").
-   - Walls must meet perfectly at corners without gaps, overhangs, or layout errors.
-2. **Logical Door Placement & Swing Direction**:
-   - Every door must be placed on a wall line (not floating in space) and serve as a logical passage between rooms or to the exterior.
-   - For each door, draw:
-     a) A green door leaf line (color #10b981, stroke-width="2.5px") representing the open door itself, angled at 90 degrees relative to the wall.
-     b) A thin, dotted green swing arc (color #10b981, stroke-dasharray="2,2", stroke-width="1.5px", fill="none") representing the 90-degree door swing path.
-   - **Critical Door Logic**: The door swing arc must open inward into the room and rest against an adjacent wall. A door swing path must NEVER pass through, cut, or overlap any wall, window, furniture, or another door. It must have clear physical space.
-   - **Main Entrance Door**: Positioned at the front exterior wall (usually bottom-center of the ground floor layout). Render as a double-swing green arc door symbol with a green entry arrow pointing inside.
-3. **No Overlapping Labels (Centered Text)**:
-   - Every room MUST contain a clear, legible text label showing the room name (e.g. "Bedroom 1") and dimensions (e.g. "4.0m x 3.5m").
-   - **Centering Constraint**: Compute the exact center coordinate (x, y) of each room's bounding box and place the text label precisely at that center. Use \`text-anchor="middle"\` and \`dominant-baseline="middle"\`.
-   - **Overlap Prevention**: Room text labels must NEVER overlap with any wall lines, door swing paths, windows, or other text.
-   - Use a clear, small font (\`font-size="12px"\` for room names, \`font-size="10px"\` for dimensions, fill="#ffffff" or fill="#38bdf8"). For smaller rooms like Bathrooms, reduce font sizes to \`10px\` and \`8px\` respectively so the text fits completely inside the room boundaries.
-4. **Window Alignment**:
-   - Windows must be bright glowing teal double-lined rectangles (color #06b6d4) embedded directly within the outer walls.
-   - Add a small, high-contrast, non-overlapping teal label "Window" or dimension next to it if appropriate, but keep it clear of the wall.
+STRICT MULTI-STORY ROOM CONFIGURATION RULES:
+For a 2-story or 3-story house, adapt the above style and 3-column configuration by placing the primary living, sitout, dining, kitchen, and nadumuttam on the Ground Floor (Left Panel), and distributing the bedrooms, toilets, and work areas across the upper floors (Center/Right Panels) accordingly, maintaining the identical clean flat 2D style (white fills, light blue toilets, brown-bordered Nadumuttam with green circle, and uppercase labels).
 
 Set the SVG viewBox="0 0 700 500" and make it responsive.
-Use a dark blueprint theme: dark blue background #0a0e1a.
-Add a title text inside the SVG (color #38bdf8, font-size="18px", font-weight="bold", X=350, Y=30, text-anchor="middle"): "AI House Design - ${styleName} (${floors} Floor(s))".
-
 Return your response as a JSON object with a single key "svg" containing the raw SVG string as its value. Do not wrap the SVG string in Markdown backticks.`;
 
     const response = await ai.models.generateContent({
@@ -575,21 +577,15 @@ Based on this blueprint and these assets, select:
 3. Exactly 1 filename from "windows".
 4. Exactly 1 paint color key from Wall Paint Colors.
 
-Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a straight-on front elevation view showing the front facade of the house:
-- The image must clearly depict a straight-on, flat 2D architectural front elevation facade view of the house (looking directly at the front facade, perpendicular to the front wall, with no angled side perspective views shown).
-- It must clearly show the selected front door, the selected windows, the selected roof tiles, the selected wall paint, and the front yard landscaping.
+Based on these selections, write a detailed architectural description and a single image generation prompt for Imagen 4 that will render a straight-on architectural front elevation view (straight view) showing the front side facade of the house:
+- The image must be a straight-on elevation view (front elevation / straight front view) looking directly and squarely at the front facade, with no perspective angle, no side walls visible, and no perspective distortion.
+- It must clearly show the front entrance/sitout, the selected front door, the car porch (if present in the blueprint), the selected windows, the selected roof tiles, the selected wall paint, and the front yard landscaping.
 
 The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND SELECTED ASSETS:
-1. Clearly specify a "straight-on, direct architectural front elevation view of a ${floorsText} house showing the front facade".
-2. The exterior facade layout MUST follow the generated blueprint's room layout exactly:
-   - Identify the front entrance door's placement (e.g. center, left, right) from the blueprint and place it in the same relative position on the facade.
-   - Describe a main entrance porch or entryway suited to the selected architectural style "${styleName}" (for example: a modern recessed entryway for Modern Minimalist, a traditional open veranda (Sitout) with columns for Kerala Traditional, a rustic stone archway for Cozy Stone Cottage, etc.).
-   - Place windows and front-facing rooms (like Living Room, Bedrooms, Car Porch if present) on the facade exactly where they are positioned in the blueprint.
-   - Ensure the roof design matches the style (sloping tiled roof for Kerala Traditional/Cozy Stone Cottage, flat roof for Modern Minimalist/Industrial Concrete, A-frame/gabled roof for Scandinavian Timber, etc.).
-   - Do NOT add any extra rooms, garages, balconies, or structures that do not exist in the blueprint.
+1. Clearly specify a "straight-on architectural front elevation view (straight view / front elevation) of a ${floorsText} house showing the front facade directly and squarely".
 ${heightInstruction}
 3. Incorporate the selected front door, roof tiles, windows, and paint color by describing their visual appearance (materials, textures, and style) in detail.
-4. Align doors, windows, and structural elements exactly as they are arranged in the blueprint layout.
+4. Enforce 100% strict alignment to the generated blueprint layout: The generated house exterior facade MUST match the room arrangement, doors, windows, and sitout layout of the blueprint completely without any changes or additions. Specifically, if a Sitout is in the center, the front facade must feature a centered open sitout with teak columns; if a Living Room is on the left, the left side of the facade must show the Living Room windows; if a Master Bedroom is on the right, the right side must correspond to the Master Bedroom windows. There must be NO car porch unless one is explicitly shown in the blueprint. Match the door and window placements and counts exactly as they are arranged in the blueprint.
 5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
 6. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
 ${styleRefsPrompt}
@@ -611,7 +607,7 @@ Return your response as a JSON object with this structure:
     "facadeWindows": "Detailed summary of window counts and locations as seen on the blueprint",
     "blueprintMatchDetails": "Detailed list of exactly how the exterior architectural prompt respects the blueprint room coordinates"
   },
-  "imagenPrompt": "The highly detailed Imagen 4 prompt for the exterior facade"
+  "imagenPrompt": "The highly detailed Imagen 4 prompt for the straight-on architectural front elevation view"
 }`;
 
     contents.push(promptText);
