@@ -304,133 +304,7 @@ export default function ModuleBlueprint({
         {/* Right: Controls Panel */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           
-          {/* Blueprint Parameter Inputs */}
-          <div style={{ background: '#ffffff', border: '1px solid var(--card-border)', padding: '1.25rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-primary)', fontWeight: 700, margin: 0, borderBottom: '1px solid var(--card-border)', paddingBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <span>📐</span> Manual Blueprint Selector
-            </h3>
-
-            <div className="form-group" style={{ marginBottom: 0 }}>
-              <label className="form-label" style={{ fontSize: '0.75rem' }}>Construction Style</label>
-              <select
-                className="form-select"
-                value={constructionStyle}
-                onChange={(e) => setConstructionStyle(e.target.value)}
-                style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
-              >
-                {stylesList.map(s => <option key={s} value={s}>{s}</option>)}
-              </select>
-            </div>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" style={{ fontSize: '0.75rem' }}>Floors</label>
-                <select
-                  className="form-select"
-                  value={floorsCount}
-                  onChange={(e) => setFloorsCount(parseInt(e.target.value) || 1)}
-                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
-                >
-                  <option value={1}>1 Floor</option>
-                  <option value={2}>2 Floors</option>
-                </select>
-              </div>
-
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" style={{ fontSize: '0.75rem' }}>Bedrooms</label>
-                <select
-                  className="form-select"
-                  value={bedroomsCount}
-                  onChange={(e) => setBedroomsCount(parseInt(e.target.value) || 1)}
-                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
-                >
-                  <option value={1}>1 Bed</option>
-                  <option value={2}>2 Beds</option>
-                  <option value={3}>3 Beds</option>
-                  <option value={4}>4 Beds</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="form-group" style={{ marginBottom: 0 }}>
-              <label className="form-label" style={{ fontSize: '0.75rem', fontWeight: 600 }}>Select Plan from Database</label>
-              {isLoadingPlans ? (
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', padding: '0.5rem 0' }}>Querying database blueprints...</div>
-              ) : availablePlans.length > 0 ? (
-                <select
-                  className="form-select"
-                  value={selectedPlanUrl}
-                  onChange={(e) => {
-                    const url = e.target.value;
-                    setSelectedPlanUrl(url);
-                    setFloorPlanUrl(url);
-                    setGeneratedSvg(null);
-                  }}
-                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem', width: '100%' }}
-                >
-                  {availablePlans.map(plan => (
-                    <option key={plan.url} value={plan.url}>
-                      {plan.name}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <div style={{ 
-                  fontSize: '0.75rem', 
-                  color: '#b91c1c', 
-                  background: '#fef2f2', 
-                  border: '1px solid #fca5a5', 
-                  padding: '0.6rem 0.75rem', 
-                  borderRadius: '6px',
-                  lineHeight: '1.25'
-                }}>
-                  No blueprints found in: <br />
-                  <code style={{ fontSize: '0.7rem', display: 'block', marginTop: '0.2rem', wordBreak: 'break-all' }}>
-                    database/blueprints/{floorsCount}_floor/{bedroomsCount}_bedroom/
-                  </code>
-                  Please add blueprint images to this folder.
-                </div>
-              )}
-            </div>
-
-            {availablePlans.length > 0 && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '0.25rem' }}>
-                <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600 }}>Available Plans Preview:</span>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.4rem' }}>
-                  {availablePlans.map(plan => (
-                    <button
-                      key={plan.url}
-                      onClick={() => {
-                        setSelectedPlanUrl(plan.url);
-                        setFloorPlanUrl(plan.url);
-                        setGeneratedSvg(null);
-                      }}
-                      style={{
-                        padding: '0.25rem',
-                        border: selectedPlanUrl === plan.url ? '2px solid var(--primary)' : '1px solid var(--card-border)',
-                        borderRadius: '6px',
-                        background: '#ffffff',
-                        overflow: 'hidden',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '0.2rem'
-                      }}
-                    >
-                      <div style={{ width: '100%', height: '36px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <img src={`${apiBaseUrl}${plan.url}`} alt={plan.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
-                      </div>
-                      <span style={{ fontSize: '0.65rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%', textAlign: 'center', color: 'var(--text-primary)' }}>{plan.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Section: Land Survey Auto-Recommendation */}
+          {/* Section: Land Survey Auto-Recommendation / Uploading Window (Main Focus) */}
           <div style={{ background: '#ffffff', border: '1px solid var(--card-border)', padding: '1.25rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-primary)', fontWeight: 700, margin: 0, borderBottom: '1px solid var(--card-border)', paddingBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <span>🗺️</span> Land Survey AI Matcher
@@ -454,7 +328,7 @@ export default function ModuleBlueprint({
               <div 
                 className="floorplan-dropzone" 
                 onClick={() => fileInputRef.current?.click()}
-                style={{ padding: '1.5rem 1rem', background: '#fcfcfc', borderStyle: 'dashed' }}
+                style={{ padding: '2.5rem 1.5rem', background: '#fcfcfc', borderStyle: 'dashed', cursor: 'pointer' }}
               >
                 {isUploadingSurvey ? (
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
@@ -463,12 +337,12 @@ export default function ModuleBlueprint({
                   </div>
                 ) : (
                   <>
-                    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg" style={{ color: 'var(--secondary)' }}>
+                    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg" style={{ color: 'var(--secondary)' }}>
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                       <polyline points="17 8 12 3 7 8"></polyline>
                       <line x1="12" y1="3" x2="12" y2="15"></line>
                     </svg>
-                    <div style={{ fontWeight: 600, fontSize: '0.75rem' }}>Upload Survey Map</div>
+                    <div style={{ fontWeight: 600, fontSize: '0.85rem', marginTop: '0.4rem' }}>Upload Survey Map</div>
                     <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>PNG, JPG or WebP images</div>
                   </>
                 )}
@@ -477,7 +351,7 @@ export default function ModuleBlueprint({
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <div style={{ 
                   position: 'relative', 
-                  height: '110px', 
+                  height: '140px', 
                   border: '1px solid var(--card-border)', 
                   borderRadius: '8px', 
                   background: '#f8fafc', 
@@ -568,6 +442,95 @@ export default function ModuleBlueprint({
             </button>
           </div>
 
+          {/* Blueprint Parameter Inputs (Manual Selector Secondary) */}
+          <div style={{ background: '#ffffff', border: '1px solid var(--card-border)', padding: '1.25rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-primary)', fontWeight: 700, margin: 0, borderBottom: '1px solid var(--card-border)', paddingBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span>📐</span> Manual Blueprint Selector
+            </h3>
+
+            <div className="form-group" style={{ marginBottom: 0 }}>
+              <label className="form-label" style={{ fontSize: '0.75rem' }}>Construction Style</label>
+              <select
+                className="form-select"
+                value={constructionStyle}
+                onChange={(e) => setConstructionStyle(e.target.value)}
+                style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
+              >
+                {stylesList.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label className="form-label" style={{ fontSize: '0.75rem' }}>Floors</label>
+                <select
+                  className="form-select"
+                  value={floorsCount}
+                  onChange={(e) => setFloorsCount(parseInt(e.target.value) || 1)}
+                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
+                >
+                  <option value={1}>1 Floor</option>
+                  <option value={2}>2 Floors</option>
+                </select>
+              </div>
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label className="form-label" style={{ fontSize: '0.75rem' }}>Bedrooms</label>
+                <select
+                  className="form-select"
+                  value={bedroomsCount}
+                  onChange={(e) => setBedroomsCount(parseInt(e.target.value) || 1)}
+                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
+                >
+                  <option value={1}>1 Bed</option>
+                  <option value={2}>2 Beds</option>
+                  <option value={3}>3 Beds</option>
+                  <option value={4}>4 Beds</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="form-group" style={{ marginBottom: 0 }}>
+              <label className="form-label" style={{ fontSize: '0.75rem', fontWeight: 600 }}>Select Plan from Database</label>
+              {isLoadingPlans ? (
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', padding: '0.5rem 0' }}>Querying database blueprints...</div>
+              ) : availablePlans.length > 0 ? (
+                <select
+                  className="form-select"
+                  value={selectedPlanUrl}
+                  onChange={(e) => {
+                    const url = e.target.value;
+                    setSelectedPlanUrl(url);
+                    setFloorPlanUrl(url);
+                    setGeneratedSvg(null);
+                  }}
+                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem', width: '100%' }}
+                >
+                  {availablePlans.map(plan => (
+                    <option key={plan.url} value={plan.url}>
+                      {plan.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <div style={{ 
+                  fontSize: '0.75rem', 
+                  color: '#b91c1c', 
+                  background: '#fef2f2', 
+                  border: '1px solid #fca5a5', 
+                  padding: '0.6rem 0.75rem', 
+                  borderRadius: '6px',
+                  lineHeight: '1.25'
+                }}>
+                  No blueprints found in: <br />
+                  <code style={{ fontSize: '0.7rem', display: 'block', marginTop: '0.2rem', wordBreak: 'break-all' }}>
+                    database/blueprints/{floorsCount}_floor/{bedroomsCount}_bedroom/
+                  </code>
+                  Please add blueprint images to this folder.
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
