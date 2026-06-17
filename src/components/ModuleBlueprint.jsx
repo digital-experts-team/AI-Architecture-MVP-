@@ -95,14 +95,16 @@ export default function ModuleBlueprint({
           const data = await res.json();
           setAvailablePlans(data);
           if (data.length > 0) {
-            // Re-match or select first plan
-            const matched = data.find(p => p.url === floorPlanUrl);
-            if (matched) {
-              setSelectedPlanUrl(matched.url);
+            if (floorPlanUrl) {
+              const matched = data.find(p => p.url === floorPlanUrl);
+              if (matched) {
+                setSelectedPlanUrl(matched.url);
+              } else {
+                setSelectedPlanUrl('');
+                setFloorPlanUrl(null);
+              }
             } else {
-              setSelectedPlanUrl(data[0].url);
-              setFloorPlanUrl(data[0].url);
-              setGeneratedSvg(null); // Clear generated SVG
+              setSelectedPlanUrl('');
             }
           } else {
             setSelectedPlanUrl('');
@@ -497,15 +499,16 @@ export default function ModuleBlueprint({
               ) : availablePlans.length > 0 ? (
                 <select
                   className="form-select"
-                  value={selectedPlanUrl}
+                  value={selectedPlanUrl || ''}
                   onChange={(e) => {
                     const url = e.target.value;
                     setSelectedPlanUrl(url);
-                    setFloorPlanUrl(url);
+                    setFloorPlanUrl(url || null);
                     setGeneratedSvg(null);
                   }}
                   style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem', width: '100%' }}
                 >
+                  <option value="">-- Choose a Blueprint --</option>
                   {availablePlans.map(plan => (
                     <option key={plan.url} value={plan.url}>
                       {plan.name}
