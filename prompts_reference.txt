@@ -8,7 +8,7 @@ Gemini and Imagen models across the different generative design modules.
 --------------------------------------------------------------------------------
 1. MODULE 1: AI 2D FLOORPLAN BLUEPRINT SVG GENERATION
 --------------------------------------------------------------------------------
-- Model Used: gemini-2.5-flash
+- Model Used: gemini-3.0-flash
 - Purpose: Generates a responsive, detailed 2D SVG blueprint based on style, 
   room list, floor count, attached bathroom rules, and distinctive indicators.
 
@@ -40,7 +40,7 @@ Return your answer as a JSON object with a single key "svg" containing the raw S
 --------------------------------------------------------------------------------
 2. MODULE 2: CONNECTED HOUSE EXTERIOR (DUAL VIEWS FACADE)
 --------------------------------------------------------------------------------
-- Models Used: gemini-2.5-flash (for analysis) + imagen-4.0-generate-001 (for render)
+- Models Used: gemini-3.0-flash (for analysis) + imagen-4.0-generate-001 (for render)
 - Purpose: Analyzes the SVG blueprint structure and maps specific catalog items 
   (roof tiles, doors, windows, paint) into a consistent split-screen exterior.
 
@@ -103,7 +103,7 @@ Return your response as a JSON object with this structure:
 --------------------------------------------------------------------------------
 3. MODULE 3: INTERIOR DESIGN RENDERING
 --------------------------------------------------------------------------------
-- Models Used: gemini-2.5-flash (for analysis) + imagen-4.0-generate-001 (for render)
+- Models Used: gemini-3.0-flash (for analysis) + imagen-4.0-generate-001 (for render)
 - Purpose: Orchestrates styling and layouts of specified rooms (Living Room, 
   Bedroom, Kitchen, etc.) by selecting items from local assets and enforcing constraints.
 
@@ -160,7 +160,7 @@ Return your response as a JSON object with the exact structure:
 --------------------------------------------------------------------------------
 4. MODULE 3.5: ALTERNATIVE CAMERA ANGLE RENDERING
 --------------------------------------------------------------------------------
-- Models Used: gemini-2.5-flash (for analysis) + imagen-4.0-generate-001 (for render)
+- Models Used: gemini-3.0-flash (for analysis) + imagen-4.0-generate-001 (for render)
 - Purpose: Keeps the exact same asset selections and color palette, but shifts 
   the camera angle (e.g. Opposite Corner, Close-up Detail, High Angle, Side View).
 

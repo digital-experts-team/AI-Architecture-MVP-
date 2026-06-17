@@ -603,7 +603,7 @@ Return your response as a JSON object with this exact structure:
 
     console.log("Analyzing land survey and blueprint candidates...");
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.0-flash',
       contents,
       config: {
         responseMimeType: 'application/json',
@@ -714,7 +714,7 @@ Set the SVG viewBox="0 0 700 500" and make it responsive.
 Return your response as a JSON object with a single key "svg" containing the raw SVG string as its value. Do not wrap the SVG string in Markdown backticks.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.0-flash',
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
@@ -879,7 +879,7 @@ Return your response as a JSON object with this structure:
 
     console.log("Analyzing blueprint and selecting exterior parts...");
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.0-flash',
       contents,
       config: {
         responseMimeType: 'application/json',
@@ -1064,9 +1064,9 @@ Return your response as a JSON object with the exact structure:
 
     contents.push(promptText);
 
-    console.log("Analyzing assets and formulating room design with Gemini 2.5 Flash...");
+    console.log("Analyzing assets and formulating room design with Gemini 3.0 Flash...");
     const designResponse = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.0-flash',
       contents: contents,
       config: {
         responseMimeType: 'application/json',
@@ -1309,9 +1309,9 @@ Return your response as a JSON object with this structure:
 
     contents.push(promptText);
 
-    console.log(`Analyzing design for alternative angle "${angle}" with Gemini 2.5 Flash...`);
+    console.log(`Analyzing design for alternative angle "${angle}" with Gemini 3.0 Flash...`);
     const designResponse = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.0-flash',
       contents: contents,
       config: {
         responseMimeType: 'application/json',
