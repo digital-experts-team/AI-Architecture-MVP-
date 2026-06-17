@@ -786,12 +786,13 @@ ${blueprintSvg}`);
     const styleRefs = [];
     if (fs.existsSync(styleDir)) {
       const files = fs.readdirSync(styleDir).filter(f => f.match(/\.(png|jpg|jpeg|webp)$/i));
-      files.forEach((file, index) => {
+      if (files.length > 0) {
+        const file = files[0];
         const filePath = path.join(styleDir, file);
         contents.push(fileToGenerativePart(filePath, getMimeType(filePath)));
-        contents.push(`Reference image for selected architectural style "${styleName}" (Image #${index + 1})`);
-        styleRefs.push(`- Reference image for style "${styleName}" (Image #${index + 1}) attached above.`);
-      });
+        contents.push(`Reference image for selected architectural style "${styleName}" (Image #1)`);
+        styleRefs.push(`- Reference image for style "${styleName}" (Image #1) attached above.`);
+      }
     }
 
     const styleDetails = styleDescriptions[styleName] || styleDescriptions["Modern Minimalist"];
