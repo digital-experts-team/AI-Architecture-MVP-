@@ -1,254 +1,161 @@
 {
-  "tiles": {
-    "marble_tile.png": {
-      "name": "Premium Italian Marble Floor Tile",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-rugs.html",
-      "price": "$5.99 / sq ft"
-    },
-    "oak_wood_tile.png": {
-      "name": "Rustic Honey Oak Wood Floor Tile",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-rugs.html",
-      "price": "$5.99 / sq ft"
-    },
-    "Screenshot 2026-06-11 152857.png": {
-      "name": "Terrazzo Pattern Porcelain Tile",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-rugs.html",
-      "price": "$5.99 / sq ft"
-    },
-    "Screenshot 2026-06-11 152925.png": {
-      "name": "Polished Grey Granite Floor Tile",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-rugs.html",
-      "price": "$5.99 / sq ft"
-    },
-    "Screenshot 2026-06-11 152956.png": {
-      "name": "Premium White Italian Marble Tile 2",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-rugs.html",
-      "price": "$5.99 / sq ft"
-    }
-  },
-  "furniture": {
-    "emerald_sofa.png": {
-      "providerName": "Lux Living Furniture",
-      "providerWebsite": "https://example.com/velvet-sofa"
-    },
-    "wooden_bed.png": {
-      "providerName": "Nordic Comforts",
-      "providerWebsite": "https://example.com/nordic-bed"
-    },
-    "coffee_table.png": {
-      "providerName": "Minimalist Woodworks",
-      "providerWebsite": "https://example.com/wooden-table"
-    }
-  },
   "bed": {
-    "Screenshot 2026-06-11 124919.png": {
-      "name": "Comfort Craft Solid Wood Bed",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-beds.html",
-      "price": "$199.00"
-    },
-    "Screenshot 2026-06-11 124939.png": {
-      "name": "Deluxe Velvet Tufted Bed",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-beds.html",
-      "price": "$199.00"
-    },
-    "Screenshot 2026-06-11 124957.png": {
-      "name": "Platform Storage Queen Bed",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-beds.html",
-      "price": "$199.00"
-    },
-    "wooden_bed.png": {
-      "name": "Solid Teak Wood Queen Bed",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-beds.html",
-      "price": "$199.00"
-    },
     "Brevik Sheesham Wood Queen Size Bed In Provincial Teak Finish.png": {
-      "name": "Comfort Craft Solid Wood Bed",
+      "name": "Brevik Sheesham Wood Queen Size Bed In Provincial Teak Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-beds.html",
+      "providerWebsite": "https://www.pepperfry.com/product/brevik-sheesham-wood-queen-size-bed-in-provincial-teak-finish-with-drawer-storage-2151490.html",
       "price": "$199.00"
     },
     "Persia Queen Size Bed in Wenge Finish.png": {
-      "name": "Deluxe Velvet Tufted Bed",
+      "name": "Persia Queen Size Bed in Wenge Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-beds.html",
+      "providerWebsite": "https://www.pepperfry.com/product/persia-queen-size-bed-in-wenge-finish-2162786.html",
       "price": "$199.00"
     },
     "Tokyo Queen size Bed in Planked Walnut Finish with Upholstered Headboard Storage.png": {
-      "name": "Platform Storage Queen Bed",
+      "name": "Tokyo Queen size Bed in Planked Walnut Finish with Upholstered Headboard Storage",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-beds.html",
+      "providerWebsite": "https://www.pepperfry.com/product/tokyo-queen-size-bed-in-planked-walnut-finish-with-upholstered-headboard-storage-2182630.html",
       "price": "$199.00"
     }
   },
   "blueprints": {},
   "carpets": {
-    "Screenshot 2026-06-13 141952.png": {
-      "name": "Handwoven Woolen Area Carpet",
+    "Beige Abstract Microfibre 6 ft x 9 ft Machine Made Carpet.png": {
+      "name": "Beige Abstract Microfibre 6 ft x 9 ft Machine Made Carpet",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-carpets.html",
-      "price": "$249.00"
-    },
-    "Screenshot 2026-06-13 142016.png": {
-      "name": "Modern Geometric Floor Rug",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-carpets.html",
-      "price": "$249.00"
-    },
-    "Screenshot 2026-06-13 142045.png": {
-      "name": "Classic Persian Floral Carpet",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-carpets.html",
-      "price": "$249.00"
-    },
-    "Screenshot 2026-06-13 142107.png": {
-      "name": "Plush Shag Living Room Rug",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-carpets.html",
+      "providerWebsite": "https://www.pepperfry.com/product/beige-abstract-microfibre-6-ft-x-9-ft-machine-made-carpet-1672575.html",
       "price": "$249.00"
     },
     "Multicolor Silk 6 X 4 Feet Abstract Rectangle Carpet.png": {
-      "name": "Handwoven Woolen Area Carpet",
+      "name": "Multicolor Silk 6 X 4 Feet Abstract Rectangle Carpet",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-carpets.html",
+      "providerWebsite": "https://www.pepperfry.com/product/multicolor-silk-6-x-4-feet-abstract-rectangle-carpet-2313953.html",
+      "price": "$249.00"
+    },
+    "Rust and Cream Abstract 4x6 Feet Machine Made Carpet.png": {
+      "name": "Rust and Cream Abstract 4x6 Feet Machine Made Carpet",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/rust-and-cream-abstract-4x6-feet-machine-made-carpet-2259320.html",
       "price": "$249.00"
     },
     "Soft Argyle Rug 5'6X7'6 ft Beige & White Carpet Dhurrie.png": {
-      "name": "Plush Shag Living Room Rug",
+      "name": "Soft Argyle Rug 5'6X7'6 ft Beige & White Carpet Dhurrie",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-carpets.html",
+      "providerWebsite": "https://www.pepperfry.com/product/soft-argyle-rug-56x76-ft-beige-white-carpet-dhurrie-2300425.html",
       "price": "$249.00"
     }
   },
   "chairs": {
-    "Screenshot 2026-06-13 142159.png": {
-      "name": "Ergonomic Velvet Accent Chair",
+    "Clint Sheesham Wood Arm Chair In Provincial Teak Finish.png": {
+      "name": "Clint Sheesham Wood Arm Chair In Provincial Teak Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-chairs.html",
+      "providerWebsite": "https://www.pepperfry.com/product/clint-sheesham-wood-arm-chair-in-provincial-teak-finish-1685909.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-13 142216.png": {
-      "name": "Mid-Century Wooden Lounge Chair",
+    "Esme Velvet Armchair In Blue Colour.png": {
+      "name": "Esme Velvet Armchair In Blue Colour",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-chairs.html",
+      "providerWebsite": "https://www.pepperfry.com/product/esme-velvet-armchair-in-blue-colour-2168752.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-13 142232.png": {
-      "name": "Tufted Leather Armchair",
+    "Petra Sheesham Wood Arm Chair In Scratch Resistant Provincial Teak Finish.png": {
+      "name": "Petra Sheesham Wood Arm Chair In Scratch Resistant Provincial Teak Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-chairs.html",
+      "providerWebsite": "https://www.pepperfry.com/product/petra-sheesham-wood-arm-chair-in-provincial-teak-finish-2206609.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-13 142248.png": {
-      "name": "Minimalist Office Desk Chair",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-chairs.html",
+    "Poise Fabric Rocking Chair In Multi Colour.png": {
+      "name": "Poise Fabric Rocking Chair In Multi Colour",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$199.00"
     }
   },
   "curtains": {
-    "Screenshot 2026-06-11 124654.png": {
-      "name": "Premium Blackout Window Curtain",
+    "Blue Floral Cotton 7.5 Ft Semisheer Eyelet Door Curtains (Pack of 4).png": {
+      "name": "Blue Floral Cotton 7.5 Ft Semisheer Eyelet Door Curtains (Pack of 4)",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-curtains-blinds.html",
+      "providerWebsite": "https://www.pepperfry.com/product/blue-floral-cotton-7point5-ft-semisheer-eyelet-door-curtains-pack-of-4-2047110.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-11 124703.png": {
-      "name": "Sheer Linen Blend Curtain Panel",
+    "Blue Shower Polyester 6 Ft Semisheer Eyelet Shower Curtain.png": {
+      "name": "Blue Shower Polyester 6 Ft Semisheer Eyelet Shower Curtain",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-curtains-blinds.html",
+      "providerWebsite": "https://www.pepperfry.com/product/blue-shower-polyester-6-ft-semisheer-eyelet-shower-curtain-1984981.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-11 124717.png": {
-      "name": "Textured Jacquard Drapery Set",
+    "Cedar Cream & Blue Cotton Ethnic 7 Feet Room Darkening Eyelet Door Curtains (2 Pc).png": {
+      "name": "Cedar Cream & Blue Cotton Ethnic 7 Feet Room Darkening Eyelet Door Curtains (2 Pc)",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-curtains-blinds.html",
-      "price": "$199.00"
-    },
-    "Screenshot 2026-06-11 124736.png": {
-      "name": "Modern Grommet Top Curtain",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-curtains-blinds.html",
+      "providerWebsite": "https://www.pepperfry.com/product/cedar-cream-blue-cotton-230-gsm-ethnic-7-feet-room-darkening-eyelet-door-curtai-2298929.html",
       "price": "$199.00"
     }
   },
   "dining": {
-    "Screenshot 2026-06-11 125848.png": {
-      "name": "6-Seater Solid Oak Dining Table",
+    "Bardu Sheesham Wood 6 Seater Dining Set in Honey Oak Finish.png": {
+      "name": "Bardu Sheesham Wood 6 Seater Dining Set in Honey Oak Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-dining-sets.html",
+      "providerWebsite": "https://www.pepperfry.com/product/bardu-sheesham-wood-6-seater-dining-set-in-honey-oak-finish-2273330.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-11 125906.png": {
-      "name": "Modern Marble Top Dining Table",
+    "Marin Sheesham Wood 4 Seater Dining Set in Scratch Resistant Provincial Teak Finish.png": {
+      "name": "Marin Sheesham Wood 4 Seater Dining Set in Scratch Resistant Provincial Teak Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-dining-sets.html",
+      "providerWebsite": "https://www.pepperfry.com/product/marin-sheesham-wood-4-seater-dining-set-in-provincial-teak-finish-1861104.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-11 125931.png": {
-      "name": "Compact 4-Seater Dining Set",
+    "Modena Toronto Marble Top 6 Seater Dining Set In Natural Finish.png": {
+      "name": "Modena Toronto Marble Top 6 Seater Dining Set In Natural Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-dining-sets.html",
+      "providerWebsite": "https://www.pepperfry.com/product/modena-solid-wood-marble-top-6-seater-dining-set-in-natural-finish-2300959.html",
       "price": "$199.00"
     }
   },
   "front door": {
     "Screenshot 2026-06-15 135926.png": {
-      "name": "Solid Teak Wood Main Door",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor.html",
+      "name": "Screenshot 2026-06-15 135926",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$599.00"
     },
     "Screenshot 2026-06-15 135939.png": {
-      "name": "Classic Panel Entry Door",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor.html",
+      "name": "Screenshot 2026-06-15 135939",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$599.00"
     },
     "Screenshot 2026-06-15 135954.png": {
-      "name": "Modern Arched Wooden Door",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor.html",
+      "name": "Screenshot 2026-06-15 135954",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$599.00"
     },
     "Screenshot 2026-06-15 140021.png": {
-      "name": "Craftsman Exterior Pivot Door",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor.html",
+      "name": "Screenshot 2026-06-15 140021",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$599.00"
     }
   },
+  "furniture": {},
   "hanging_lights": {
-    "Screenshot 2026-06-13 141220.png": {
-      "name": "Industrial Brass Pendant Light",
+    "Cedar 5 Lights Brown Solid Wood Linear Chandelier Cluster Hanging Light.png": {
+      "name": "Cedar 5 Lights Brown Solid Wood Linear Chandelier Cluster Hanging Light",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/lamps-lighting-hanging-lights.html",
+      "providerWebsite": "https://www.pepperfry.com/product/cedar-5-lights-brown-solid-wood-linear-chandelier-cluster-hanging-light-1978736.html",
       "price": "$129.00"
     },
-    "Screenshot 2026-06-13 141235.png": {
-      "name": "Modern Sphere Glass Chandelier",
+    "Louis Transparent Glass Hanging Light.png": {
+      "name": "Louis Transparent Glass Hanging Light",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/lamps-lighting-hanging-lights.html",
+      "providerWebsite": "https://www.pepperfry.com/product/louis-transparent-glass-hanging-light-2049342.html",
       "price": "$129.00"
     },
-    "Screenshot 2026-06-13 141306.png": {
-      "name": "Geometric Metal Hanging Lamp",
+    "Novelty Handmade Rattan Pendant Hanging Light (Brown).png": {
+      "name": "Novelty Handmade Rattan Pendant Hanging Light (Brown)",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/lamps-lighting-hanging-lights.html",
-      "price": "$129.00"
-    },
-    "Screenshot 2026-06-13 141320.png": {
-      "name": "Vintage Edison Bulb Pendant",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/lamps-lighting-hanging-lights.html",
+      "providerWebsite": "https://www.pepperfry.com/product/novelty-handmade-rattan-pendant-hanging-light-brown-2185329.html",
       "price": "$129.00"
     }
   },
@@ -256,257 +163,265 @@
   "panels": {},
   "roof tiles": {
     "Screenshot 2026-06-15 135651.png": {
-      "name": "Modern Pepperfry roof tiles",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/",
+      "name": "Screenshot 2026-06-15 135651",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$5.99 / sq ft"
     },
     "Screenshot 2026-06-15 135718.png": {
-      "name": "Modern Pepperfry roof tiles 2",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/",
+      "name": "Screenshot 2026-06-15 135718",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$5.99 / sq ft"
     },
     "Screenshot 2026-06-15 135744.png": {
-      "name": "Modern Pepperfry roof tiles 3",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/",
+      "name": "Screenshot 2026-06-15 135744",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$5.99 / sq ft"
     }
   },
   "rugs": {},
   "setees": {
-    "emerald_sofa.png": {
-      "name": "Emerald Green Velvet 3-Seater Sofa",
+    "Bingo Fabric 3 Seater Sofa In Grey Colour.png": {
+      "name": "Bingo Fabric 3 Seater Sofa In Grey Colour",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-benches.html",
+      "providerWebsite": "https://www.pepperfry.com/product/bingo-fabric-3-seater-sofa-in-grey-colour-2194046.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-11 124454.png": {
-      "name": "Rustic Wooden Dining Bench",
+    "Derby Velvet 3 Seater Sofa In Carbon Grey Colour.png": {
+      "name": "Derby Velvet 3 Seater Sofa In Carbon Grey Colour",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-benches.html",
+      "providerWebsite": "https://www.pepperfry.com/product/derby-velvet-3-seater-sofa-in-carbon-grey-colour-2189507.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-11 124521.png": {
-      "name": "Modern Upholstered Settee",
+    "Frejol Velvet 3 Seater Sofa In Cream Colour.png": {
+      "name": "Frejol Velvet 3 Seater Sofa In Cream Colour",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-benches.html",
+      "providerWebsite": "https://www.pepperfry.com/product/frejol-velvet-3-seater-sofa-in-cream-colour-2191642.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-11 124541.png": {
-      "name": "Classic Storage Trunk Bench",
+    "Helo Solid Wood Setty In Beige Color.png": {
+      "name": "Helo Solid Wood Setty In Beige Color",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-benches.html",
+      "providerWebsite": "https://www.pepperfry.com/product/helo-solid-wood-setty-in-beige-color-2286828.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-13 142320.png": {
-      "name": "Tufted Velvet Entryway Bench 2",
+    "Marino Bench In Beige Color.png": {
+      "name": "Marino Bench In Beige Color",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-benches.html",
-      "price": "$199.00"
-    },
-    "Screenshot 2026-06-13 142336.png": {
-      "name": "Rustic Wooden Dining Bench 2",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-benches.html",
+      "providerWebsite": "https://www.pepperfry.com/product/marino-bench-in-beige-color-2286838.html",
       "price": "$199.00"
     }
   },
   "table": {
-    "coffee_table.png": {
-      "name": "Minimalist Solid Wood Coffee Table",
+    "Aurum Centre Table In Natural Bleach Finish.png": {
+      "name": "Aurum Centre Table In Natural Bleach Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tables.html",
+      "providerWebsite": "https://www.pepperfry.com/product/aurum-centre-table-in-natural-bleach-finish-2315339.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-11 124803.png": {
-      "name": "Industrial Oak Coffee Table",
+    "Eco Large Coffee Table In Choco Walnut Finish.png": {
+      "name": "Eco Large Coffee Table In Choco Walnut Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tables.html",
+      "providerWebsite": "https://www.pepperfry.com/product/eco-large-coffee-table-in-choco-walnut-finish-1849876.html",
       "price": "$199.00"
     },
-    "Screenshot 2026-06-11 124828.png": {
-      "name": "Floating Console Wall Table",
+    "Modena Toronto Marble Coffee Table In Natural Finish.png": {
+      "name": "Modena Toronto Marble Coffee Table In Natural Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tables.html",
-      "price": "$199.00"
-    },
-    "Screenshot 2026-06-11 124841.png": {
-      "name": "Sleek Metal Nesting Tables",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tables.html",
+      "providerWebsite": "https://www.pepperfry.com/product/modena-solid-wood-marble-coffee-table-in-natural-finish-2300962.html",
       "price": "$199.00"
     }
   },
   "table_lights": {
-    "Screenshot 2026-06-13 142417.png": {
-      "name": "Ceramic Bedside Table Lamp",
+    "Blue Eye in the Sky Metal Enamel Table Lamp.png": {
+      "name": "Blue Eye in the Sky Metal Enamel Table Lamp",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/lamps-lighting-table-lamps.html",
+      "providerWebsite": "https://www.pepperfry.com/product/blue-eye-in-the-sky-metal-enamel-table-lamp-2314864.html",
       "price": "$129.00"
     },
-    "Screenshot 2026-06-13 142431.png": {
-      "name": "Adjustable Brass Desk Task Lamp",
+    "Boho Sphere Indonesian Premium Natural Rattan cane & Braided Beize Wire.png": {
+      "name": "Boho Sphere Indonesian Premium Natural Rattan cane & Braided Beize Wire",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/lamps-lighting-table-lamps.html",
+      "providerWebsite": "https://www.pepperfry.com/product/boho-sphere-indonesian-premium-natural-rattan-cane-braided-beize-wire-2244122.html",
       "price": "$129.00"
     },
-    "Screenshot 2026-06-13 142453.png": {
-      "name": "Modern Glass Globe Table Light",
+    "Pisa White Fabric Shade Night Lamp With Glass Base.png": {
+      "name": "Pisa White Fabric Shade Night Lamp With Glass Base",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/lamps-lighting-table-lamps.html",
+      "providerWebsite": "https://www.pepperfry.com/product/pisa-white-fabric-shade-night-lamp-with-glass-base-1608199.html",
       "price": "$129.00"
     },
-    "Screenshot 2026-06-13 142525.png": {
-      "name": "Earthy Terracotta Accent Lamp",
+    "White Pillar Mango Wood Table Lamp.png": {
+      "name": "White Pillar Mango Wood Table Lamp",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/lamps-lighting-table-lamps.html",
+      "providerWebsite": "https://www.pepperfry.com/product/white-pillar-mango-wood-table-lamp-2314869.html",
       "price": "$129.00"
     }
   },
+  "tiles": {
+    "marble_tile.png": {
+      "name": "marble tile",
+      "providerName": "",
+      "providerWebsite": "",
+      "price": "$5.99 / sq ft"
+    },
+    "oak_wood_tile.png": {
+      "name": "oak wood tile",
+      "providerName": "",
+      "providerWebsite": "",
+      "price": "$5.99 / sq ft"
+    },
+    "Screenshot 2026-06-11 152857.png": {
+      "name": "Screenshot 2026-06-11 152857",
+      "providerName": "",
+      "providerWebsite": "",
+      "price": "$5.99 / sq ft"
+    },
+    "Screenshot 2026-06-11 152925.png": {
+      "name": "Screenshot 2026-06-11 152925",
+      "providerName": "",
+      "providerWebsite": "",
+      "price": "$5.99 / sq ft"
+    },
+    "Screenshot 2026-06-11 152956.png": {
+      "name": "Screenshot 2026-06-11 152956",
+      "providerName": "",
+      "providerWebsite": "",
+      "price": "$5.99 / sq ft"
+    }
+  },
   "tv_units": {
-    "Screenshot 2026-06-11 124340.png": {
-      "name": "Floating Modern TV Console",
+    "Anatdol TV Console In Brown Maple Colour.png": {
+      "name": "Anatdol TV Console In Brown Maple Colour",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tv-units.html",
+      "providerWebsite": "https://www.pepperfry.com/product/anatdol-tv-units-in-brown-maple-colour-2166570.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-11 124606.png": {
-      "name": "Solid Wood Entertainment Center",
+    "Fenily TV Unit in Wenge Finish for TVs up to 65.png": {
+      "name": "Fenily TV Unit in Wenge Finish for TVs up to 65",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tv-units.html",
+      "providerWebsite": "https://www.pepperfry.com/product/fenily-tv-unit-in-wenge-finish-for-tvs-up-to-65-inches-1987991.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-11 124634.png": {
-      "name": "Mid-Century Media Cabinet",
+    "Freemont Sheesham Wood TV Console in Scratch Resistant Provincial Teak Finish for TVs up to 70.png": {
+      "name": "Freemont Sheesham Wood TV Console in Scratch Resistant Provincial Teak Finish for TVs up to 70",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tv-units.html",
+      "providerWebsite": "https://www.pepperfry.com/product/freemont-sheesham-wood-tv-console-in-provincial-teak-finish-for-tvs-up-to-70-inches-1231141.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 141742.png": {
-      "name": "Sleek Wall Mounted TV Panel",
+    "Kibo Tv Unit In Lyon Walnut Finish for TV's upto 55''.png": {
+      "name": "Kibo Tv Unit In Lyon Walnut Finish for TV's upto 55''",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tv-units.html",
+      "providerWebsite": "https://www.pepperfry.com/product/kibo-tv-unit-in-lyon-walnut-finish-2215342.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 141822.png": {
-      "name": "Floating Modern TV Console 2",
+    "Skiddo TV Unit In Brown Maple & White Finish For TV Upto 50 Inch.png": {
+      "name": "Skiddo TV Unit In Brown Maple & White Finish For TV Upto 50 Inch",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tv-units.html",
-      "price": "$349.00"
-    },
-    "Screenshot 2026-06-13 141845.png": {
-      "name": "Solid Wood Entertainment Center 2",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tv-units.html",
-      "price": "$349.00"
-    },
-    "Screenshot 2026-06-13 141906.png": {
-      "name": "Mid-Century Media Cabinet 2",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-tv-units.html",
+      "providerWebsite": "https://www.pepperfry.com/product/skiddo-tv-unit-in-brown-maple-white-finish-for-tv-upto-50-inch-2152519.html",
       "price": "$349.00"
     }
   },
   "wall_decor": {
-    "Screenshot 2026-06-13 143434.png": {
-      "name": "Abstract Canvas Framed Art",
+    "Beautiful Colorful Texture Abstract Canvas Wall Painting.png": {
+      "name": "Beautiful Colorful Texture Abstract Canvas Wall Painting",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-wall-art.html",
+      "providerWebsite": "https://www.pepperfry.com/product/beautiful-colorful-texture-abstract-canvas-wall-painting-2288846.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 143453.png": {
-      "name": "Sunburst Metal Wall Sculpture",
+    "Classic Horizontal Four Natural Wood Wall Shelf.png": {
+      "name": "Classic Horizontal Four Natural Wood Wall Shelf",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-wall-art.html",
+      "providerWebsite": "https://www.pepperfry.com/product/classichorizontal-four-natural-wood-wall-shelf-2174980.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 143701.png": {
-      "name": "Vintage Wooden Wall Plaque",
+    "Lineart Multicolour Canvas Framed Abstract Art Panel Set of 4.png": {
+      "name": "Lineart Multicolour Canvas Framed Abstract Art Panel Set of 4",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-wall-art.html",
+      "providerWebsite": "https://www.pepperfry.com/product/lineart-multicolour-canvas-framed-abstract-art-panel-set-of-4-2027639.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 143722.png": {
-      "name": "Minimalist Geometric Wall Panel",
+    "Petree Engineered Wood Wall Mounted Floating Shelf.png": {
+      "name": "Petree Engineered Wood Wall Mounted Floating Shelf",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-wall-art.html",
+      "providerWebsite": "https://www.pepperfry.com/product/petree-engineered-wood-wall-mounted-floating-shelf-2198506.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 143815.png": {
-      "name": "Abstract Canvas Framed Art 2",
+    "Ship Shape Backlit Walnut Wood Wall Shelf.png": {
+      "name": "Ship Shape Backlit Walnut Wood Wall Shelf",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-wall-art.html",
+      "providerWebsite": "https://www.pepperfry.com/product/ship-shape-backlit-walnut-wood-wall-shelf-2174939.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 143835.png": {
-      "name": "Sunburst Metal Wall Sculpture 2",
+    "Urban Motif Set Of 7 Multicolour Wood Wall Shelves.png": {
+      "name": "Urban Motif Set Of 7 Multicolour Wood Wall Shelves",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-wall-art.html",
+      "providerWebsite": "https://www.pepperfry.com/product/urban-motif-set-of-7-multicolour-wood-wallshelves-2174987.html",
       "price": "$349.00"
     }
   },
   "wall_furnitures": {},
   "wall_hangings": {
-    "Screenshot 2026-06-13 141407.png": {
-      "name": "Handwoven Boho Macrame Hanging",
+    "Brown And Blue Metal Wall Art With Led.png": {
+      "name": "Brown And Blue Metal Wall Art With Led",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-wall-shelves.html",
+      "providerWebsite": "https://www.pepperfry.com/product/brown-and-blue-metal-wall-art-with-led-2292493.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 141442.png": {
-      "name": "Rustic Wall Hanging Mirror",
+    "Gold Large Metal Wall Frame.png": {
+      "name": "Gold Large Metal Wall Frame",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-wall-shelves.html",
+      "providerWebsite": "https://www.pepperfry.com/product/gold-large-metal-wall-frame-2219697.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 141628.png": {
-      "name": "Decorative Hanging Metal Bells",
+    "Meenkari Hanging Wall Decor Plates Pack Of 5.png": {
+      "name": "Meenkari Hanging Wall Decor Plates Pack Of 5",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-wall-shelves.html",
+      "providerWebsite": "https://www.pepperfry.com/product/meenkari-hanging-wall-decor-plates-pack-of-5-2281642.html",
       "price": "$349.00"
     }
   },
   "wall_plants": {
-    "Screenshot 2026-06-13 143616.png": {
-      "name": "Faux Potted Monstera Plant",
+    "Circular Modern Shelves with Walnut Finish Set of Four.png": {
+      "name": "Circular Modern Shelves with Walnut Finish Set of Four",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-artificial-plants.html",
+      "providerWebsite": "https://www.pepperfry.com/product/circular-modern-shelves-with-walnut-finish-set-of-four-2288919.html",
       "price": "$349.00"
     },
-    "Screenshot 2026-06-13 143633.png": {
-      "name": "Hanging Artificial Ivy Vines",
+    "Pack Of 3 White Rectangular Wall Planters.png": {
+      "name": "Pack Of 3 White Rectangular Wall Planters",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/home-decor-artificial-plants.html",
+      "providerWebsite": "https://www.pepperfry.com/product/pack-of-3-white-rectangular-wall-planters-2245745.html",
       "price": "$349.00"
     }
   },
   "wall_shelves": {
-    "Screenshot 2026-06-13 143551.png": {
-      "name": "Floating Hexagonal Wall Shelf",
+    "Sheesham Wood Wall Shelf With Door In Teak Finish.png": {
+      "name": "Sheesham Wood Wall Shelf With Door In Teak Finish",
       "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furniture-wall-shelves.html",
+      "providerWebsite": "https://www.pepperfry.com/product/sheesham-wood-wall-shelf-with-door-in-teak-finish-1666276.html",
       "price": "$349.00"
     }
   },
   "windows": {
     "Screenshot 2026-06-15 140144.png": {
-      "name": "Double-Hung Accent Window Frame",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-curtains-blinds.html",
+      "name": "Screenshot 2026-06-15 140144",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$249.00"
     },
     "Screenshot 2026-06-15 140241.png": {
-      "name": "Modern Sliding Glass Window",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-curtains-blinds.html",
+      "name": "Screenshot 2026-06-15 140241",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$249.00"
     },
     "Screenshot 2026-06-15 140250.png": {
-      "name": "Arched Transom Top Window",
-      "providerName": "Pepperfry",
-      "providerWebsite": "https://www.pepperfry.com/furnishings-curtains-blinds.html",
+      "name": "Screenshot 2026-06-15 140250",
+      "providerName": "",
+      "providerWebsite": "",
       "price": "$249.00"
     }
   }

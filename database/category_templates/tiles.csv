@@ -1,6 +1,6 @@
 Name,ImageUrl,ProductUrl,ProviderName,Price
-Premium Italian Marble Floor Tile,/database/tiles/marble_tile.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
-Rustic Honey Oak Wood Floor Tile,/database/tiles/oak_wood_tile.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
-Terrazzo Pattern Porcelain Tile,/database/tiles/Screenshot 2026-06-11 152857.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
-Polished Grey Granite Floor Tile,/database/tiles/Screenshot 2026-06-11 152925.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
-Premium White Italian Marble Tile 2,/database/tiles/Screenshot 2026-06-11 152956.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
+marble tile,/database/tiles/marble_tile.png,,,$5.99 / sq ft
+oak wood tile,/database/tiles/oak_wood_tile.png,,,$5.99 / sq ft
+Screenshot 2026-06-11 152857,/database/tiles/Screenshot 2026-06-11 152857.png,,,$5.99 / sq ft
+Screenshot 2026-06-11 152925,/database/tiles/Screenshot 2026-06-11 152925.png,,,$5.99 / sq ft
+Screenshot 2026-06-11 152956,/database/tiles/Screenshot 2026-06-11 152956.png,,,$5.99 / sq ft

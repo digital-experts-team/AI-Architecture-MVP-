@@ -1,71 +1,65 @@
 Category,Name,ImageUrl,ProductUrl,ProviderName,Price
-bed,Comfort Craft Solid Wood Bed,/database/bed/Brevik Sheesham Wood Queen Size Bed In Provincial Teak Finish.png,https://www.pepperfry.com/furniture-beds.html,Pepperfry,$199.00
-bed,Deluxe Velvet Tufted Bed,/database/bed/Persia Queen Size Bed in Wenge Finish.png,https://www.pepperfry.com/furniture-beds.html,Pepperfry,$199.00
-bed,Platform Storage Queen Bed,/database/bed/Tokyo Queen size Bed in Planked Walnut Finish with Upholstered Headboard Storage.png,https://www.pepperfry.com/furniture-beds.html,Pepperfry,$199.00
-carpets,Handwoven Woolen Area Carpet,/database/carpets/Multicolor Silk 6 X 4 Feet Abstract Rectangle Carpet.png,https://www.pepperfry.com/furnishings-carpets.html,Pepperfry,$249.00
-carpets,Classic Persian Floral Carpet,/database/carpets/Screenshot 2026-06-13 142045.png,https://www.pepperfry.com/furnishings-carpets.html,Pepperfry,$249.00
-carpets,Plush Shag Living Room Rug,/database/carpets/Screenshot 2026-06-13 142107.png,https://www.pepperfry.com/furnishings-carpets.html,Pepperfry,$249.00
-carpets,Plush Shag Living Room Rug,/database/carpets/Soft Argyle Rug 5'6X7'6 ft Beige & White Carpet Dhurrie.png,https://www.pepperfry.com/furnishings-carpets.html,Pepperfry,$249.00
-chairs,Ergonomic Velvet Accent Chair,/database/chairs/Screenshot 2026-06-13 142159.png,https://www.pepperfry.com/furniture-chairs.html,Pepperfry,$199.00
-chairs,Mid-Century Wooden Lounge Chair,/database/chairs/Screenshot 2026-06-13 142216.png,https://www.pepperfry.com/furniture-chairs.html,Pepperfry,$199.00
-chairs,Tufted Leather Armchair,/database/chairs/Screenshot 2026-06-13 142232.png,https://www.pepperfry.com/furniture-chairs.html,Pepperfry,$199.00
-chairs,Minimalist Office Desk Chair,/database/chairs/Screenshot 2026-06-13 142248.png,https://www.pepperfry.com/furniture-chairs.html,Pepperfry,$199.00
-curtains,Premium Blackout Window Curtain,/database/curtains/Screenshot 2026-06-11 124654.png,https://www.pepperfry.com/furnishings-curtains-blinds.html,Pepperfry,$199.00
-curtains,Sheer Linen Blend Curtain Panel,/database/curtains/Screenshot 2026-06-11 124703.png,https://www.pepperfry.com/furnishings-curtains-blinds.html,Pepperfry,$199.00
-curtains,Textured Jacquard Drapery Set,/database/curtains/Screenshot 2026-06-11 124717.png,https://www.pepperfry.com/furnishings-curtains-blinds.html,Pepperfry,$199.00
-curtains,Modern Grommet Top Curtain,/database/curtains/Screenshot 2026-06-11 124736.png,https://www.pepperfry.com/furnishings-curtains-blinds.html,Pepperfry,$199.00
-dining,6-Seater Solid Oak Dining Table,/database/dining/Screenshot 2026-06-11 125848.png,https://www.pepperfry.com/furniture-dining-sets.html,Pepperfry,$199.00
-dining,Modern Marble Top Dining Table,/database/dining/Screenshot 2026-06-11 125906.png,https://www.pepperfry.com/furniture-dining-sets.html,Pepperfry,$199.00
-dining,Compact 4-Seater Dining Set,/database/dining/Screenshot 2026-06-11 125931.png,https://www.pepperfry.com/furniture-dining-sets.html,Pepperfry,$199.00
-front door,Solid Teak Wood Main Door,/database/front door/Screenshot 2026-06-15 135926.png,https://www.pepperfry.com/home-decor.html,Pepperfry,$599.00
-front door,Classic Panel Entry Door,/database/front door/Screenshot 2026-06-15 135939.png,https://www.pepperfry.com/home-decor.html,Pepperfry,$599.00
-front door,Modern Arched Wooden Door,/database/front door/Screenshot 2026-06-15 135954.png,https://www.pepperfry.com/home-decor.html,Pepperfry,$599.00
-front door,Craftsman Exterior Pivot Door,/database/front door/Screenshot 2026-06-15 140021.png,https://www.pepperfry.com/home-decor.html,Pepperfry,$599.00
-hanging_lights,Industrial Brass Pendant Light,/database/hanging_lights/Screenshot 2026-06-13 141220.png,https://www.pepperfry.com/lamps-lighting-hanging-lights.html,Pepperfry,$129.00
-hanging_lights,Modern Sphere Glass Chandelier,/database/hanging_lights/Screenshot 2026-06-13 141235.png,https://www.pepperfry.com/lamps-lighting-hanging-lights.html,Pepperfry,$129.00
-hanging_lights,Geometric Metal Hanging Lamp,/database/hanging_lights/Screenshot 2026-06-13 141306.png,https://www.pepperfry.com/lamps-lighting-hanging-lights.html,Pepperfry,$129.00
-hanging_lights,Vintage Edison Bulb Pendant,/database/hanging_lights/Screenshot 2026-06-13 141320.png,https://www.pepperfry.com/lamps-lighting-hanging-lights.html,Pepperfry,$129.00
-roof tiles,Modern Pepperfry roof tiles,/database/roof tiles/Screenshot 2026-06-15 135651.png,https://www.pepperfry.com/,Pepperfry,$5.99 / sq ft
-roof tiles,Modern Pepperfry roof tiles 2,/database/roof tiles/Screenshot 2026-06-15 135718.png,https://www.pepperfry.com/,Pepperfry,$5.99 / sq ft
-roof tiles,Modern Pepperfry roof tiles 3,/database/roof tiles/Screenshot 2026-06-15 135744.png,https://www.pepperfry.com/,Pepperfry,$5.99 / sq ft
-setees,Emerald Green Velvet 3-Seater Sofa,/database/setees/emerald_sofa.png,https://www.pepperfry.com/furniture-benches.html,Pepperfry,$199.00
-setees,Rustic Wooden Dining Bench,/database/setees/Screenshot 2026-06-11 124454.png,https://www.pepperfry.com/furniture-benches.html,Pepperfry,$199.00
-setees,Modern Upholstered Settee,/database/setees/Screenshot 2026-06-11 124521.png,https://www.pepperfry.com/furniture-benches.html,Pepperfry,$199.00
-setees,Classic Storage Trunk Bench,/database/setees/Screenshot 2026-06-11 124541.png,https://www.pepperfry.com/furniture-benches.html,Pepperfry,$199.00
-setees,Tufted Velvet Entryway Bench 2,/database/setees/Screenshot 2026-06-13 142320.png,https://www.pepperfry.com/furniture-benches.html,Pepperfry,$199.00
-setees,Rustic Wooden Dining Bench 2,/database/setees/Screenshot 2026-06-13 142336.png,https://www.pepperfry.com/furniture-benches.html,Pepperfry,$199.00
-table,Minimalist Solid Wood Coffee Table,/database/table/coffee_table.png,https://www.pepperfry.com/furniture-tables.html,Pepperfry,$199.00
-table,Industrial Oak Coffee Table,/database/table/Screenshot 2026-06-11 124803.png,https://www.pepperfry.com/furniture-tables.html,Pepperfry,$199.00
-table,Floating Console Wall Table,/database/table/Screenshot 2026-06-11 124828.png,https://www.pepperfry.com/furniture-tables.html,Pepperfry,$199.00
-table,Sleek Metal Nesting Tables,/database/table/Screenshot 2026-06-11 124841.png,https://www.pepperfry.com/furniture-tables.html,Pepperfry,$199.00
-table_lights,Ceramic Bedside Table Lamp,/database/table_lights/Screenshot 2026-06-13 142417.png,https://www.pepperfry.com/lamps-lighting-table-lamps.html,Pepperfry,$129.00
-table_lights,Adjustable Brass Desk Task Lamp,/database/table_lights/Screenshot 2026-06-13 142431.png,https://www.pepperfry.com/lamps-lighting-table-lamps.html,Pepperfry,$129.00
-table_lights,Modern Glass Globe Table Light,/database/table_lights/Screenshot 2026-06-13 142453.png,https://www.pepperfry.com/lamps-lighting-table-lamps.html,Pepperfry,$129.00
-table_lights,Earthy Terracotta Accent Lamp,/database/table_lights/Screenshot 2026-06-13 142525.png,https://www.pepperfry.com/lamps-lighting-table-lamps.html,Pepperfry,$129.00
-tiles,Premium Italian Marble Floor Tile,/database/tiles/marble_tile.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
-tiles,Rustic Honey Oak Wood Floor Tile,/database/tiles/oak_wood_tile.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
-tiles,Terrazzo Pattern Porcelain Tile,/database/tiles/Screenshot 2026-06-11 152857.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
-tiles,Polished Grey Granite Floor Tile,/database/tiles/Screenshot 2026-06-11 152925.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
-tiles,Premium White Italian Marble Tile 2,/database/tiles/Screenshot 2026-06-11 152956.png,https://www.pepperfry.com/furnishings-rugs.html,Pepperfry,$5.99 / sq ft
-tv_units,Floating Modern TV Console,/database/tv_units/Screenshot 2026-06-11 124340.png,https://www.pepperfry.com/furniture-tv-units.html,Pepperfry,$349.00
-tv_units,Solid Wood Entertainment Center,/database/tv_units/Screenshot 2026-06-11 124606.png,https://www.pepperfry.com/furniture-tv-units.html,Pepperfry,$349.00
-tv_units,Mid-Century Media Cabinet,/database/tv_units/Screenshot 2026-06-11 124634.png,https://www.pepperfry.com/furniture-tv-units.html,Pepperfry,$349.00
-tv_units,Sleek Wall Mounted TV Panel,/database/tv_units/Screenshot 2026-06-13 141742.png,https://www.pepperfry.com/furniture-tv-units.html,Pepperfry,$349.00
-tv_units,Floating Modern TV Console 2,/database/tv_units/Screenshot 2026-06-13 141822.png,https://www.pepperfry.com/furniture-tv-units.html,Pepperfry,$349.00
-tv_units,Solid Wood Entertainment Center 2,/database/tv_units/Screenshot 2026-06-13 141845.png,https://www.pepperfry.com/furniture-tv-units.html,Pepperfry,$349.00
-tv_units,Mid-Century Media Cabinet 2,/database/tv_units/Screenshot 2026-06-13 141906.png,https://www.pepperfry.com/furniture-tv-units.html,Pepperfry,$349.00
-wall_decor,Abstract Canvas Framed Art,/database/wall_decor/Screenshot 2026-06-13 143434.png,https://www.pepperfry.com/home-decor-wall-art.html,Pepperfry,$349.00
-wall_decor,Sunburst Metal Wall Sculpture,/database/wall_decor/Screenshot 2026-06-13 143453.png,https://www.pepperfry.com/home-decor-wall-art.html,Pepperfry,$349.00
-wall_decor,Vintage Wooden Wall Plaque,/database/wall_decor/Screenshot 2026-06-13 143701.png,https://www.pepperfry.com/home-decor-wall-art.html,Pepperfry,$349.00
-wall_decor,Minimalist Geometric Wall Panel,/database/wall_decor/Screenshot 2026-06-13 143722.png,https://www.pepperfry.com/home-decor-wall-art.html,Pepperfry,$349.00
-wall_decor,Abstract Canvas Framed Art 2,/database/wall_decor/Screenshot 2026-06-13 143815.png,https://www.pepperfry.com/home-decor-wall-art.html,Pepperfry,$349.00
-wall_decor,Sunburst Metal Wall Sculpture 2,/database/wall_decor/Screenshot 2026-06-13 143835.png,https://www.pepperfry.com/home-decor-wall-art.html,Pepperfry,$349.00
-wall_hangings,Handwoven Boho Macrame Hanging,/database/wall_hangings/Screenshot 2026-06-13 141407.png,https://www.pepperfry.com/home-decor-wall-shelves.html,Pepperfry,$349.00
-wall_hangings,Rustic Wall Hanging Mirror,/database/wall_hangings/Screenshot 2026-06-13 141442.png,https://www.pepperfry.com/home-decor-wall-shelves.html,Pepperfry,$349.00
-wall_hangings,Decorative Hanging Metal Bells,/database/wall_hangings/Screenshot 2026-06-13 141628.png,https://www.pepperfry.com/home-decor-wall-shelves.html,Pepperfry,$349.00
-wall_plants,Faux Potted Monstera Plant,/database/wall_plants/Screenshot 2026-06-13 143616.png,https://www.pepperfry.com/home-decor-artificial-plants.html,Pepperfry,$349.00
-wall_plants,Hanging Artificial Ivy Vines,/database/wall_plants/Screenshot 2026-06-13 143633.png,https://www.pepperfry.com/home-decor-artificial-plants.html,Pepperfry,$349.00
-wall_shelves,Floating Hexagonal Wall Shelf,/database/wall_shelves/Screenshot 2026-06-13 143551.png,https://www.pepperfry.com/furniture-wall-shelves.html,Pepperfry,$349.00
-windows,Double-Hung Accent Window Frame,/database/windows/Screenshot 2026-06-15 140144.png,https://www.pepperfry.com/furnishings-curtains-blinds.html,Pepperfry,$249.00
-windows,Modern Sliding Glass Window,/database/windows/Screenshot 2026-06-15 140241.png,https://www.pepperfry.com/furnishings-curtains-blinds.html,Pepperfry,$249.00
-windows,Arched Transom Top Window,/database/windows/Screenshot 2026-06-15 140250.png,https://www.pepperfry.com/furnishings-curtains-blinds.html,Pepperfry,$249.00
+bed,Brevik Sheesham Wood Queen Size Bed In Provincial Teak Finish,/database/bed/Brevik Sheesham Wood Queen Size Bed In Provincial Teak Finish.png,https://www.pepperfry.com/product/brevik-sheesham-wood-queen-size-bed-in-provincial-teak-finish-with-drawer-storage-2151490.html,Pepperfry,$199.00
+bed,Persia Queen Size Bed in Wenge Finish,/database/bed/Persia Queen Size Bed in Wenge Finish.png,https://www.pepperfry.com/product/persia-queen-size-bed-in-wenge-finish-2162786.html,Pepperfry,$199.00
+bed,Tokyo Queen size Bed in Planked Walnut Finish with Upholstered Headboard Storage,/database/bed/Tokyo Queen size Bed in Planked Walnut Finish with Upholstered Headboard Storage.png,https://www.pepperfry.com/product/tokyo-queen-size-bed-in-planked-walnut-finish-with-upholstered-headboard-storage-2182630.html,Pepperfry,$199.00
+carpets,Beige Abstract Microfibre 6 ft x 9 ft Machine Made Carpet,/database/carpets/Beige Abstract Microfibre 6 ft x 9 ft Machine Made Carpet.png,https://www.pepperfry.com/product/beige-abstract-microfibre-6-ft-x-9-ft-machine-made-carpet-1672575.html,Pepperfry,$249.00
+carpets,Multicolor Silk 6 X 4 Feet Abstract Rectangle Carpet,/database/carpets/Multicolor Silk 6 X 4 Feet Abstract Rectangle Carpet.png,https://www.pepperfry.com/product/multicolor-silk-6-x-4-feet-abstract-rectangle-carpet-2313953.html,Pepperfry,$249.00
+carpets,Rust and Cream Abstract 4x6 Feet Machine Made Carpet,/database/carpets/Rust and Cream Abstract 4x6 Feet Machine Made Carpet.png,https://www.pepperfry.com/product/rust-and-cream-abstract-4x6-feet-machine-made-carpet-2259320.html,Pepperfry,$249.00
+carpets,Soft Argyle Rug 5'6X7'6 ft Beige & White Carpet Dhurrie,/database/carpets/Soft Argyle Rug 5'6X7'6 ft Beige & White Carpet Dhurrie.png,https://www.pepperfry.com/product/soft-argyle-rug-56x76-ft-beige-white-carpet-dhurrie-2300425.html,Pepperfry,$249.00
+chairs,Clint Sheesham Wood Arm Chair In Provincial Teak Finish,/database/chairs/Clint Sheesham Wood Arm Chair In Provincial Teak Finish.png,https://www.pepperfry.com/product/clint-sheesham-wood-arm-chair-in-provincial-teak-finish-1685909.html,Pepperfry,$199.00
+chairs,Esme Velvet Armchair In Blue Colour,/database/chairs/Esme Velvet Armchair In Blue Colour.png,https://www.pepperfry.com/product/esme-velvet-armchair-in-blue-colour-2168752.html,Pepperfry,$199.00
+chairs,Petra Sheesham Wood Arm Chair In Scratch Resistant Provincial Teak Finish,/database/chairs/Petra Sheesham Wood Arm Chair In Scratch Resistant Provincial Teak Finish.png,https://www.pepperfry.com/product/petra-sheesham-wood-arm-chair-in-provincial-teak-finish-2206609.html,Pepperfry,$199.00
+chairs,Poise Fabric Rocking Chair In Multi Colour,/database/chairs/Poise Fabric Rocking Chair In Multi Colour.png,,,$199.00
+curtains,Blue Floral Cotton 7.5 Ft Semisheer Eyelet Door Curtains (Pack of 4),/database/curtains/Blue Floral Cotton 7.5 Ft Semisheer Eyelet Door Curtains (Pack of 4).png,https://www.pepperfry.com/product/blue-floral-cotton-7point5-ft-semisheer-eyelet-door-curtains-pack-of-4-2047110.html,Pepperfry,$199.00
+curtains,Blue Shower Polyester 6 Ft Semisheer Eyelet Shower Curtain,/database/curtains/Blue Shower Polyester 6 Ft Semisheer Eyelet Shower Curtain.png,https://www.pepperfry.com/product/blue-shower-polyester-6-ft-semisheer-eyelet-shower-curtain-1984981.html,Pepperfry,$199.00
+curtains,Cedar Cream & Blue Cotton Ethnic 7 Feet Room Darkening Eyelet Door Curtains (2 Pc),/database/curtains/Cedar Cream & Blue Cotton Ethnic 7 Feet Room Darkening Eyelet Door Curtains (2 Pc).png,https://www.pepperfry.com/product/cedar-cream-blue-cotton-230-gsm-ethnic-7-feet-room-darkening-eyelet-door-curtai-2298929.html,Pepperfry,$199.00
+dining,Bardu Sheesham Wood 6 Seater Dining Set in Honey Oak Finish,/database/dining/Bardu Sheesham Wood 6 Seater Dining Set in Honey Oak Finish.png,https://www.pepperfry.com/product/bardu-sheesham-wood-6-seater-dining-set-in-honey-oak-finish-2273330.html,Pepperfry,$199.00
+dining,Marin Sheesham Wood 4 Seater Dining Set in Scratch Resistant Provincial Teak Finish,/database/dining/Marin Sheesham Wood 4 Seater Dining Set in Scratch Resistant Provincial Teak Finish.png,https://www.pepperfry.com/product/marin-sheesham-wood-4-seater-dining-set-in-provincial-teak-finish-1861104.html,Pepperfry,$199.00
+dining,Modena Toronto Marble Top 6 Seater Dining Set In Natural Finish,/database/dining/Modena Toronto Marble Top 6 Seater Dining Set In Natural Finish.png,https://www.pepperfry.com/product/modena-solid-wood-marble-top-6-seater-dining-set-in-natural-finish-2300959.html,Pepperfry,$199.00
+front door,Screenshot 2026-06-15 135926,/database/front door/Screenshot 2026-06-15 135926.png,,,$599.00
+front door,Screenshot 2026-06-15 135939,/database/front door/Screenshot 2026-06-15 135939.png,,,$599.00
+front door,Screenshot 2026-06-15 135954,/database/front door/Screenshot 2026-06-15 135954.png,,,$599.00
+front door,Screenshot 2026-06-15 140021,/database/front door/Screenshot 2026-06-15 140021.png,,,$599.00
+hanging_lights,Cedar 5 Lights Brown Solid Wood Linear Chandelier Cluster Hanging Light,/database/hanging_lights/Cedar 5 Lights Brown Solid Wood Linear Chandelier Cluster Hanging Light.png,https://www.pepperfry.com/product/cedar-5-lights-brown-solid-wood-linear-chandelier-cluster-hanging-light-1978736.html,Pepperfry,$129.00
+hanging_lights,Louis Transparent Glass Hanging Light,/database/hanging_lights/Louis Transparent Glass Hanging Light.png,https://www.pepperfry.com/product/louis-transparent-glass-hanging-light-2049342.html,Pepperfry,$129.00
+hanging_lights,Novelty Handmade Rattan Pendant Hanging Light (Brown),/database/hanging_lights/Novelty Handmade Rattan Pendant Hanging Light (Brown).png,https://www.pepperfry.com/product/novelty-handmade-rattan-pendant-hanging-light-brown-2185329.html,Pepperfry,$129.00
+roof tiles,Screenshot 2026-06-15 135651,/database/roof tiles/Screenshot 2026-06-15 135651.png,,,$5.99 / sq ft
+roof tiles,Screenshot 2026-06-15 135718,/database/roof tiles/Screenshot 2026-06-15 135718.png,,,$5.99 / sq ft
+roof tiles,Screenshot 2026-06-15 135744,/database/roof tiles/Screenshot 2026-06-15 135744.png,,,$5.99 / sq ft
+setees,Bingo Fabric 3 Seater Sofa In Grey Colour,/database/setees/Bingo Fabric 3 Seater Sofa In Grey Colour.png,https://www.pepperfry.com/product/bingo-fabric-3-seater-sofa-in-grey-colour-2194046.html,Pepperfry,$199.00
+setees,Derby Velvet 3 Seater Sofa In Carbon Grey Colour,/database/setees/Derby Velvet 3 Seater Sofa In Carbon Grey Colour.png,https://www.pepperfry.com/product/derby-velvet-3-seater-sofa-in-carbon-grey-colour-2189507.html,Pepperfry,$199.00
+setees,Frejol Velvet 3 Seater Sofa In Cream Colour,/database/setees/Frejol Velvet 3 Seater Sofa In Cream Colour.png,https://www.pepperfry.com/product/frejol-velvet-3-seater-sofa-in-cream-colour-2191642.html,Pepperfry,$199.00
+setees,Helo Solid Wood Setty In Beige Color,/database/setees/Helo Solid Wood Setty In Beige Color.png,https://www.pepperfry.com/product/helo-solid-wood-setty-in-beige-color-2286828.html,Pepperfry,$199.00
+setees,Marino Bench In Beige Color,/database/setees/Marino Bench In Beige Color.png,https://www.pepperfry.com/product/marino-bench-in-beige-color-2286838.html,Pepperfry,$199.00
+table,Aurum Centre Table In Natural Bleach Finish,/database/table/Aurum Centre Table In Natural Bleach Finish.png,https://www.pepperfry.com/product/aurum-centre-table-in-natural-bleach-finish-2315339.html,Pepperfry,$199.00
+table,Eco Large Coffee Table In Choco Walnut Finish,/database/table/Eco Large Coffee Table In Choco Walnut Finish.png,https://www.pepperfry.com/product/eco-large-coffee-table-in-choco-walnut-finish-1849876.html,Pepperfry,$199.00
+table,Modena Toronto Marble Coffee Table In Natural Finish,/database/table/Modena Toronto Marble Coffee Table In Natural Finish.png,https://www.pepperfry.com/product/modena-solid-wood-marble-coffee-table-in-natural-finish-2300962.html,Pepperfry,$199.00
+table_lights,Blue Eye in the Sky Metal Enamel Table Lamp,/database/table_lights/Blue Eye in the Sky Metal Enamel Table Lamp.png,https://www.pepperfry.com/product/blue-eye-in-the-sky-metal-enamel-table-lamp-2314864.html,Pepperfry,$129.00
+table_lights,Boho Sphere Indonesian Premium Natural Rattan cane & Braided Beize Wire,/database/table_lights/Boho Sphere Indonesian Premium Natural Rattan cane & Braided Beize Wire.png,https://www.pepperfry.com/product/boho-sphere-indonesian-premium-natural-rattan-cane-braided-beize-wire-2244122.html,Pepperfry,$129.00
+table_lights,Pisa White Fabric Shade Night Lamp With Glass Base,/database/table_lights/Pisa White Fabric Shade Night Lamp With Glass Base.png,https://www.pepperfry.com/product/pisa-white-fabric-shade-night-lamp-with-glass-base-1608199.html,Pepperfry,$129.00
+table_lights,White Pillar Mango Wood Table Lamp,/database/table_lights/White Pillar Mango Wood Table Lamp.png,https://www.pepperfry.com/product/white-pillar-mango-wood-table-lamp-2314869.html,Pepperfry,$129.00
+tiles,marble tile,/database/tiles/marble_tile.png,,,$5.99 / sq ft
+tiles,oak wood tile,/database/tiles/oak_wood_tile.png,,,$5.99 / sq ft
+tiles,Screenshot 2026-06-11 152857,/database/tiles/Screenshot 2026-06-11 152857.png,,,$5.99 / sq ft
+tiles,Screenshot 2026-06-11 152925,/database/tiles/Screenshot 2026-06-11 152925.png,,,$5.99 / sq ft
+tiles,Screenshot 2026-06-11 152956,/database/tiles/Screenshot 2026-06-11 152956.png,,,$5.99 / sq ft
+tv_units,Anatdol TV Console In Brown Maple Colour,/database/tv_units/Anatdol TV Console In Brown Maple Colour.png,https://www.pepperfry.com/product/anatdol-tv-units-in-brown-maple-colour-2166570.html,Pepperfry,$349.00
+tv_units,Fenily TV Unit in Wenge Finish for TVs up to 65,/database/tv_units/Fenily TV Unit in Wenge Finish for TVs up to 65.png,https://www.pepperfry.com/product/fenily-tv-unit-in-wenge-finish-for-tvs-up-to-65-inches-1987991.html,Pepperfry,$349.00
+tv_units,Freemont Sheesham Wood TV Console in Scratch Resistant Provincial Teak Finish for TVs up to 70,/database/tv_units/Freemont Sheesham Wood TV Console in Scratch Resistant Provincial Teak Finish for TVs up to 70.png,https://www.pepperfry.com/product/freemont-sheesham-wood-tv-console-in-provincial-teak-finish-for-tvs-up-to-70-inches-1231141.html,Pepperfry,$349.00
+tv_units,Kibo Tv Unit In Lyon Walnut Finish for TV's upto 55'',/database/tv_units/Kibo Tv Unit In Lyon Walnut Finish for TV's upto 55''.png,https://www.pepperfry.com/product/kibo-tv-unit-in-lyon-walnut-finish-2215342.html,Pepperfry,$349.00
+tv_units,Skiddo TV Unit In Brown Maple & White Finish For TV Upto 50 Inch,/database/tv_units/Skiddo TV Unit In Brown Maple & White Finish For TV Upto 50 Inch.png,https://www.pepperfry.com/product/skiddo-tv-unit-in-brown-maple-white-finish-for-tv-upto-50-inch-2152519.html,Pepperfry,$349.00
+wall_decor,Beautiful Colorful Texture Abstract Canvas Wall Painting,/database/wall_decor/Beautiful Colorful Texture Abstract Canvas Wall Painting.png,https://www.pepperfry.com/product/beautiful-colorful-texture-abstract-canvas-wall-painting-2288846.html,Pepperfry,$349.00
+wall_decor,Classic Horizontal Four Natural Wood Wall Shelf,/database/wall_decor/Classic Horizontal Four Natural Wood Wall Shelf.png,https://www.pepperfry.com/product/classichorizontal-four-natural-wood-wall-shelf-2174980.html,Pepperfry,$349.00
+wall_decor,Lineart Multicolour Canvas Framed Abstract Art Panel Set of 4,/database/wall_decor/Lineart Multicolour Canvas Framed Abstract Art Panel Set of 4.png,https://www.pepperfry.com/product/lineart-multicolour-canvas-framed-abstract-art-panel-set-of-4-2027639.html,Pepperfry,$349.00
+wall_decor,Petree Engineered Wood Wall Mounted Floating Shelf,/database/wall_decor/Petree Engineered Wood Wall Mounted Floating Shelf.png,https://www.pepperfry.com/product/petree-engineered-wood-wall-mounted-floating-shelf-2198506.html,Pepperfry,$349.00
+wall_decor,Ship Shape Backlit Walnut Wood Wall Shelf,/database/wall_decor/Ship Shape Backlit Walnut Wood Wall Shelf.png,https://www.pepperfry.com/product/ship-shape-backlit-walnut-wood-wall-shelf-2174939.html,Pepperfry,$349.00
+wall_decor,Urban Motif Set Of 7 Multicolour Wood Wall Shelves,/database/wall_decor/Urban Motif Set Of 7 Multicolour Wood Wall Shelves.png,https://www.pepperfry.com/product/urban-motif-set-of-7-multicolour-wood-wallshelves-2174987.html,Pepperfry,$349.00
+wall_hangings,Brown And Blue Metal Wall Art With Led,/database/wall_hangings/Brown And Blue Metal Wall Art With Led.png,https://www.pepperfry.com/product/brown-and-blue-metal-wall-art-with-led-2292493.html,Pepperfry,$349.00
+wall_hangings,Gold Large Metal Wall Frame,/database/wall_hangings/Gold Large Metal Wall Frame.png,https://www.pepperfry.com/product/gold-large-metal-wall-frame-2219697.html,Pepperfry,$349.00
+wall_hangings,Meenkari Hanging Wall Decor Plates Pack Of 5,/database/wall_hangings/Meenkari Hanging Wall Decor Plates Pack Of 5.png,https://www.pepperfry.com/product/meenkari-hanging-wall-decor-plates-pack-of-5-2281642.html,Pepperfry,$349.00
+wall_plants,Circular Modern Shelves with Walnut Finish Set of Four,/database/wall_plants/Circular Modern Shelves with Walnut Finish Set of Four.png,https://www.pepperfry.com/product/circular-modern-shelves-with-walnut-finish-set-of-four-2288919.html,Pepperfry,$349.00
+wall_plants,Pack Of 3 White Rectangular Wall Planters,/database/wall_plants/Pack Of 3 White Rectangular Wall Planters.png,https://www.pepperfry.com/product/pack-of-3-white-rectangular-wall-planters-2245745.html,Pepperfry,$349.00
+wall_shelves,Sheesham Wood Wall Shelf With Door In Teak Finish,/database/wall_shelves/Sheesham Wood Wall Shelf With Door In Teak Finish.png,https://www.pepperfry.com/product/sheesham-wood-wall-shelf-with-door-in-teak-finish-1666276.html,Pepperfry,$349.00
+windows,Screenshot 2026-06-15 140144,/database/windows/Screenshot 2026-06-15 140144.png,,,$249.00
+windows,Screenshot 2026-06-15 140241,/database/windows/Screenshot 2026-06-15 140241.png,,,$249.00
+windows,Screenshot 2026-06-15 140250,/database/windows/Screenshot 2026-06-15 140250.png,,,$249.00
