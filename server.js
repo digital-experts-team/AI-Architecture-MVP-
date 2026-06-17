@@ -1005,7 +1005,6 @@ STRICT BLUEPRINT LAYOUT MATCHING:
 - You must analyze the provided blueprint of the room with extreme care.
 - You MUST identify the exact location and counts of all windows, doors, and walls shown in the blueprint for this specific room: "${roomType}".
 - In the generated Imagen 4 prompt, you MUST describe the room's layout exactly as it is in the blueprint. If the blueprint shows a large window on one wall, describe a window on that wall looking out. If it shows doors to other rooms, describe those doors. Do not add windows, doors, or open areas that are not present in the blueprint.
-`;
 
 I have provided the floor plan/room layout (if available) and our database of room design assets.
 The database assets are organized into folders. For each folder, the reference images have been attached above with labels in the format 'Asset item from category "[foldername]" (Filename: "[filename]")'.
