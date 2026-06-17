@@ -503,8 +503,7 @@ export default function ModuleInterior({
                   {/* Left Column: Image Display */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                     
-                    {/* Camera Angle Bar */}
-                    {renderAngleBar(optionActiveAngle, handleSetOptionActiveAngle, optionImages)}
+                    {/* Camera Angle Bar hidden - only generating the high overview view */}
 
                     <div 
                       className="render-image-container" 

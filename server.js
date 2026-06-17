@@ -1044,7 +1044,7 @@ For your design, you MUST select items from the database folders:
 7. Write a highly detailed, professional photorealistic image generation prompt for Imagen 4. 
 
 The Imagen 4 prompt MUST:
-- Describe a gorgeous, professional interior design photo of the ${roomType}.
+- Describe a gorgeous, professional high overview interior design photo of the ${roomType}, taken from a high-angle wide-angle perspective looking down at the entire room layout to show all walls, flooring, placement of the furniture, and doors/windows clearly.
 - Explicitly describe the visual appearance of the selected tile flooring in detail.
 - Explicitly describe the placed furniture items, lighting fixtures, carpets, and wall decor in detail (referencing their color, materials, shapes, and positions matching the reference files).
 - Explicitly incorporate the selected paint color in detail.
