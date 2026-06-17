@@ -152,9 +152,9 @@ Return your response as a JSON object with this structure:
 
     contents.push(promptText);
 
-    console.log(`Analyzing design for alternative angle "${angle}" with Gemini 3.0 Flash...`);
+    console.log(`Analyzing design for alternative angle "${angle}" with Gemini 2.5 Flash...`);
     const designResponse = await ai.models.generateContent({
-      model: 'gemini-3.0-flash',
+      model: 'gemini-2.5-flash',
       contents: contents,
       config: {
         responseMimeType: 'application/json',

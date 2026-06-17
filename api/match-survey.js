@@ -119,7 +119,7 @@ Return your response as a JSON object with this exact structure:
 
     console.log("Analyzing land survey and blueprint candidates...");
     const response = await ai.models.generateContent({
-      model: 'gemini-3.0-flash',
+      model: 'gemini-2.5-flash',
       contents,
       config: {
         responseMimeType: 'application/json',
