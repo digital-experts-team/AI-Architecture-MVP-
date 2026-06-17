@@ -128,10 +128,12 @@ COORDINATING WITH EXTERIOR SELECTIONS:
 The overall home architectural style is "${styleName}". The interior design concept, colors, flooring, and furniture layout MUST suit and coordinate with this "${styleName}" style!
 ${exteriorDesignPrompt}
 
-STRICT BLUEPRINT LAYOUT MATCHING:
+STRICT BLUEPRINT LAYOUT MATCHING & VISUAL AUDIT:
 - You must analyze the provided blueprint of the room with extreme care.
 - You MUST identify the exact location and counts of all windows, doors, and walls shown in the blueprint for this specific room: "${roomType}".
-- In the generated Imagen 4 prompt, you MUST describe the room's layout exactly as it is in the blueprint. If the blueprint shows a large window on one wall, describe a window on that wall looking out. If it shows doors to other rooms, describe those doors. Do not add windows, doors, or open areas that are not present in the blueprint.
+- In the generated Imagen 4 prompt, you MUST describe the room's layout exactly as it is in the blueprint. If the blueprint shows exactly one window on a specific wall, describe "exactly one window" on that wall looking out. If it shows exactly one door, describe "exactly one door". Do not add extra windows, doors, or open areas that are not present in the blueprint for this room.
+- Do NOT use vague plural terms like 'windows' or 'doors' without prefixing them with their exact counts (e.g. 'exactly one window', 'exactly two doors').
+- Paint Coordination: Select an interior paint color that coordinates beautifully with the overall style and any selected exterior paint color.
 
 I have provided the floor plan/room layout (if available) and our database of room design assets.
 The database assets are organized into folders. For each folder, the reference images have been attached above with labels in the format 'Asset item from category "[foldername]" (Filename: "[filename]")'.
