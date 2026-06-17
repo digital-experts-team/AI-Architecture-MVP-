@@ -22,6 +22,7 @@ export default function App() {
   ]);
   const [constructionStyle, setConstructionStyle] = useState('Modern Minimalist');
   const [floorsCount, setFloorsCount] = useState(1);
+  const [exteriorResult, setExteriorResult] = useState(null);
 
   const fetchStatus = async () => {
     try {
@@ -136,6 +137,8 @@ export default function App() {
                 constructionStyle={constructionStyle}
                 floorsCount={floorsCount}
                 assets={assets}
+                exteriorResult={exteriorResult}
+                setExteriorResult={setExteriorResult}
               />
             </div>
 
@@ -149,6 +152,7 @@ export default function App() {
                 apiBaseUrl={API_BASE_URL}
                 isApiConfigured={isApiConfigured}
                 constructionStyle={constructionStyle}
+                exteriorResult={exteriorResult}
               />
             </div>
           </div>

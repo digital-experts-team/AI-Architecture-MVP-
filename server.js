@@ -848,9 +848,10 @@ The Imagen 4 prompt MUST STAY 100% TRUE TO THE BLUEPRINT AND SELECTED ASSETS:
 1. Clearly specify a "straight-on architectural front elevation view (straight view / front elevation) of a ${floorsText} house showing the front facade directly and squarely".
 ${heightInstruction}
 3. Incorporate the selected front door, roof tiles, windows, and paint color by describing their visual appearance (materials, textures, and style) in detail.
-4. Enforce 100% strict alignment to the generated blueprint layout: The generated house exterior facade MUST match the room arrangement, doors, windows, and sitout layout of the blueprint completely without any changes or additions. Specifically, if a Sitout is in the center, the front facade must feature a centered open sitout with teak columns; if a Living Room is on the left, the left side of the facade must show the Living Room windows; if a Master Bedroom is on the right, the right side must correspond to the Master Bedroom windows. There must be NO car porch unless one is explicitly shown in the blueprint. Match the door and window placements and counts exactly as they are arranged in the blueprint.
-5. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
-6. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
+4. Enforce 100% strict alignment to the generated blueprint layout: The generated house exterior facade MUST match the room arrangement, doors, windows, and sitout layout of the blueprint completely without any changes or additions. Specifically, if a Sitout is in the center, the front facade must feature a centered open sitout with teak columns; if a Living Room is on the left, the left side of the facade must show the Living Room windows; if a Master Bedroom is on the right, the right side must correspond to the Master Bedroom windows. There must be NO car porch unless one is explicitly shown in the blueprint.
+5. STRICT DOOR AND WINDOW FIDELITY: You MUST count the exact number of windows and doors on the front-facing walls in the blueprint, and describe their exact placement and count in the Imagen prompt. For example, if the blueprint shows exactly two windows on the left section of the facade and one window on the right section, you must write 'exactly two windows on the left facade section and exactly one window on the right facade section'. Do not add or hallucinate any doors, windows, balconies, chimneys, or wings that are not in the blueprint. Match the door and window counts, styles, and alignments exactly.
+6. Specify high-end architectural catalog photography details: "shot on 35mm lens, warm late afternoon sunlight, volumetric soft lighting, photorealistic, 8k resolution, architectural digest feature".
+7. Do NOT mention code variables, filenames, or technical terms in the Imagen prompt. Use visual descriptions.
 ${styleRefsPrompt}
 
 Return your response as a JSON object with this structure:
@@ -927,7 +928,7 @@ Return your response as a JSON object with this structure:
 
 // 6. Generate Room Design and Photorealistic renders
 app.post('/api/generate-design', async (req, res) => {
-  const { roomType, floorPlanUrl, constructionStyle } = req.body;
+  const { roomType, floorPlanUrl, constructionStyle, exteriorDesign } = req.body;
   const styleName = constructionStyle || 'Modern Minimalist';
 
   if (!roomType) {
@@ -977,10 +978,33 @@ app.post('/api/generate-design', async (req, res) => {
       return res.status(400).json({ error: "Please ensure you have at least one floor tile texture and at least one furniture/decor item in the database." });
     }
 
+    // Formulate coordination prompts with exterior selections if available
+    let exteriorDesignPrompt = "";
+    if (exteriorDesign) {
+      const paintUsedName = exteriorDesign.paint?.name || exteriorDesign.paintUsed || "";
+      const paintHex = exteriorDesign.paint?.hex || "";
+      const exteriorWindows = exteriorDesign.selectedAssets?.windows || "";
+      const exteriorDoor = exteriorDesign.selectedAssets?.["front door"] || "";
+      
+      exteriorDesignPrompt = `
+COORDINATING WITH EXTERIOR SELECTIONS:
+- The selected exterior paint color is: "${paintUsedName}" ${paintHex ? `(Hex: ${paintHex})` : ""}. In your interior design, you MUST choose a wall paint color that coordinates beautifully with this color. You can choose the same color key if it fits, or select a color that compliments it perfectly.
+- The exterior window style is: "${exteriorWindows}". The interior room windows MUST reflect this exact window style. Specify the same window design looking out.
+- The exterior main door style is: "${exteriorDoor}". If this room is adjacent to the main entrance (like a Living Room/Sitout), any transition doors to the exterior must match this door style.
+`;
+    }
+
     // Add detailed planning instructions
     const randomSalt = Math.floor(Math.random() * 1000000);
     const promptText = `You are a world-class AI Interior Designer. You are designing a single ${roomType}.
 The overall home architectural style is "${styleName}". The interior design concept, colors, flooring, and furniture layout MUST suit and coordinate with this "${styleName}" style!
+${exteriorDesignPrompt}
+
+STRICT BLUEPRINT LAYOUT MATCHING:
+- You must analyze the provided blueprint of the room with extreme care.
+- You MUST identify the exact location and counts of all windows, doors, and walls shown in the blueprint for this specific room: "${roomType}".
+- In the generated Imagen 4 prompt, you MUST describe the room's layout exactly as it is in the blueprint. If the blueprint shows a large window on one wall, describe a window on that wall looking out. If it shows doors to other rooms, describe those doors. Do not add windows, doors, or open areas that are not present in the blueprint.
+`;
 
 I have provided the floor plan/room layout (if available) and our database of room design assets.
 The database assets are organized into folders. For each folder, the reference images have been attached above with labels in the format 'Asset item from category "[foldername]" (Filename: "[filename]")'.

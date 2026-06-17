@@ -7,10 +7,13 @@ export default function ModuleExterior({
   isApiConfigured,
   constructionStyle,
   floorsCount,
-  assets
+  assets,
+  exteriorResult,
+  setExteriorResult
 }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState(null);
+  const result = exteriorResult;
+  const setResult = setExteriorResult;
   const [activeLightboxImage, setActiveLightboxImage] = useState(null);
   const [activeProviderAsset, setActiveProviderAsset] = useState(null);
 

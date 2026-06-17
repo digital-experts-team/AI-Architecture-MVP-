@@ -50,7 +50,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { roomType, floorPlanUrl, constructionStyle } = req.body;
+  const { roomType, floorPlanUrl, constructionStyle, exteriorDesign } = req.body;
   const styleName = constructionStyle || 'Modern Minimalist';
 
   if (!roomType) {
@@ -106,10 +106,33 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Please ensure you have at least one floor tile texture and at least one furniture/decor item in the database." });
     }
 
+    // Formulate coordination prompts with exterior selections if available
+    let exteriorDesignPrompt = "";
+    if (exteriorDesign) {
+      const paintUsedName = exteriorDesign.paint?.name || exteriorDesign.paintUsed || "";
+      const paintHex = exteriorDesign.paint?.hex || "";
+      const exteriorWindows = exteriorDesign.selectedAssets?.windows || "";
+      const exteriorDoor = exteriorDesign.selectedAssets?.["front door"] || "";
+      
+      exteriorDesignPrompt = `
+COORDINATING WITH EXTERIOR SELECTIONS:
+- The selected exterior paint color is: "${paintUsedName}" ${paintHex ? `(Hex: ${paintHex})` : ""}. In your interior design, you MUST choose a wall paint color that coordinates beautifully with this color. You can choose the same color key if it fits, or select a color that compliments it perfectly.
+- The exterior window style is: "${exteriorWindows}". The interior room windows MUST reflect this exact window style. Specify the same window design looking out.
+- The exterior main door style is: "${exteriorDoor}". If this room is adjacent to the main entrance (like a Living Room/Sitout), any transition doors to the exterior must match this door style.
+`;
+    }
+
     // Add detailed planning instructions
     const randomSalt = Math.floor(Math.random() * 1000000);
     const promptText = `You are a world-class AI Interior Designer. You are designing a single ${roomType}.
 The overall home architectural style is "${styleName}". The interior design concept, colors, flooring, and furniture layout MUST suit and coordinate with this "${styleName}" style!
+${exteriorDesignPrompt}
+
+STRICT BLUEPRINT LAYOUT MATCHING:
+- You must analyze the provided blueprint of the room with extreme care.
+- You MUST identify the exact location and counts of all windows, doors, and walls shown in the blueprint for this specific room: "${roomType}".
+- In the generated Imagen 4 prompt, you MUST describe the room's layout exactly as it is in the blueprint. If the blueprint shows a large window on one wall, describe a window on that wall looking out. If it shows doors to other rooms, describe those doors. Do not add windows, doors, or open areas that are not present in the blueprint.
+`;
 
 I have provided the floor plan/room layout (if available) and our database of room design assets.
 The database assets are organized into folders. For each folder, the reference images have been attached above with labels in the format 'Asset item from category "[foldername]" (Filename: "[filename]")'.
