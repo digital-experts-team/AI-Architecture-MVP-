@@ -1,0 +1,72 @@
+Category,Name,ImageUrl,ProductUrl,ProviderName,Price
+bed,Screenshot 2026-06-11 124919,/database/bed/Screenshot 2026-06-11 124919.png,https://example.com,Local Artisan,$199.00
+bed,Screenshot 2026-06-11 124939,/database/bed/Screenshot 2026-06-11 124939.png,https://example.com,Local Artisan,$199.00
+bed,Screenshot 2026-06-11 124957,/database/bed/Screenshot 2026-06-11 124957.png,https://example.com,Local Artisan,$199.00
+bed,wooden bed,/database/bed/wooden_bed.png,https://example.com,Local Artisan,$199.00
+carpets,Screenshot 2026-06-13 141952,/database/carpets/Screenshot 2026-06-13 141952.png,https://example.com,Local Artisan,$249.00
+carpets,Screenshot 2026-06-13 142016,/database/carpets/Screenshot 2026-06-13 142016.png,https://example.com,Local Artisan,$249.00
+carpets,Screenshot 2026-06-13 142045,/database/carpets/Screenshot 2026-06-13 142045.png,https://example.com,Local Artisan,$249.00
+carpets,Screenshot 2026-06-13 142107,/database/carpets/Screenshot 2026-06-13 142107.png,https://example.com,Local Artisan,$249.00
+chairs,Screenshot 2026-06-13 142159,/database/chairs/Screenshot 2026-06-13 142159.png,https://example.com,Local Artisan,$199.00
+chairs,Screenshot 2026-06-13 142216,/database/chairs/Screenshot 2026-06-13 142216.png,https://example.com,Local Artisan,$199.00
+chairs,Screenshot 2026-06-13 142232,/database/chairs/Screenshot 2026-06-13 142232.png,https://example.com,Local Artisan,$199.00
+chairs,Screenshot 2026-06-13 142248,/database/chairs/Screenshot 2026-06-13 142248.png,https://example.com,Local Artisan,$199.00
+curtains,Screenshot 2026-06-11 124654,/database/curtains/Screenshot 2026-06-11 124654.png,https://example.com,Local Artisan,$199.00
+curtains,Screenshot 2026-06-11 124703,/database/curtains/Screenshot 2026-06-11 124703.png,https://example.com,Local Artisan,$199.00
+curtains,Screenshot 2026-06-11 124717,/database/curtains/Screenshot 2026-06-11 124717.png,https://example.com,Local Artisan,$199.00
+curtains,Screenshot 2026-06-11 124736,/database/curtains/Screenshot 2026-06-11 124736.png,https://example.com,Local Artisan,$199.00
+dining,Screenshot 2026-06-11 125848,/database/dining/Screenshot 2026-06-11 125848.png,https://example.com,Local Artisan,$199.00
+dining,Screenshot 2026-06-11 125906,/database/dining/Screenshot 2026-06-11 125906.png,https://example.com,Local Artisan,$199.00
+dining,Screenshot 2026-06-11 125931,/database/dining/Screenshot 2026-06-11 125931.png,https://example.com,Local Artisan,$199.00
+front door,Screenshot 2026-06-15 135926,/database/front door/Screenshot 2026-06-15 135926.png,https://example.com,Local Artisan,$599.00
+front door,Screenshot 2026-06-15 135939,/database/front door/Screenshot 2026-06-15 135939.png,https://example.com,Local Artisan,$599.00
+front door,Screenshot 2026-06-15 135954,/database/front door/Screenshot 2026-06-15 135954.png,https://example.com,Local Artisan,$599.00
+front door,Screenshot 2026-06-15 140021,/database/front door/Screenshot 2026-06-15 140021.png,https://example.com,Local Artisan,$599.00
+hanging_lights,Screenshot 2026-06-13 141220,/database/hanging_lights/Screenshot 2026-06-13 141220.png,https://example.com,Local Artisan,$129.00
+hanging_lights,Screenshot 2026-06-13 141235,/database/hanging_lights/Screenshot 2026-06-13 141235.png,https://example.com,Local Artisan,$129.00
+hanging_lights,Screenshot 2026-06-13 141306,/database/hanging_lights/Screenshot 2026-06-13 141306.png,https://example.com,Local Artisan,$129.00
+hanging_lights,Screenshot 2026-06-13 141320,/database/hanging_lights/Screenshot 2026-06-13 141320.png,https://example.com,Local Artisan,$129.00
+roof tiles,Screenshot 2026-06-15 135651,/database/roof tiles/Screenshot 2026-06-15 135651.png,https://example.com,Local Artisan,$5.99 / sq ft
+roof tiles,Screenshot 2026-06-15 135718,/database/roof tiles/Screenshot 2026-06-15 135718.png,https://example.com,Local Artisan,$5.99 / sq ft
+roof tiles,Screenshot 2026-06-15 135744,/database/roof tiles/Screenshot 2026-06-15 135744.png,https://example.com,Local Artisan,$5.99 / sq ft
+setees,emerald sofa,/database/setees/emerald_sofa.png,https://example.com,Local Artisan,$199.00
+setees,Screenshot 2026-06-11 124454,/database/setees/Screenshot 2026-06-11 124454.png,https://example.com,Local Artisan,$199.00
+setees,Screenshot 2026-06-11 124521,/database/setees/Screenshot 2026-06-11 124521.png,https://example.com,Local Artisan,$199.00
+setees,Screenshot 2026-06-11 124541,/database/setees/Screenshot 2026-06-11 124541.png,https://example.com,Local Artisan,$199.00
+setees,Screenshot 2026-06-13 142320,/database/setees/Screenshot 2026-06-13 142320.png,https://example.com,Local Artisan,$199.00
+setees,Screenshot 2026-06-13 142336,/database/setees/Screenshot 2026-06-13 142336.png,https://example.com,Local Artisan,$199.00
+table,coffee table,/database/table/coffee_table.png,https://example.com,Local Artisan,$199.00
+table,Screenshot 2026-06-11 124803,/database/table/Screenshot 2026-06-11 124803.png,https://example.com,Local Artisan,$199.00
+table,Screenshot 2026-06-11 124828,/database/table/Screenshot 2026-06-11 124828.png,https://example.com,Local Artisan,$199.00
+table,Screenshot 2026-06-11 124841,/database/table/Screenshot 2026-06-11 124841.png,https://example.com,Local Artisan,$199.00
+table_lights,Screenshot 2026-06-13 142417,/database/table_lights/Screenshot 2026-06-13 142417.png,https://example.com,Local Artisan,$129.00
+table_lights,Screenshot 2026-06-13 142431,/database/table_lights/Screenshot 2026-06-13 142431.png,https://example.com,Local Artisan,$129.00
+table_lights,Screenshot 2026-06-13 142453,/database/table_lights/Screenshot 2026-06-13 142453.png,https://example.com,Local Artisan,$129.00
+table_lights,Screenshot 2026-06-13 142525,/database/table_lights/Screenshot 2026-06-13 142525.png,https://example.com,Local Artisan,$129.00
+tiles,marble tile,/database/tiles/marble_tile.png,https://example.com/premium-marble,Premium Stone & Co.,$5.99 / sq ft
+tiles,oak wood tile,/database/tiles/oak_wood_tile.png,https://example.com/hardwood-oak,Hardwood Depot,$5.99 / sq ft
+tiles,Screenshot 2026-06-11 152857,/database/tiles/Screenshot 2026-06-11 152857.png,https://example.com,Local Artisan,$5.99 / sq ft
+tiles,Screenshot 2026-06-11 152925,/database/tiles/Screenshot 2026-06-11 152925.png,https://example.com,Local Artisan,$5.99 / sq ft
+tiles,Screenshot 2026-06-11 152956,/database/tiles/Screenshot 2026-06-11 152956.png,https://example.com,Local Artisan,$5.99 / sq ft
+tv_units,Screenshot 2026-06-11 124340,/database/tv_units/Screenshot 2026-06-11 124340.png,https://example.com,Local Artisan,$349.00
+tv_units,Screenshot 2026-06-11 124606,/database/tv_units/Screenshot 2026-06-11 124606.png,https://example.com,Local Artisan,$349.00
+tv_units,Screenshot 2026-06-11 124634,/database/tv_units/Screenshot 2026-06-11 124634.png,https://example.com,Local Artisan,$349.00
+tv_units,Screenshot 2026-06-13 141742,/database/tv_units/Screenshot 2026-06-13 141742.png,https://example.com,Local Artisan,$349.00
+tv_units,Screenshot 2026-06-13 141822,/database/tv_units/Screenshot 2026-06-13 141822.png,https://example.com,Local Artisan,$349.00
+tv_units,Screenshot 2026-06-13 141845,/database/tv_units/Screenshot 2026-06-13 141845.png,https://example.com,Local Artisan,$349.00
+tv_units,Screenshot 2026-06-13 141906,/database/tv_units/Screenshot 2026-06-13 141906.png,https://example.com,Local Artisan,$349.00
+wall_decor,Screenshot 2026-06-13 143434,/database/wall_decor/Screenshot 2026-06-13 143434.png,https://example.com,Local Artisan,$349.00
+wall_decor,Screenshot 2026-06-13 143453,/database/wall_decor/Screenshot 2026-06-13 143453.png,https://example.com,Local Artisan,$349.00
+wall_decor,Screenshot 2026-06-13 143701,/database/wall_decor/Screenshot 2026-06-13 143701.png,https://example.com,Local Artisan,$349.00
+wall_decor,Screenshot 2026-06-13 143722,/database/wall_decor/Screenshot 2026-06-13 143722.png,https://example.com,Local Artisan,$349.00
+wall_decor,Screenshot 2026-06-13 143815,/database/wall_decor/Screenshot 2026-06-13 143815.png,https://example.com,Local Artisan,$349.00
+wall_decor,Screenshot 2026-06-13 143835,/database/wall_decor/Screenshot 2026-06-13 143835.png,https://example.com,Local Artisan,$349.00
+wall_hangings,Screenshot 2026-06-13 141407,/database/wall_hangings/Screenshot 2026-06-13 141407.png,https://example.com,Local Artisan,$349.00
+wall_hangings,Screenshot 2026-06-13 141442,/database/wall_hangings/Screenshot 2026-06-13 141442.png,https://example.com,Local Artisan,$349.00
+wall_hangings,Screenshot 2026-06-13 141628,/database/wall_hangings/Screenshot 2026-06-13 141628.png,https://example.com,Local Artisan,$349.00
+wall_plants,Screenshot 2026-06-13 143616,/database/wall_plants/Screenshot 2026-06-13 143616.png,https://example.com,Local Artisan,$349.00
+wall_plants,Screenshot 2026-06-13 143633,/database/wall_plants/Screenshot 2026-06-13 143633.png,https://example.com,Local Artisan,$349.00
+wall_shelves,Screenshot 2026-06-13 143551,/database/wall_shelves/Screenshot 2026-06-13 143551.png,https://example.com,Local Artisan,$349.00
+windows,Screenshot 2026-06-15 140144,/database/windows/Screenshot 2026-06-15 140144.png,https://example.com,Local Artisan,$249.00
+windows,Screenshot 2026-06-15 140241,/database/windows/Screenshot 2026-06-15 140241.png,https://example.com,Local Artisan,$249.00
+windows,Screenshot 2026-06-15 140250,/database/windows/Screenshot 2026-06-15 140250.png,https://example.com,Local Artisan,$249.00
