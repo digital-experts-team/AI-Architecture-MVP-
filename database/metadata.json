@@ -1,12 +1,34 @@
 {
   "tiles": {
     "marble_tile.png": {
-      "providerName": "Premium Stone & Co.",
-      "providerWebsite": "https://example.com/premium-marble"
+      "name": "Premium Italian Marble Floor Tile",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/premium-italian-marble-floor-tile-2160000.html",
+      "price": "$5.99 / sq ft"
     },
     "oak_wood_tile.png": {
-      "providerName": "Hardwood Depot",
-      "providerWebsite": "https://example.com/hardwood-oak"
+      "name": "Rustic Honey Oak Wood Floor Tile",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/rustic-honey-oak-wood-floor-tile-2160001.html",
+      "price": "$5.99 / sq ft"
+    },
+    "Screenshot 2026-06-11 152857.png": {
+      "name": "Terrazzo Pattern Porcelain Tile",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/terrazzo-pattern-porcelain-tile-2160002.html",
+      "price": "$5.99 / sq ft"
+    },
+    "Screenshot 2026-06-11 152925.png": {
+      "name": "Polished Grey Granite Floor Tile",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/polished-grey-granite-floor-tile-2160003.html",
+      "price": "$5.99 / sq ft"
+    },
+    "Screenshot 2026-06-11 152956.png": {
+      "name": "Premium White Italian Marble Tile 2",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/premium-white-italian-marble-tile-2-2160004.html",
+      "price": "$5.99 / sq ft"
     }
   },
   "furniture": {
@@ -21,6 +43,441 @@
     "coffee_table.png": {
       "providerName": "Minimalist Woodworks",
       "providerWebsite": "https://example.com/wooden-table"
+    }
+  },
+  "bed": {
+    "Screenshot 2026-06-11 124919.png": {
+      "name": "Comfort Craft Solid Wood Bed",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/comfort-craft-solid-wood-bed-1980000.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124939.png": {
+      "name": "Deluxe Velvet Tufted Bed",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/deluxe-velvet-tufted-bed-1980001.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124957.png": {
+      "name": "Platform Storage Queen Bed",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/platform-storage-queen-bed-1980002.html",
+      "price": "$199.00"
+    },
+    "wooden_bed.png": {
+      "name": "Solid Teak Wood Queen Bed",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/solid-teak-wood-queen-bed-1980003.html",
+      "price": "$199.00"
+    }
+  },
+  "blueprints": {},
+  "carpets": {
+    "Screenshot 2026-06-13 141952.png": {
+      "name": "Handwoven Woolen Area Carpet",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/handwoven-woolen-area-carpet-1990000.html",
+      "price": "$249.00"
+    },
+    "Screenshot 2026-06-13 142016.png": {
+      "name": "Modern Geometric Floor Rug",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-geometric-floor-rug-1990001.html",
+      "price": "$249.00"
+    },
+    "Screenshot 2026-06-13 142045.png": {
+      "name": "Classic Persian Floral Carpet",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/classic-persian-floral-carpet-1990002.html",
+      "price": "$249.00"
+    },
+    "Screenshot 2026-06-13 142107.png": {
+      "name": "Plush Shag Living Room Rug",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/plush-shag-living-room-rug-1990003.html",
+      "price": "$249.00"
+    }
+  },
+  "chairs": {
+    "Screenshot 2026-06-13 142159.png": {
+      "name": "Ergonomic Velvet Accent Chair",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/ergonomic-velvet-accent-chair-1990000.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-13 142216.png": {
+      "name": "Mid-Century Wooden Lounge Chair",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/mid-century-wooden-lounge-chair-1990001.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-13 142232.png": {
+      "name": "Tufted Leather Armchair",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/tufted-leather-armchair-1990002.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-13 142248.png": {
+      "name": "Minimalist Office Desk Chair",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/minimalist-office-desk-chair-1990003.html",
+      "price": "$199.00"
+    }
+  },
+  "curtains": {
+    "Screenshot 2026-06-11 124654.png": {
+      "name": "Premium Blackout Window Curtain",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/premium-blackout-window-curtain-1990000.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124703.png": {
+      "name": "Sheer Linen Blend Curtain Panel",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/sheer-linen-blend-curtain-panel-1990001.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124717.png": {
+      "name": "Textured Jacquard Drapery Set",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/textured-jacquard-drapery-set-1990002.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124736.png": {
+      "name": "Modern Grommet Top Curtain",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-grommet-top-curtain-1990003.html",
+      "price": "$199.00"
+    }
+  },
+  "dining": {
+    "Screenshot 2026-06-11 125848.png": {
+      "name": "6-Seater Solid Oak Dining Table",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/6-seater-solid-oak-dining-table-2000000.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 125906.png": {
+      "name": "Modern Marble Top Dining Table",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-marble-top-dining-table-2000001.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 125931.png": {
+      "name": "Compact 4-Seater Dining Set",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/compact-4-seater-dining-set-2000002.html",
+      "price": "$199.00"
+    }
+  },
+  "front door": {
+    "Screenshot 2026-06-15 135926.png": {
+      "name": "Solid Teak Wood Main Door",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/solid-teak-wood-main-door-2020000.html",
+      "price": "$599.00"
+    },
+    "Screenshot 2026-06-15 135939.png": {
+      "name": "Classic Panel Entry Door",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/classic-panel-entry-door-2020001.html",
+      "price": "$599.00"
+    },
+    "Screenshot 2026-06-15 135954.png": {
+      "name": "Modern Arched Wooden Door",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-arched-wooden-door-2020002.html",
+      "price": "$599.00"
+    },
+    "Screenshot 2026-06-15 140021.png": {
+      "name": "Craftsman Exterior Pivot Door",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/craftsman-exterior-pivot-door-2020003.html",
+      "price": "$599.00"
+    }
+  },
+  "hanging_lights": {
+    "Screenshot 2026-06-13 141220.png": {
+      "name": "Industrial Brass Pendant Light",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/industrial-brass-pendant-light-2040000.html",
+      "price": "$129.00"
+    },
+    "Screenshot 2026-06-13 141235.png": {
+      "name": "Modern Sphere Glass Chandelier",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-sphere-glass-chandelier-2040001.html",
+      "price": "$129.00"
+    },
+    "Screenshot 2026-06-13 141306.png": {
+      "name": "Geometric Metal Hanging Lamp",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/geometric-metal-hanging-lamp-2040002.html",
+      "price": "$129.00"
+    },
+    "Screenshot 2026-06-13 141320.png": {
+      "name": "Vintage Edison Bulb Pendant",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/vintage-edison-bulb-pendant-2040003.html",
+      "price": "$129.00"
+    }
+  },
+  "lighting": {},
+  "panels": {},
+  "roof tiles": {
+    "Screenshot 2026-06-15 135651.png": {
+      "name": "Modern Pepperfry roof tiles",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-pepperfry-roof-tiles-2140000.html",
+      "price": "$5.99 / sq ft"
+    },
+    "Screenshot 2026-06-15 135718.png": {
+      "name": "Modern Pepperfry roof tiles 2",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-pepperfry-roof-tiles-2-2140001.html",
+      "price": "$5.99 / sq ft"
+    },
+    "Screenshot 2026-06-15 135744.png": {
+      "name": "Modern Pepperfry roof tiles 3",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-pepperfry-roof-tiles-3-2140002.html",
+      "price": "$5.99 / sq ft"
+    }
+  },
+  "rugs": {},
+  "setees": {
+    "emerald_sofa.png": {
+      "name": "Emerald Green Velvet 3-Seater Sofa",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/emerald-green-velvet-3-seater-sofa-2150000.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124454.png": {
+      "name": "Rustic Wooden Dining Bench",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/rustic-wooden-dining-bench-2150001.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124521.png": {
+      "name": "Modern Upholstered Settee",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-upholstered-settee-2150002.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124541.png": {
+      "name": "Classic Storage Trunk Bench",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/classic-storage-trunk-bench-2150003.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-13 142320.png": {
+      "name": "Tufted Velvet Entryway Bench 2",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/tufted-velvet-entryway-bench-2-2150004.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-13 142336.png": {
+      "name": "Rustic Wooden Dining Bench 2",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/rustic-wooden-dining-bench-2-2150005.html",
+      "price": "$199.00"
+    }
+  },
+  "table": {
+    "coffee_table.png": {
+      "name": "Minimalist Solid Wood Coffee Table",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/minimalist-solid-wood-coffee-table-2160000.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124803.png": {
+      "name": "Industrial Oak Coffee Table",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/industrial-oak-coffee-table-2160001.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124828.png": {
+      "name": "Floating Console Wall Table",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/floating-console-wall-table-2160002.html",
+      "price": "$199.00"
+    },
+    "Screenshot 2026-06-11 124841.png": {
+      "name": "Sleek Metal Nesting Tables",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/sleek-metal-nesting-tables-2160003.html",
+      "price": "$199.00"
+    }
+  },
+  "table_lights": {
+    "Screenshot 2026-06-13 142417.png": {
+      "name": "Ceramic Bedside Table Lamp",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/ceramic-bedside-table-lamp-2160000.html",
+      "price": "$129.00"
+    },
+    "Screenshot 2026-06-13 142431.png": {
+      "name": "Adjustable Brass Desk Task Lamp",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/adjustable-brass-desk-task-lamp-2160001.html",
+      "price": "$129.00"
+    },
+    "Screenshot 2026-06-13 142453.png": {
+      "name": "Modern Glass Globe Table Light",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-glass-globe-table-light-2160002.html",
+      "price": "$129.00"
+    },
+    "Screenshot 2026-06-13 142525.png": {
+      "name": "Earthy Terracotta Accent Lamp",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/earthy-terracotta-accent-lamp-2160003.html",
+      "price": "$129.00"
+    }
+  },
+  "tv_units": {
+    "Screenshot 2026-06-11 124340.png": {
+      "name": "Floating Modern TV Console",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/floating-modern-tv-console-2160000.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-11 124606.png": {
+      "name": "Solid Wood Entertainment Center",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/solid-wood-entertainment-center-2160001.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-11 124634.png": {
+      "name": "Mid-Century Media Cabinet",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/mid-century-media-cabinet-2160002.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 141742.png": {
+      "name": "Sleek Wall Mounted TV Panel",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/sleek-wall-mounted-tv-panel-2160003.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 141822.png": {
+      "name": "Floating Modern TV Console 2",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/floating-modern-tv-console-2-2160004.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 141845.png": {
+      "name": "Solid Wood Entertainment Center 2",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/solid-wood-entertainment-center-2-2160005.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 141906.png": {
+      "name": "Mid-Century Media Cabinet 2",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/mid-century-media-cabinet-2-2160006.html",
+      "price": "$349.00"
+    }
+  },
+  "wall_decor": {
+    "Screenshot 2026-06-13 143434.png": {
+      "name": "Abstract Canvas Framed Art",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/abstract-canvas-framed-art-2190000.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 143453.png": {
+      "name": "Sunburst Metal Wall Sculpture",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/sunburst-metal-wall-sculpture-2190001.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 143701.png": {
+      "name": "Vintage Wooden Wall Plaque",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/vintage-wooden-wall-plaque-2190002.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 143722.png": {
+      "name": "Minimalist Geometric Wall Panel",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/minimalist-geometric-wall-panel-2190003.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 143815.png": {
+      "name": "Abstract Canvas Framed Art 2",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/abstract-canvas-framed-art-2-2190004.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 143835.png": {
+      "name": "Sunburst Metal Wall Sculpture 2",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/sunburst-metal-wall-sculpture-2-2190005.html",
+      "price": "$349.00"
+    }
+  },
+  "wall_furnitures": {},
+  "wall_hangings": {
+    "Screenshot 2026-06-13 141407.png": {
+      "name": "Handwoven Boho Macrame Hanging",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/handwoven-boho-macrame-hanging-2190000.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 141442.png": {
+      "name": "Rustic Wall Hanging Mirror",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/rustic-wall-hanging-mirror-2190001.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 141628.png": {
+      "name": "Decorative Hanging Metal Bells",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/decorative-hanging-metal-bells-2190002.html",
+      "price": "$349.00"
+    }
+  },
+  "wall_plants": {
+    "Screenshot 2026-06-13 143616.png": {
+      "name": "Faux Potted Monstera Plant",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/faux-potted-monstera-plant-2190000.html",
+      "price": "$349.00"
+    },
+    "Screenshot 2026-06-13 143633.png": {
+      "name": "Hanging Artificial Ivy Vines",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/hanging-artificial-ivy-vines-2190001.html",
+      "price": "$349.00"
+    }
+  },
+  "wall_shelves": {
+    "Screenshot 2026-06-13 143551.png": {
+      "name": "Floating Hexagonal Wall Shelf",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/floating-hexagonal-wall-shelf-2190000.html",
+      "price": "$349.00"
+    }
+  },
+  "windows": {
+    "Screenshot 2026-06-15 140144.png": {
+      "name": "Double-Hung Accent Window Frame",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/double-hung-accent-window-frame-2190000.html",
+      "price": "$249.00"
+    },
+    "Screenshot 2026-06-15 140241.png": {
+      "name": "Modern Sliding Glass Window",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/modern-sliding-glass-window-2190001.html",
+      "price": "$249.00"
+    },
+    "Screenshot 2026-06-15 140250.png": {
+      "name": "Arched Transom Top Window",
+      "providerName": "Pepperfry",
+      "providerWebsite": "https://www.pepperfry.com/product/arched-transom-top-window-2190002.html",
+      "price": "$249.00"
     }
   }
 }
